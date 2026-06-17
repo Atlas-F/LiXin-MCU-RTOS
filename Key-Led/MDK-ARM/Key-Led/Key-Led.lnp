@@ -1,0 +1,26 @@
+--cpu=Cortex-M4.fp.sp
+"key-led\startup_stm32f411xe.o"
+"key-led\main.o"
+"key-led\gpio.o"
+"key-led\stm32f4xx_it.o"
+"key-led\stm32f4xx_hal_msp.o"
+"key-led\stm32f4xx_hal_tim.o"
+"key-led\stm32f4xx_hal_tim_ex.o"
+"key-led\stm32f4xx_hal_rcc.o"
+"key-led\stm32f4xx_hal_rcc_ex.o"
+"key-led\stm32f4xx_hal_flash.o"
+"key-led\stm32f4xx_hal_flash_ex.o"
+"key-led\stm32f4xx_hal_flash_ramfunc.o"
+"key-led\stm32f4xx_hal_gpio.o"
+"key-led\stm32f4xx_hal_dma_ex.o"
+"key-led\stm32f4xx_hal_dma.o"
+"key-led\stm32f4xx_hal_pwr.o"
+"key-led\stm32f4xx_hal_pwr_ex.o"
+"key-led\stm32f4xx_hal_cortex.o"
+"key-led\stm32f4xx_hal.o"
+"key-led\stm32f4xx_hal_exti.o"
+"key-led\system_stm32f4xx.o"
+--strict --scatter "Key-Led\Key-Led.sct"
+--summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
+--info sizes --info totals --info unused --info veneers
+--list "Key-Led.map" -o Key-Led\Key-Led.axf
