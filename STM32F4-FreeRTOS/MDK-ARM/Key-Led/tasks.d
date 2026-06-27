@@ -1,0 +1,16 @@
+key-led\tasks.o: ../Middlewares/Third_Party/FreeRTOS/Source/tasks.c
+key-led\tasks.o: E:\MDK\Core\ARM\ARMCC\Bin\..\include\stdlib.h
+key-led\tasks.o: E:\MDK\Core\ARM\ARMCC\Bin\..\include\string.h
+key-led\tasks.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h
+key-led\tasks.o: E:\MDK\Core\ARM\ARMCC\Bin\..\include\stddef.h
+key-led\tasks.o: E:\MDK\Core\ARM\ARMCC\Bin\..\include\stdint.h
+key-led\tasks.o: ../Core/Inc/FreeRTOSConfig.h
+key-led\tasks.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/projdefs.h
+key-led\tasks.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/portable.h
+key-led\tasks.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/deprecated_definitions.h
+key-led\tasks.o: ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F/portmacro.h
+key-led\tasks.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/mpu_wrappers.h
+key-led\tasks.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/task.h
+key-led\tasks.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/list.h
+key-led\tasks.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/timers.h
+key-led\tasks.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/stack_macros.h

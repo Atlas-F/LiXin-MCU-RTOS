@@ -1,0 +1,13 @@
+key-led\heap_4.o: ../Middlewares/Third_Party/FreeRTOS/Source/portable/MemMang/heap_4.c
+key-led\heap_4.o: E:\MDK\Core\ARM\ARMCC\Bin\..\include\stdlib.h
+key-led\heap_4.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h
+key-led\heap_4.o: E:\MDK\Core\ARM\ARMCC\Bin\..\include\stddef.h
+key-led\heap_4.o: E:\MDK\Core\ARM\ARMCC\Bin\..\include\stdint.h
+key-led\heap_4.o: ../Core/Inc/FreeRTOSConfig.h
+key-led\heap_4.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/projdefs.h
+key-led\heap_4.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/portable.h
+key-led\heap_4.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/deprecated_definitions.h
+key-led\heap_4.o: ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F/portmacro.h
+key-led\heap_4.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/mpu_wrappers.h
+key-led\heap_4.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/task.h
+key-led\heap_4.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/list.h

@@ -1,0 +1,12 @@
+key-led\list.o: ../Middlewares/Third_Party/FreeRTOS/Source/list.c
+key-led\list.o: E:\MDK\Core\ARM\ARMCC\Bin\..\include\stdlib.h
+key-led\list.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h
+key-led\list.o: E:\MDK\Core\ARM\ARMCC\Bin\..\include\stddef.h
+key-led\list.o: E:\MDK\Core\ARM\ARMCC\Bin\..\include\stdint.h
+key-led\list.o: ../Core/Inc/FreeRTOSConfig.h
+key-led\list.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/projdefs.h
+key-led\list.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/portable.h
+key-led\list.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/deprecated_definitions.h
+key-led\list.o: ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F/portmacro.h
+key-led\list.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/mpu_wrappers.h
+key-led\list.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/list.h

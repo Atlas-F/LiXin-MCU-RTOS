@@ -1,0 +1,1 @@
+stm32f4_freertos_basic\startup_stm32f411xe.o: startup_stm32f411xe.s
