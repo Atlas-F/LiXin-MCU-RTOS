@@ -20,6 +20,8 @@
 #include "main.h"
 #include "gpio.h"
 
+#include "LedState.h"
+
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 
@@ -91,22 +93,72 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
+
+  // 直接声明结构体变量
+  LedStatus led = {
+      .GPIO_Port = LED_GPIO_Port,
+      .GPIO_Pin  = LED_Pin
+  };
+  KeyStatus key = {
+      .GPIO_Port = Key_GPIO_Port,
+      .GPIO_Pin  = Key_Pin
+
+  };
+
+    
+ static volatile KeyState KeyCurrentState = KEY_Idle ;
+
+//  static volatile KeyEvent KeyCurrentEvent = KEY_Event_Idle ;
+
   while (1)
   {
     /* USER CODE END WHILE */
-    // HAL_GPIO_WritePin(LED_GPIO_Port, LED_Pin, GPIO_PIN_RESET);
-    // HAL_Delay(500);
-    // HAL_GPIO_WritePin(LED_GPIO_Port, LED_Pin, GPIO_PIN_SET);
-    // HAL_Delay(500);
 
-    if(HAL_GPIO_ReadPin(Key_GPIO_Port, Key_Pin) == GPIO_PIN_RESET)
+    // if(GetKeyState(&key) == KEY_Pressed)
+    // // if(HAL_GPIO_ReadPin(Key_GPIO_Port, Key_Pin) == GPIO_PIN_RESET)
+    // {
+    //   // HAL_GPIO_WritePin(LED_GPIO_Port, LED_Pin, GPIO_PIN_SET);
+    //   HAL_Delay(10);
+    //   HAL_GPIO_TogglePin(LED_GPIO_Port, LED_Pin);
+    //   if( HAL_GPIO_ReadPin(Key_GPIO_Port, Key_Pin) == GPIO_PIN_RESET )
+    //     while(HAL_GPIO_ReadPin(Key_GPIO_Port, Key_Pin) == GPIO_PIN_RESET){}
+    // }
+
+    switch ( KeyCurrentState  )
     {
-      // HAL_GPIO_WritePin(LED_GPIO_Port, LED_Pin, GPIO_PIN_SET);
-      HAL_Delay(10);
-      HAL_GPIO_TogglePin(LED_GPIO_Port, LED_Pin);
-      if( HAL_GPIO_ReadPin(Key_GPIO_Port, Key_Pin) == GPIO_PIN_RESET )
-        while(HAL_GPIO_ReadPin(Key_GPIO_Port, Key_Pin) == GPIO_PIN_RESET){}
+        case KEY_Idle :
+            if (GetKeyState(&key) == KEY_Pressed )
+            {
+                KeyCurrentState = KEY_Pressed ;
+            }
+            break;
+        
+        case KEY_Debounce :
+            HAL_Delay(10);
+            KeyCurrentState = KEY_Released ;
+            break;
+
+        case KEY_Pressed : 
+
+            KeyCurrentState = KEY_Debounce ;
+            break;
+            
+        case KEY_Released :
+            {
+                // HAL_GPIO_TogglePin(LED_GPIO_Port, LED_Pin);        // 当前状态机 流转有问题，流转到这里会持续进入，持续翻转
+                if( HAL_GPIO_ReadPin(Key_GPIO_Port, Key_Pin) == GPIO_PIN_SET )      // 检测到上升沿 才进行翻转  状态函数有问题，参数类型不对
+                {
+                    HAL_GPIO_TogglePin(LED_GPIO_Port, LED_Pin); // 翻转 动作转移到这里，后置，松手翻转。无问题
+                    KeyCurrentState =  KEY_Idle;
+                }
+            }
+            break;
+
+        default:
+            break ;
     }
+
+
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */

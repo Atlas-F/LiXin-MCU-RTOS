@@ -4,6 +4,7 @@
 "key-led\gpio.o"
 "key-led\stm32f4xx_it.o"
 "key-led\stm32f4xx_hal_msp.o"
+"key-led\ledstate.o"
 "key-led\stm32f4xx_hal_tim.o"
 "key-led\stm32f4xx_hal_tim_ex.o"
 "key-led\stm32f4xx_hal_rcc.o"
