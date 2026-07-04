@@ -76,6 +76,26 @@ extern "C" {
  * within FreeRTOSConfig.h.
  */
 
+/* USER code ... */
+
+typedef enum 
+{
+    eLED_IDLE = 0 ,         // 不使用 0 作为枚举值之一，尽量使用明确的值作为状态，0 可能存在判断的问题
+    eLED_ON ,
+    eLED_OFF
+} LedState_t ;
+
+typedef enum 
+{
+    eKEY_IDLE = 0 ,
+    eKEY_UP ,
+    eKEY_DOWN
+} keyState_t ;
+
+
+
+/* USER code ... */
+
 #ifndef configMINIMAL_STACK_SIZE
 	#error Missing definition:  configMINIMAL_STACK_SIZE must be defined in FreeRTOSConfig.h.  configMINIMAL_STACK_SIZE defines the size (in words) of the stack allocated to the idle task.  Refer to the demo project provided for your port for a suitable value.
 #endif

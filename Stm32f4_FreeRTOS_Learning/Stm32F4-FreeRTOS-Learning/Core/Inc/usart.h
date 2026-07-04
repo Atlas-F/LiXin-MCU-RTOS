@@ -29,13 +29,14 @@ extern "C" {
 #include "main.h"
 
 /* USER CODE BEGIN Includes */
-
+#include "FreeRTOS.h" 
+#include "semphr.h"
 /* USER CODE END Includes */
 
 extern UART_HandleTypeDef huart1;
 
 /* USER CODE BEGIN Private defines */
-
+extern SemaphoreHandle_t uart_mutex ;
 /* USER CODE END Private defines */
 
 void MX_USART1_UART_Init(void);

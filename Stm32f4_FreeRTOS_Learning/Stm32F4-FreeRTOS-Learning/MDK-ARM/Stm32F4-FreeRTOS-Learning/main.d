@@ -43,4 +43,6 @@ stm32f4-freertos-learning\main.o: ../Middlewares/Third_Party/FreeRTOS/Source/inc
 stm32f4-freertos-learning\main.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/list.h
 stm32f4-freertos-learning\main.o: ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os2.h
 stm32f4-freertos-learning\main.o: ../Core/Inc/usart.h
+stm32f4-freertos-learning\main.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/semphr.h
+stm32f4-freertos-learning\main.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/queue.h
 stm32f4-freertos-learning\main.o: ../Core/Inc/gpio.h

@@ -24,6 +24,8 @@
 
 #include <stdio.h>
 
+extern SemaphoreHandle_t uart_mutex = NULL;
+
 /* USER CODE END 0 */
 
 UART_HandleTypeDef huart1;
@@ -123,10 +125,20 @@ void HAL_UART_MspDeInit(UART_HandleTypeDef* uartHandle)
  * @brief Retarget printf 
  * 
  */
+// PUTCHAR_PROTOTYPE
+// {
+//     HAL_UART_Transmit(&huart1, (uint8_t *)&ch, 1, 0xFFFF);
+//     return ch;
+// }
 PUTCHAR_PROTOTYPE
 {
-
-    HAL_UART_Transmit(&huart1, (uint8_t *)&ch, 1, 0xFFFF);
+    if (uart_mutex != NULL) {
+        xSemaphoreTake(uart_mutex, portMAX_DELAY);
+    }
+    HAL_UART_Transmit(&huart1, (uint8_t *)&ch, 1, HAL_MAX_DELAY);
+    if (uart_mutex != NULL) {
+        xSemaphoreGive(uart_mutex);
+    }
     return ch;
 }
 

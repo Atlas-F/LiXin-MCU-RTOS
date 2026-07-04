@@ -32,4 +32,15 @@ stm32f4-freertos-learning\usart.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx
 stm32f4-freertos-learning\usart.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h
 stm32f4-freertos-learning\usart.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h
 stm32f4-freertos-learning\usart.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h
+stm32f4-freertos-learning\usart.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h
+stm32f4-freertos-learning\usart.o: ../Core/Inc/FreeRTOSConfig.h
+stm32f4-freertos-learning\usart.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/projdefs.h
+stm32f4-freertos-learning\usart.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/portable.h
+stm32f4-freertos-learning\usart.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/deprecated_definitions.h
+stm32f4-freertos-learning\usart.o: ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F/portmacro.h
+stm32f4-freertos-learning\usart.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/mpu_wrappers.h
+stm32f4-freertos-learning\usart.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/semphr.h
+stm32f4-freertos-learning\usart.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/queue.h
+stm32f4-freertos-learning\usart.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/task.h
+stm32f4-freertos-learning\usart.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/list.h
 stm32f4-freertos-learning\usart.o: E:\MDK\Core\ARM\ARMCC\Bin\..\include\stdio.h

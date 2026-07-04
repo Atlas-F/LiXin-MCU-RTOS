@@ -37,4 +37,4 @@
 --library_type=microlib --strict --scatter "Stm32F4-FreeRTOS-Learning\Stm32F4-FreeRTOS-Learning.sct"
 --summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers
---list "Stm32F4-FreeRTOS-Learning.map" -o Stm32F4-FreeRTOS-Learning\Stm32F4-FreeRTOS-Learning.axf
+--list "C:\Users\23969\Documents\Stm32F4-FreeRTOS-Learning.map" -o Stm32F4-FreeRTOS-Learning\Stm32F4-FreeRTOS-Learning.axf
