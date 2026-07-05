@@ -44,3 +44,4 @@ stm32f4-freertos-learning\freertos.o: ../Middlewares/Third_Party/FreeRTOS/Source
 stm32f4-freertos-learning\freertos.o: ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os2.h
 stm32f4-freertos-learning\freertos.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/queue.h
 stm32f4-freertos-learning\freertos.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/semphr.h
+stm32f4-freertos-learning\freertos.o: ../Core/Inc/KeyLedStateMachine.h

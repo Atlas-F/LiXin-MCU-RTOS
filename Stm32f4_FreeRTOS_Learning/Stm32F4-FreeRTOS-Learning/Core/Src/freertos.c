@@ -27,6 +27,9 @@
 /* USER CODE BEGIN Includes */
 #include "queue.h"
 #include "semphr.h"
+#include <stdint.h>
+
+#include "KeyLedStateMachine.h"
 
 /* USER CODE END Includes */
 
@@ -178,18 +181,39 @@ void KeyTask( void  )
         // 获取
         keyState_t key_status = eKEY_IDLE;
         GPIO_PinState key_state = HAL_GPIO_ReadPin(KEY_GPIO_Port,  KEY_Pin );
-        // printf("KEYTASK is running! \n");
+
+        static uint32_t delay_ms = 0 ;
+
         switch ( key_state )
         {
             case GPIO_PIN_RESET:
                 key_status = eKEY_DOWN ;
                 vTaskDelay(10);
-                if( HAL_GPIO_ReadPin(KEY_GPIO_Port, KEY_Pin) == GPIO_PIN_RESET )
+                delay_ms = delay_ms + 10 ;
+
+                if( delay_ms < 1000 )
                 {
-                    break;      // 这里还不太明白，似乎是因为偶发性重合，延时后不一定高电平，
-                                // 机械抖动或者是按的时间长强制等到高电平，需要回看第一节
+                    if( HAL_GPIO_ReadPin(KEY_GPIO_Port, KEY_Pin) == GPIO_PIN_RESET )
+                    {
+                        break;      // 这里还不太明白，似乎是因为偶发性重合，延时后不一定高电平，// 机械抖动或者是按的时间长强制等到高电平，需要回看第一节
+                    }
+                    else
+                    {
+                        key_status = eKEY_FINISH ;
+                        printf("KeyTask KEY_FINISH delay_ms is  %d \n", key_status);
+                        xQueueSendToBack(queue_key_led, (uint8_t *)&key_status, 10  );
+                        delay_ms = 0;
+                        break ;
+                    }
+
                 }
-                xQueueSendToBack(queue_key_led, (uint8_t *)&key_status, 10  );
+                else 
+                {
+                    key_status = eKEY_LONGPRESS ;
+                    printf("KeyTask KEY_LONGPRESS delay_ms is  %d \n", key_status);
+                    xQueueSendToBack(queue_key_led, (uint8_t *)&key_status, 10  );
+                    delay_ms = 0;
+                }
                 printf("KeyTask is running! \n");
                 break;
             case GPIO_PIN_SET:
@@ -201,8 +225,6 @@ void KeyTask( void  )
                 break;
         }
 
-        // printf("KeyTask is running! \n");
-        // vTaskDelay(500);
     }
 }
 
@@ -227,13 +249,24 @@ void LedTask( void  )
         switch( key_status )
         {
             case eKEY_DOWN:
-                vTaskDelay(pdMS_TO_TICKS(50));          //  test bug
-                printf("LedTask is running! \n");       // 为什么不打印？
-                HAL_GPIO_TogglePin( LED_GPIO_Port ,  LED_Pin);
+
                 break;
             case eKEY_UP:
 
                 break;
+            case eKEY_FINISH :
+                    vTaskDelay(pdMS_TO_TICKS(50));          //  test bug
+                    printf("LedTask is running! \n");       // 为什么不打印？
+                    HAL_GPIO_TogglePin( LED_GPIO_Port ,  LED_Pin);
+                break;
+            case eKEY_LONGPRESS :
+                    GPIO_PinState led_old_state = 0;
+                    // led_old_state = HAL_GPIO_ReadPin( LED_GPIO_Port ,  LED_Pin );
+                    // printf("KEY_LONGPRESS LedTask is %d! \n", led_old_state);
+                    LedToggleSeveralTimes(3);
+                    // HAL_GPIO_WritePin( LED_GPIO_Port ,  LED_Pin , led_old_state) ;
+                    // printf("KEY_LONGPRESS LedTask is %d! \n", led_old_state);
+                break ;
             default:
                 break;
 
