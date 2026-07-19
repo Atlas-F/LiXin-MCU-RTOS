@@ -1,0 +1,12 @@
+13-1_key_led_irq_zero_copy_queue\list.o: ../Middlewares/Third_Party/FreeRTOS/Source/list.c
+13-1_key_led_irq_zero_copy_queue\list.o: E:\MDK\Core\ARM\ARMCC\Bin\..\include\stdlib.h
+13-1_key_led_irq_zero_copy_queue\list.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h
+13-1_key_led_irq_zero_copy_queue\list.o: E:\MDK\Core\ARM\ARMCC\Bin\..\include\stddef.h
+13-1_key_led_irq_zero_copy_queue\list.o: E:\MDK\Core\ARM\ARMCC\Bin\..\include\stdint.h
+13-1_key_led_irq_zero_copy_queue\list.o: ../Core/Inc/FreeRTOSConfig.h
+13-1_key_led_irq_zero_copy_queue\list.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/projdefs.h
+13-1_key_led_irq_zero_copy_queue\list.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/portable.h
+13-1_key_led_irq_zero_copy_queue\list.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/deprecated_definitions.h
+13-1_key_led_irq_zero_copy_queue\list.o: ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F/portmacro.h
+13-1_key_led_irq_zero_copy_queue\list.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/mpu_wrappers.h
+13-1_key_led_irq_zero_copy_queue\list.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/list.h
