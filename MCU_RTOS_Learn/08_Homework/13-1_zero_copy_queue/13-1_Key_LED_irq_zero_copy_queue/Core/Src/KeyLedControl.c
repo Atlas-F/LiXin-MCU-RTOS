@@ -105,7 +105,7 @@ void KeyTask( void *pvParameters  )
 
         if(pdTRUE == xQueueReceive(g_Queue_KeyIrq, &Key_status, 10))
         {
-            vTaskDelay(100);             // 消抖延时  10
+            vTaskDelay(20);             // 消抖延时  10
             if( Key_status.KeyLevel == HAL_GPIO_ReadPin(KEY_GPIO_Port, KEY_Pin) )
             {
                 // 数据更新赋值

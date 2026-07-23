@@ -115,9 +115,9 @@ void MX_FREERTOS_Init(void) {
     } 
 
     g_Queue_KeyIrq = xQueueCreate( (UBaseType_t)10, sizeof(KeyIrqStatus_t) );
-    if( NULL == g_Queue_KeyLED )
+    if( NULL == g_Queue_KeyIrq )
     {
-        printf(" g_Queue_KeyLED queue create FAIL! \n ");
+        printf(" g_Queue_KeyIrq queue create FAIL! \n ");
     } 
 
 
