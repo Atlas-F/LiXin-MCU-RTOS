@@ -3711,3 +3711,8 @@ TD504 3419:998.225
   ***** Error: Connection to emulator lost!
 TD504 3945:014.447   
   ***** Error: Connection to emulator lost!
+TD008 7312:189.800 JLINK_HasError()
+TD008 7312:201.353 JLINK_Close()
+TD008 7312:211.029 - 9.731ms
+TD008 7312:211.096   
+TD008 7312:211.132   Closed

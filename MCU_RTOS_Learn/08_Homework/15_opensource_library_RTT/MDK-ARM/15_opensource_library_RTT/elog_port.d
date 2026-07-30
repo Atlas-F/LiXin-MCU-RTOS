@@ -1,0 +1,11 @@
+.\15_opensource_library_rtt\elog_port.o: ..\Middlewares\easylogger\port\elog_port.c
+.\15_opensource_library_rtt\elog_port.o: ../Middlewares/easylogger/inc/elog.h
+.\15_opensource_library_rtt\elog_port.o: ../Middlewares/easylogger/inc/elog_cfg.h
+.\15_opensource_library_rtt\elog_port.o: E:\MDK\Core\ARM\ARMCC\Bin\..\include\stdint.h
+.\15_opensource_library_rtt\elog_port.o: E:\MDK\Core\ARM\ARMCC\Bin\..\include\stddef.h
+.\15_opensource_library_rtt\elog_port.o: E:\MDK\Core\ARM\ARMCC\Bin\..\include\stdbool.h
+.\15_opensource_library_rtt\elog_port.o: E:\MDK\Core\ARM\ARMCC\Bin\..\include\time.h
+.\15_opensource_library_rtt\elog_port.o: ../Drivers/RTT/SEGGER_RTT.h
+.\15_opensource_library_rtt\elog_port.o: ../Drivers/RTT/SEGGER_RTT_Conf.h
+.\15_opensource_library_rtt\elog_port.o: E:\MDK\Core\ARM\ARMCC\Bin\..\include\stdlib.h
+.\15_opensource_library_rtt\elog_port.o: E:\MDK\Core\ARM\ARMCC\Bin\..\include\stdarg.h
