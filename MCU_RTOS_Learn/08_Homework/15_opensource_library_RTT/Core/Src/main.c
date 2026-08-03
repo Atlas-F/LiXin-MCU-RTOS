@@ -117,6 +117,8 @@ int main(void)
   MX_USART1_UART_Init();
   MX_RTC_Init();
   /* USER CODE BEGIN 2 */
+  elog_i(LOG_TAG, " 15_RTT_easylog start !\r\n");
+
     // SEGGER_RTT_Init();
   /* USER CODE END 2 */
 
@@ -129,8 +131,8 @@ int main(void)
 //    HAL_Delay(500);
     // SEGGER_RTT_Test();
     // HAL_Delay(500);
-    EasylogTest();
-    HAL_Delay(500);
+//    EasylogTest();
+//    HAL_Delay(500);
     //     SEGGER_RTT_WriteString(
     //     0,
     //     RTT_CTRL_TEXT_RED "SEGGER RED TEST" RTT_CTRL_RESET "\r\n"

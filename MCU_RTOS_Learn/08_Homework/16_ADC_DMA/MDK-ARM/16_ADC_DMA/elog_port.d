@@ -1,0 +1,11 @@
+16_adc_dma\elog_port.o: ..\MIddlewares\easylogger\port\elog_port.c
+16_adc_dma\elog_port.o: ../MIddlewares/easylogger/inc/elog.h
+16_adc_dma\elog_port.o: ../MIddlewares/easylogger/inc/elog_cfg.h
+16_adc_dma\elog_port.o: E:\MDK\Core\ARM\ARMCC\Bin\..\include\stdint.h
+16_adc_dma\elog_port.o: E:\MDK\Core\ARM\ARMCC\Bin\..\include\stddef.h
+16_adc_dma\elog_port.o: E:\MDK\Core\ARM\ARMCC\Bin\..\include\stdbool.h
+16_adc_dma\elog_port.o: E:\MDK\Core\ARM\ARMCC\Bin\..\include\time.h
+16_adc_dma\elog_port.o: ../MIddlewares/RTT/SEGGER_RTT.h
+16_adc_dma\elog_port.o: ../MIddlewares/RTT/SEGGER_RTT_Conf.h
+16_adc_dma\elog_port.o: E:\MDK\Core\ARM\ARMCC\Bin\..\include\stdlib.h
+16_adc_dma\elog_port.o: E:\MDK\Core\ARM\ARMCC\Bin\..\include\stdarg.h

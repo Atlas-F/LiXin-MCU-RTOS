@@ -1,0 +1,9 @@
+16_adc_dma\elog.o: ..\MIddlewares\easylogger\src\elog.c
+16_adc_dma\elog.o: ../MIddlewares/easylogger/inc/elog.h
+16_adc_dma\elog.o: ../MIddlewares/easylogger/inc/elog_cfg.h
+16_adc_dma\elog.o: E:\MDK\Core\ARM\ARMCC\Bin\..\include\stdint.h
+16_adc_dma\elog.o: E:\MDK\Core\ARM\ARMCC\Bin\..\include\stddef.h
+16_adc_dma\elog.o: E:\MDK\Core\ARM\ARMCC\Bin\..\include\stdbool.h
+16_adc_dma\elog.o: E:\MDK\Core\ARM\ARMCC\Bin\..\include\string.h
+16_adc_dma\elog.o: E:\MDK\Core\ARM\ARMCC\Bin\..\include\stdarg.h
+16_adc_dma\elog.o: E:\MDK\Core\ARM\ARMCC\Bin\..\include\stdio.h
