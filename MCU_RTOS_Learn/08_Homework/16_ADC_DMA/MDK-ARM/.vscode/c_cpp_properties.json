@@ -13,6 +13,8 @@
                 "f:\\EmbeddedProjects\\CUBEMXProjects\\LiXin-MCU-RTOS\\Projects\\MCU_RTOS_Learn\\08_Homework\\16_ADC_DMA\\Middlewares\\Third_Party\\FreeRTOS\\Source\\include",
                 "f:\\EmbeddedProjects\\CUBEMXProjects\\LiXin-MCU-RTOS\\Projects\\MCU_RTOS_Learn\\08_Homework\\16_ADC_DMA\\Middlewares\\Third_Party\\FreeRTOS\\Source\\CMSIS_RTOS_V2",
                 "f:\\EmbeddedProjects\\CUBEMXProjects\\LiXin-MCU-RTOS\\Projects\\MCU_RTOS_Learn\\08_Homework\\16_ADC_DMA\\Middlewares\\Third_Party\\FreeRTOS\\Source\\portable\\RVDS\\ARM_CM4F",
+                "E:\\MDK\\Core\\ARM\\ARMCC\\include",
+                "E:\\MDK\\Core\\ARM\\ARMCC\\include\\rw",
                 "f:\\EmbeddedProjects\\CUBEMXProjects\\LiXin-MCU-RTOS\\Projects\\MCU_RTOS_Learn\\08_Homework\\16_ADC_DMA\\MDK-ARM",
                 "f:\\EmbeddedProjects\\CUBEMXProjects\\LiXin-MCU-RTOS\\Projects\\MCU_RTOS_Learn\\08_Homework\\16_ADC_DMA\\Core\\Src",
                 "f:\\EmbeddedProjects\\CUBEMXProjects\\LiXin-MCU-RTOS\\Projects\\MCU_RTOS_Learn\\08_Homework\\16_ADC_DMA\\Drivers\\STM32F4xx_HAL_Driver\\Src",

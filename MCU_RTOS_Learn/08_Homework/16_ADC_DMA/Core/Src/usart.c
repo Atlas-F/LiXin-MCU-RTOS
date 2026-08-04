@@ -112,24 +112,24 @@ void HAL_UART_MspDeInit(UART_HandleTypeDef* uartHandle)
 
 /* USER CODE BEGIN 1 */
 
-//#ifdef __GNUC
-//#define PUTCHAR_PROTOTYPE int __io_putchar(int ch)
-//#else
-//#define PUTCHAR_PROTOTYPE int fputc(int ch,FILE *f)
-//#endif
+#ifdef __GNUC
+#define PUTCHAR_PROTOTYPE int __io_putchar(int ch)
+#else
+#define PUTCHAR_PROTOTYPE int fputc(int ch,FILE *f)
+#endif
 
-///**
-// * @brief  串口重定吿
-// * 
-// * 
-// * @details
-// * @note
-// * @warning
-// */
-//PUTCHAR_PROTOTYPE
-//{
-//    HAL_UART_Transmit(&huart1,(uint8_t *)&ch,1,HAL_MAX_DELAY);
-//    return ch;
-//}
+/**
+* @brief  串口重定吿
+* 
+* 
+* @details
+* @note
+* @warning
+*/
+PUTCHAR_PROTOTYPE
+{
+   HAL_UART_Transmit(&huart1,(uint8_t *)&ch,1,HAL_MAX_DELAY);
+   return ch;
+}
 
 /* USER CODE END 1 */

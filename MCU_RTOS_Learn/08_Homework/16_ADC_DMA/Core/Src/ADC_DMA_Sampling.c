@@ -73,6 +73,7 @@ QueueHandle_t g_Mailbox_DataConver = NULL;
 BaseType_t AppADC_DMA_Init(void)
 {
     elog_i(LOG_TAG, " AppADC_DMA_Init start !\r\n");
+    printf("// printf SetDMATask create SUCCESS! \n");
 
     /* 创建任务：切换DMA目标、数据处理*/
     BaseType_t SetDMA = xTaskCreate(SetDMATargetTask, " Set DMA Buffer Target ",
@@ -156,24 +157,49 @@ BaseType_t SetDMATargetTask(void *pvparameters)
         Mailbox_Data_t mail_data = eMAIL_INIT;
 
         /* 邮箱接收消息*/
-        xQueuePeek(g_Mailbox, &mail_eoc, 0);
-        if (eMAIL_DMA_EOC == mail_eoc)
+        // xQueuePeek(g_Mailbox, &mail_eoc, 0);
+        if(pdPASS == xQueuePeek(g_Mailbox, &mail_eoc, 0))
         {
-            if (true == g_buf_use_A)    // 使用 buf_A 切换为使用 buf_B
+            /* 通过添加 xQueueReceive 来确保严格同步的阻塞状态*/
+            if(pdPASS == xQueueReceive(g_Mailbox, &mail_eoc, 0))
             {
-                mail_data = eMAIL_BUF_A_RECEIVE;
-                xQueueOverwrite(g_Mailbox_DataConver, &mail_data);
-                HAL_ADC_Start_DMA(&hadc1, (uint32_t *)g_buffer_B, 1);
-                g_buf_use_A = false;
-            }
-            else
-            {
-                mail_data = eMAIL_BUF_B_RECEIVE;
-                xQueueOverwrite(g_Mailbox_DataConver, &mail_data);
-                HAL_ADC_Start_DMA(&hadc1, (uint32_t *)g_buffer_A, 1);
-                g_buf_use_A = true;
+                if (eMAIL_DMA_EOC == mail_eoc)
+                {
+                    if (true == g_buf_use_A)    // 使用 buf_A 切换为使用 buf_B
+                    {
+                        mail_data = eMAIL_BUF_A_RECEIVE;
+                        xQueueOverwrite(g_Mailbox_DataConver, &mail_data);
+                        HAL_ADC_Start_DMA(&hadc1, (uint32_t *)g_buffer_B, 1);
+                        g_buf_use_A = false;
+                    }
+                    else
+                    {
+                        mail_data = eMAIL_BUF_B_RECEIVE;
+                        xQueueOverwrite(g_Mailbox_DataConver, &mail_data);
+                        HAL_ADC_Start_DMA(&hadc1, (uint32_t *)g_buffer_A, 1);
+                        g_buf_use_A = true;
+                    }
+                }
+
             }
         }
+        // if (eMAIL_DMA_EOC == mail_eoc)
+        // {
+        //     if (true == g_buf_use_A)    // 使用 buf_A 切换为使用 buf_B
+        //     {
+        //         mail_data = eMAIL_BUF_A_RECEIVE;
+        //         xQueueOverwrite(g_Mailbox_DataConver, &mail_data);
+        //         HAL_ADC_Start_DMA(&hadc1, (uint32_t *)g_buffer_B, 1);
+        //         g_buf_use_A = false;
+        //     }
+        //     else
+        //     {
+        //         mail_data = eMAIL_BUF_B_RECEIVE;
+        //         xQueueOverwrite(g_Mailbox_DataConver, &mail_data);
+        //         HAL_ADC_Start_DMA(&hadc1, (uint32_t *)g_buffer_A, 1);
+        //         g_buf_use_A = true;
+        //     }
+        // }
     }
 }
 
