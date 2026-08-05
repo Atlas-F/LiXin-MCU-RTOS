@@ -1104,6 +1104,8 @@ unsigned SEGGER_RTT_WriteNoLock(unsigned BufferIndex, const void* pBuffer, unsig
     Avail = _GetAvailWriteSpace(pRing);
     if (Avail < NumBytes) {
       Status = 0u;
+      /* 串口输出 是否放的下*/
+      printf(" Space full! \r\n");
     } else {
       Status = NumBytes;
       _WriteNoCheck(pRing, pData, NumBytes);

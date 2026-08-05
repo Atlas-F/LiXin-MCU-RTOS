@@ -61,4 +61,5 @@
 16_adc_dma\adc_dma_sampling.o: ../Core/Inc/tim.h
 16_adc_dma\adc_dma_sampling.o: ../Core/Inc/usart.h
 16_adc_dma\adc_dma_sampling.o: ../Core/Inc/gpio.h
+16_adc_dma\adc_dma_sampling.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/semphr.h
 16_adc_dma\adc_dma_sampling.o: ../Core/Inc/ADC_DMA_Sampling.h
