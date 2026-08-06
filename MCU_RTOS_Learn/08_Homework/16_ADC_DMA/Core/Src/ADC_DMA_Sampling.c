@@ -53,8 +53,8 @@ typedef enum
 
 /* Private variables ---------------------------------------------------------*/
 
-uint32_t g_buffer_A[1] = {0};
-uint32_t g_buffer_B[1] = {0};
+uint16_t g_buffer_A[16] = {0};       // origin : 1
+uint16_t g_buffer_B[16] = {0};
 
 bool g_buf_use_A = true;
 
@@ -131,7 +131,7 @@ BaseType_t AppADC_DMA_Init(void)
     g_Mail_BufferFree = xSemaphoreCreateBinary();
 
     /* 启动ADC、DMA 传输*/
-    HAL_ADC_Start_DMA(&hadc1, (uint32_t *)g_buffer_A, 1);
+    HAL_ADC_Start_DMA(&hadc1, (uint32_t *)g_buffer_A, 16);
     g_buf_use_A = true;
 
     elog_i(LOG_TAG, " ADC_DMA start !\r\n");
@@ -193,7 +193,7 @@ BaseType_t SetDMATargetTask(void *pvparameters)
                             // P 操作，数据处理已经完成，可以开始下一缓冲区目标的切换
                         if( pdPASS == xSemaphoreTake(g_Mail_BufferFree, 10 ) )
                         {
-                            HAL_ADC_Start_DMA(&hadc1, (uint32_t *)g_buffer_B, 1);
+                            HAL_ADC_Start_DMA(&hadc1, (uint32_t *)g_buffer_B, 16);
                             g_buf_use_A = false;
                         }
                     }
@@ -204,7 +204,7 @@ BaseType_t SetDMATargetTask(void *pvparameters)
                             xSemaphoreGive(g_Mail_Dataconvert );
                         if( pdPASS == xSemaphoreTake(g_Mail_BufferFree, 10 ) )
                         {
-                            HAL_ADC_Start_DMA(&hadc1, (uint32_t *)g_buffer_A, 1);
+                            HAL_ADC_Start_DMA(&hadc1, (uint32_t *)g_buffer_A, 16);
                             g_buf_use_A = true;
                         }
                     }
@@ -244,13 +244,27 @@ BaseType_t DataConversionTask(void *pvparameters)
                     if (eMAIL_BUF_A_RECEIVE == mail_data)
                     {
                         /* 处理数据并log 输出*/
-                        float voltage = g_buffer_A[0] * 3.3f / 4095.0f;
+                        uint32_t buf_num = 0;
+                        uint32_t buf_ave;
+
+                        for (int i = 0; i < 16; i++) {
+                            buf_num += g_buffer_A[i];
+                        }
+                        buf_ave = buf_num / 16;
+                        float voltage = buf_ave * 3.3f / 4095.0f;
                         elog_i(TAG_ADCDMA, " Voltage A = [%.2f] ", voltage);
 
                     }
                     else
                     {
-                        float voltage = g_buffer_B[0] * 3.3f / 4095.0f;
+                        uint32_t buf_num = 0;
+                        uint32_t buf_ave;
+
+                        for (int i = 0; i < 16; i++) {
+                            buf_num += g_buffer_B[i];
+                        }
+                        buf_ave = buf_num / 16;
+                        float voltage = buf_ave * 3.3f / 4095.0f;
                         elog_i(TAG_ADCDMA, " Voltage B = [%.2f] ", voltage);
                     }
                         // 发送消息 buffer free
