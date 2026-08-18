@@ -1,0 +1,11 @@
+17_usart_dma_circularbuffer\elog_port.o: ..\Middlewares\easylogger\port\elog_port.c
+17_usart_dma_circularbuffer\elog_port.o: ../Middlewares/easylogger/inc/elog.h
+17_usart_dma_circularbuffer\elog_port.o: ../Middlewares/easylogger/inc/elog_cfg.h
+17_usart_dma_circularbuffer\elog_port.o: E:\MDK\Core\ARM\ARMCC\Bin\..\include\stdint.h
+17_usart_dma_circularbuffer\elog_port.o: E:\MDK\Core\ARM\ARMCC\Bin\..\include\stddef.h
+17_usart_dma_circularbuffer\elog_port.o: E:\MDK\Core\ARM\ARMCC\Bin\..\include\stdbool.h
+17_usart_dma_circularbuffer\elog_port.o: E:\MDK\Core\ARM\ARMCC\Bin\..\include\time.h
+17_usart_dma_circularbuffer\elog_port.o: ../Middlewares/RTT/SEGGER_RTT.h
+17_usart_dma_circularbuffer\elog_port.o: ../Middlewares/RTT/SEGGER_RTT_Conf.h
+17_usart_dma_circularbuffer\elog_port.o: E:\MDK\Core\ARM\ARMCC\Bin\..\include\stdlib.h
+17_usart_dma_circularbuffer\elog_port.o: E:\MDK\Core\ARM\ARMCC\Bin\..\include\stdarg.h

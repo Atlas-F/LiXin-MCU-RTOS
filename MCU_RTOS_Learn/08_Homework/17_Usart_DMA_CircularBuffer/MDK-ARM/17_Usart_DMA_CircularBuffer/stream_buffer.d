@@ -1,0 +1,14 @@
+17_usart_dma_circularbuffer\stream_buffer.o: ../Middlewares/Third_Party/FreeRTOS/Source/stream_buffer.c
+17_usart_dma_circularbuffer\stream_buffer.o: E:\MDK\Core\ARM\ARMCC\Bin\..\include\stdint.h
+17_usart_dma_circularbuffer\stream_buffer.o: E:\MDK\Core\ARM\ARMCC\Bin\..\include\string.h
+17_usart_dma_circularbuffer\stream_buffer.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h
+17_usart_dma_circularbuffer\stream_buffer.o: E:\MDK\Core\ARM\ARMCC\Bin\..\include\stddef.h
+17_usart_dma_circularbuffer\stream_buffer.o: ../Core/Inc/FreeRTOSConfig.h
+17_usart_dma_circularbuffer\stream_buffer.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/projdefs.h
+17_usart_dma_circularbuffer\stream_buffer.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/portable.h
+17_usart_dma_circularbuffer\stream_buffer.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/deprecated_definitions.h
+17_usart_dma_circularbuffer\stream_buffer.o: ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F/portmacro.h
+17_usart_dma_circularbuffer\stream_buffer.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/mpu_wrappers.h
+17_usart_dma_circularbuffer\stream_buffer.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/task.h
+17_usart_dma_circularbuffer\stream_buffer.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/list.h
+17_usart_dma_circularbuffer\stream_buffer.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/stream_buffer.h
