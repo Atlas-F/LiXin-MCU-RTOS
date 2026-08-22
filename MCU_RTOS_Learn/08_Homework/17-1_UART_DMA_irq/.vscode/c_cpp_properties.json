@@ -1,0 +1,34 @@
+{
+    "configurations": [
+        {
+            "name": "STM32 CubeMX / Keil project",
+            "includePath": [
+                "${workspaceFolder}/Core/Inc",
+                "${workspaceFolder}/Drivers/**",
+                "${workspaceFolder}/Middlewares/**",
+                "${workspaceFolder}/APP/**",
+                "${workspaceFolder}/BSP/**",
+                "${workspaceFolder}/User/**"
+            ],
+            "defines": [
+                "USE_HAL_DRIVER",
+                "STM32F411xE"
+            ],
+            "cStandard": "c11",
+            "cppStandard": "c++17",
+            "intelliSenseMode": "windows-gcc-arm",
+            "browse": {
+                "limitSymbolsToIncludedHeaders": true,
+                "path": [
+                    "${workspaceFolder}/Core/Inc",
+                    "${workspaceFolder}/Drivers/**",
+                    "${workspaceFolder}/Middlewares/**",
+                    "${workspaceFolder}/APP/**",
+                    "${workspaceFolder}/BSP/**",
+                    "${workspaceFolder}/User/**"
+                ]
+            }
+        }
+    ],
+    "version": 4
+}

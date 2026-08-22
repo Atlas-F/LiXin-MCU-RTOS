@@ -43,12 +43,17 @@
 
 
 /* Private variables ---------------------------------------------------------*/
+/* APP订阅者数组 */
+App_subscriber_t App_subscribers[PROTO_MAX_SUBSCRIBERS] = {0} ;
+
 QueueHandle_t g_Uart_irq_rec_A = NULL ;
 
 static CircularBuffer_t * g_circular_buf_from_drv = NULL ;
 
+static g_App_subscribe_number = 0 ;        // APP 注册命令cmd数量
 
-/* Private function ----------- --------------------------------s---------------*/
+
+/* Private function ----------- -----------------------------------------------*/
 
 // 没有retval
 /**
@@ -64,6 +69,7 @@ void UartRecFuncA(void *argument)
 {
   /* USER CODE BEGIN UartRecFuncA */
     uint32_t rec_data = 0 ;
+    static uint32_t receive_data_cnt = 0 ;
 
     elog_i(LOG_TAG, " UartRecFuncA Init Success !\r\n");
 
@@ -134,14 +140,44 @@ void UartRecFuncA(void *argument)
                         }
                         log_i("data_sum_temp :[%d] ", data_sum_temp );
 
-                        // 判断校验和
+                        // 判断校验和  // 打印净荷数据
                         if( data_sum == data_sum_temp )     
                         {
-                            // 输出数据
-                            for( int i = 0; i < data_counter - 1 ; i++ )
+                            // TODO：解析数据
+                            // 新协议： HEAD(1) + CMD(1) + LENGTH(1) + DATA(n) + CHK(1) + TAIL(1)
+                            /*1、解析协议中的cmd 数据，cmd 数据在协议中的帧头后第一个*/
+                                log_i(" Data CMD : [%d] ", temp_data_array[0]);
+
+                                App_message_t temp_msg= { .data_cnt = receive_data_cnt++ } ;    // 对于订阅者来说 这个计数值有什么作用？
+                                for( int i = 0; i < temp_data_array[1] ; i++ )
+                                {
+                                    temp_msg.data[i] = temp_data_array[i+2] ;       // 这里不应该是 i+2 吗。从length 后面开始传递数据
+                                }
+                            /*2、解析协议中的数据，净数据在length 后*/
+                                log_i(" Data Length : [%d] ", temp_data_array[1]);
+
+                            /*3、转发到对应的APP订阅者 */
+                            for( int i = 0 ; i < PROTO_MAX_SUBSCRIBERS ; i++ )
+                            {
+                                for( int j = 0 ; j < PROTO_MAX_CMD_SUBSCRIBER ; j++ )
+                                {
+                                    if( App_subscribers[i].cmd[j] == temp_msg.data[0] )
+                                    {
+                                        xQueueSendToBack( App_subscribers[i].rx_handle , &temp_msg, 0);
+                                    }
+                                }
+                            }
+
+
+                            // 打印净荷数据，除帧头和帧尾
+                            for( int i = 3; i < data_counter - 1 ; i++ )
                             {
                                 log_i(" Data : [%d] ", temp_data_array[i]);
                             }
+                            // for( int i = 0; i < data_counter - 1 ; i++ )
+                            // {
+                            //     log_i(" Data : [%d] ", temp_data_array[i]);
+                            // }
                         }
                         // 清零
                         for( int i = 0; i < data_counter ; i++ )
@@ -170,3 +206,31 @@ void UartRecFuncA(void *argument)
 }
 
 
+
+/**
+ * @brief  APP 订阅者数组注册
+ * 
+ * @param [in]  cmd        要订阅的命令
+ * @param [in]  rx_handle  接收者的邮箱地址
+ * @return      
+ * 
+ * @details
+ * @note
+ * @warning
+ */
+uint8_t APP_ArraySubcribe( uint8_t cmd[PROTO_MAX_CMD_SUBSCRIBER], QueueHandle_t rx_handle )
+{
+    // App_subscribers[g_App_subscribe_number++].cmd = cmd ;
+    for( int i = 0; i < PROTO_MAX_CMD_SUBSCRIBER; i++ )
+    {
+        if( g_App_subscribe_number < PROTO_MAX_SUBSCRIBERS )
+        {
+            return 0 ;
+        }
+        // App_subscribers[g_App_subscribe_number++].cmd[i] = cmd[i] ;
+        App_subscribers[g_App_subscribe_number].cmd[i] = cmd[i] ;
+    }
+    App_subscribers[g_App_subscribe_number].rx_handle = rx_handle ;
+    g_App_subscribe_number++;
+
+}

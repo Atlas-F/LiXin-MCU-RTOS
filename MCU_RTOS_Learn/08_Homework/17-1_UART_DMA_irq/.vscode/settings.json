@@ -1,0 +1,7 @@
+{
+    "C_Cpp.default.configurationProvider": "",
+    "C_Cpp.intelliSenseEngine": "default",
+    "C_Cpp.default.intelliSenseMode": "windows-gcc-arm",
+    "C_Cpp.default.cStandard": "c11",
+    "C_Cpp.default.cppStandard": "c++17"
+}

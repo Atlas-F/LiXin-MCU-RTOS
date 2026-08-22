@@ -9,6 +9,7 @@
 17_usart_dma_circularbuffer\uart_parse_task.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/deprecated_definitions.h
 17_usart_dma_circularbuffer\uart_parse_task.o: ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F/portmacro.h
 17_usart_dma_circularbuffer\uart_parse_task.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/mpu_wrappers.h
+17_usart_dma_circularbuffer\uart_parse_task.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/queue.h
 17_usart_dma_circularbuffer\uart_parse_task.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/task.h
 17_usart_dma_circularbuffer\uart_parse_task.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/list.h
 17_usart_dma_circularbuffer\uart_parse_task.o: ../Middlewares/easylogger/inc/elog.h
@@ -16,7 +17,6 @@
 17_usart_dma_circularbuffer\uart_parse_task.o: E:\MDK\Core\ARM\ARMCC\Bin\..\include\stdbool.h
 17_usart_dma_circularbuffer\uart_parse_task.o: ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os.h
 17_usart_dma_circularbuffer\uart_parse_task.o: ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os2.h
-17_usart_dma_circularbuffer\uart_parse_task.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/queue.h
 17_usart_dma_circularbuffer\uart_parse_task.o: ../Core/Inc/usart.h
 17_usart_dma_circularbuffer\uart_parse_task.o: ../Core/Inc/main.h
 17_usart_dma_circularbuffer\uart_parse_task.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h

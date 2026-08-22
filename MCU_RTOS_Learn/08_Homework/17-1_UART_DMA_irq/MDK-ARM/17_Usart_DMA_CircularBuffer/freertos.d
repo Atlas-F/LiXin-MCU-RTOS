@@ -53,3 +53,4 @@
 17_usart_dma_circularbuffer\freertos.o: ../Core/Inc/usart.h
 17_usart_dma_circularbuffer\freertos.o: ../Middlewares/MID_CircularBuffer/Mid_CircularBuffer.h
 17_usart_dma_circularbuffer\freertos.o: ../APP/UART_Parse/uart_parse_task.h
+17_usart_dma_circularbuffer\freertos.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/queue.h

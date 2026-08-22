@@ -22,6 +22,7 @@
 #include "task.h"
 #include "main.h"
 #include "cmsis_os.h"
+#include "queue.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
@@ -50,6 +51,9 @@
 
 /* Private variables ---------------------------------------------------------*/
 /* USER CODE BEGIN Variables */
+
+QueueHandle_t g_queue_sub_app  = NULL ;
+
 
 /* USER CODE END Variables */
 /* Definitions for defaultTask */
@@ -141,11 +145,24 @@ void MX_FREERTOS_Init(void) {
 void StartDefaultTask(void *argument)
 {
   /* USER CODE BEGIN StartDefaultTask */
+
+    uint8_t cmd[1] = 0xAB;
+    g_queue_sub_app = xQueueCreate(1, 4);
+    uint8_t ret = APP_ArraySubcribe( cmd, g_queue_sub_app);
+
+    App_message_t temp_msg = {0};
   /* Infinite loop */
-  for(;;)
-  {
+    for(;;)
+    {
+        xQueueReceive(g_queue_sub_app, &temp_msg, 0 );
+        for( int i = 0; i < temp_msg.data_cnt; i++ )
+        {
+            log_i("sub_app data:[%d] ", temp_msg.data[i]);
+        }
+        temp_msg.data_cnt = 0 ;
+
     osDelay(1);
-  }
+    }
   /* USER CODE END StartDefaultTask */
 }
 
