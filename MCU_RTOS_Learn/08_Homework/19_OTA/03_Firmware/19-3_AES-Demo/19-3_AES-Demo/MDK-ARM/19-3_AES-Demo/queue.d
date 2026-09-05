@@ -1,0 +1,15 @@
+19-3_aes-demo\queue.o: ../Middlewares/Third_Party/FreeRTOS/Source/queue.c
+19-3_aes-demo\queue.o: E:\MDK\Core\ARM\ARMCC\Bin\..\include\stdlib.h
+19-3_aes-demo\queue.o: E:\MDK\Core\ARM\ARMCC\Bin\..\include\string.h
+19-3_aes-demo\queue.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h
+19-3_aes-demo\queue.o: E:\MDK\Core\ARM\ARMCC\Bin\..\include\stddef.h
+19-3_aes-demo\queue.o: E:\MDK\Core\ARM\ARMCC\Bin\..\include\stdint.h
+19-3_aes-demo\queue.o: ../Core/Inc/FreeRTOSConfig.h
+19-3_aes-demo\queue.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/projdefs.h
+19-3_aes-demo\queue.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/portable.h
+19-3_aes-demo\queue.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/deprecated_definitions.h
+19-3_aes-demo\queue.o: ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F/portmacro.h
+19-3_aes-demo\queue.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/mpu_wrappers.h
+19-3_aes-demo\queue.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/task.h
+19-3_aes-demo\queue.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/list.h
+19-3_aes-demo\queue.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/queue.h

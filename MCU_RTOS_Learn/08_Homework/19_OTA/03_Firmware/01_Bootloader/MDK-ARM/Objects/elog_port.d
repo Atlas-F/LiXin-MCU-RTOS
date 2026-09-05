@@ -1,0 +1,11 @@
+.\objects\elog_port.o: ..\Middlewares\easylogger\port\elog_port.c
+.\objects\elog_port.o: ..\Middlewares\easylogger\inc\elog.h
+.\objects\elog_port.o: ..\Middlewares\easylogger\inc\elog_cfg.h
+.\objects\elog_port.o: E:\MDK\Core\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\elog_port.o: E:\MDK\Core\ARM\ARMCC\Bin\..\include\stddef.h
+.\objects\elog_port.o: E:\MDK\Core\ARM\ARMCC\Bin\..\include\stdbool.h
+.\objects\elog_port.o: E:\MDK\Core\ARM\ARMCC\Bin\..\include\time.h
+.\objects\elog_port.o: ..\Middlewares\RTT\SEGGER_RTT.h
+.\objects\elog_port.o: ..\Middlewares\RTT\SEGGER_RTT_Conf.h
+.\objects\elog_port.o: E:\MDK\Core\ARM\ARMCC\Bin\..\include\stdlib.h
+.\objects\elog_port.o: E:\MDK\Core\ARM\ARMCC\Bin\..\include\stdarg.h

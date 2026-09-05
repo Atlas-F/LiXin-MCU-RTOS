@@ -1,0 +1,15 @@
+19-2_app\timers.o: ../Middlewares/Third_Party/FreeRTOS/Source/timers.c
+19-2_app\timers.o: E:\MDK\Core\ARM\ARMCC\Bin\..\include\stdlib.h
+19-2_app\timers.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h
+19-2_app\timers.o: E:\MDK\Core\ARM\ARMCC\Bin\..\include\stddef.h
+19-2_app\timers.o: E:\MDK\Core\ARM\ARMCC\Bin\..\include\stdint.h
+19-2_app\timers.o: ../Core/Inc/FreeRTOSConfig.h
+19-2_app\timers.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/projdefs.h
+19-2_app\timers.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/portable.h
+19-2_app\timers.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/deprecated_definitions.h
+19-2_app\timers.o: ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F/portmacro.h
+19-2_app\timers.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/mpu_wrappers.h
+19-2_app\timers.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/task.h
+19-2_app\timers.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/list.h
+19-2_app\timers.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/queue.h
+19-2_app\timers.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/timers.h

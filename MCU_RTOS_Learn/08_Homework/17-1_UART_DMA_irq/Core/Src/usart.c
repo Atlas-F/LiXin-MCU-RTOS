@@ -169,7 +169,7 @@ void HAL_UART_MspDeInit(UART_HandleTypeDef* uartHandle)
 #endif
 
 /**
-* @brief  串口重定�??
+* @brief  串口重定�??
 * 
 * 
 * @details
@@ -202,7 +202,7 @@ PUTCHAR_PROTOTYPE
 //    uint32_t send_data_to_rec_A = 0x12 ;
 
 //    BaseType_t	*pxHigherPriorityTaskWoken = pdFALSE ;
-//    ret = xQueueSendFromISR(g_Uart_irq_rec_A, &send_data_to_rec_A , NULL );     // 为什么要设置�? NULL
+//    ret = xQueueSendFromISR(g_Uart_irq_rec_A, &send_data_to_rec_A , NULL );     // 为什么要设置�? NULL
 //    // portYIELD_FROM_ISR(pxHigherPriorityTaskWoken);
 
 //    log_i(" ret = [%d] \r\n", ret);
