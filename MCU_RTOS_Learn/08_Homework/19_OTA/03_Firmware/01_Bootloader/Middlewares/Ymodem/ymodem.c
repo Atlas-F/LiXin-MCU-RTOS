@@ -151,7 +151,7 @@ int32_t Ymodem_Receive (uint8_t *buf)
 {
     //uint8_t Ymodem_Receive = 1000 ;
   uint8_t packet_data[PACKET_1K_SIZE + PACKET_OVERHEAD], file_size[FILE_SIZE_LENGTH], *file_ptr, *buf_ptr;
-  int32_t i, j, packet_length, session_done, file_done, packets_received, errors, session_begin, size = 0;
+  int32_t i, packet_length, session_done, file_done, packets_received, errors, session_begin, size = 0;
 
   /* Initialize FlashDestination variable */
   FlashDestination = BACK_APPLICATION_ADDRESS; // APPLICATION_ADDRESS
@@ -248,7 +248,7 @@ int32_t Ymodem_Receive (uint8_t *buf)
                  memcpy(buf_ptr, packet_data + PACKET_HEADER, packet_length);
                     //uint8_t Ymodem_Receive_2 = 2000 ;
 
-                    W25Q64_WriteData(buf_ptr, packet_length);
+                    W25Q64_WriteData(BLOCK_1, buf_ptr, packet_length);
             
                  //      RamSource = (uint32_t)buf;
             //      for (j = 0;(j < packet_length) && (FlashDestination <  BACK_APPLICATION_ADDRESS + size);j += 4)        // origin:APPLICATION_ADDRESS
@@ -301,7 +301,7 @@ int32_t Ymodem_Receive (uint8_t *buf)
       break;
     }
   }
-  W25Q64_WriteData_End();
+  W25Q64_WriteData_End(BLOCK_1);
   return (int32_t)size;
 }
 

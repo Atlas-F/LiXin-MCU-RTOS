@@ -39,3 +39,4 @@ u8 SPI1_ReadByte(u8 *ReadData, u16 dataSize, u32 timeout);
 
 
 #endif /* __SPI_H__ */
+

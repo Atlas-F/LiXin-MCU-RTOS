@@ -340,7 +340,7 @@
               <MiscControls></MiscControls>
               <Define>USE_STDPERIPH_DRIVER,STM32F411xE</Define>
               <Undefine></Undefine>
-              <IncludePath>..\MDK-ARM;..\Core\Inc;..\Drivers\STM32F4xx_StdPeriph_Driver\inc;..\Drivers\CMSIS\Device\ST\STM32F4xx\Include;..\Drivers\CMSIS\Include;..\Middlewares\easylogger\inc;..\Task(User)\Debug;..\Middlewares\RTT;..\Task(User)\Boot_Manager;..\Middlewares\Ymodem;..\Middlewares\AES;..\BSP\Py25Q64</IncludePath>
+              <IncludePath>..\MDK-ARM;..\Core\Inc;..\Drivers\STM32F4xx_StdPeriph_Driver\inc;..\Drivers\CMSIS\Device\ST\STM32F4xx\Include;..\Drivers\CMSIS\Include;..\Middlewares\easylogger\inc;..\Task(User)\Debug;..\Middlewares\RTT;..\Task(User)\Boot_Manager;..\Middlewares\Ymodem;..\Middlewares\AES;..\BSP\Py25Q64;..\BSP\AT24Cxx_Driver</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -1729,6 +1729,21 @@
               <FileName>w25qxx_Handler.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\BSP\Py25Q64\w25qxx_Handler.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>BSP/AT24Cxx_Driver</GroupName>
+          <Files>
+            <File>
+              <FileName>AT24Cxx_Driver.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\BSP\AT24Cxx_Driver\AT24Cxx_Driver.c</FilePath>
+            </File>
+            <File>
+              <FileName>iic.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\BSP\AT24Cxx_Driver\iic.c</FilePath>
             </File>
           </Files>
         </Group>

@@ -32,7 +32,10 @@
 .\objects\boot_manager.o: ..\Drivers\STM32F4xx_StdPeriph_Driver\inc\misc.h
 .\objects\boot_manager.o: ..\Drivers\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_flash_ramfunc.h
 .\objects\boot_manager.o: ..\Core\Inc\main.h
+.\objects\boot_manager.o: E:\MDK\Core\ARM\ARMCC\Bin\..\include\string.h
 .\objects\boot_manager.o: ..\Middlewares\easylogger\inc\elog.h
 .\objects\boot_manager.o: ..\Middlewares\easylogger\inc\elog_cfg.h
 .\objects\boot_manager.o: E:\MDK\Core\ARM\ARMCC\Bin\..\include\stddef.h
 .\objects\boot_manager.o: E:\MDK\Core\ARM\ARMCC\Bin\..\include\stdbool.h
+.\objects\boot_manager.o: ..\BSP\AT24Cxx_Driver\AT24Cxx_Driver.h
+.\objects\boot_manager.o: ..\BSP\Py25Q64\w25qxx_Handler.h

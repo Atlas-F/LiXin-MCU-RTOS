@@ -25,7 +25,11 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "gpio.h"
+#include "usart.h"
+#include "queue.h"
+#include "ymodem.h"
+#include "SWC_OTA.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -45,9 +49,15 @@
 
 /* Private variables ---------------------------------------------------------*/
 /* USER CODE BEGIN Variables */
+QueueHandle_t Q_YmodemReclength;
+uint8_t g_rec_cmd[10] = {0};
+uint8_t g_rec_len = 0;
 
+extern osThreadAttr_t OTA_task_attributes;
+extern osThreadId_t OTA_taskHandle;
 /* USER CODE END Variables */
 /* Definitions for defaultTask */
+
 osThreadId_t defaultTaskHandle;
 const osThreadAttr_t defaultTask_attributes = {
   .name = "defaultTask",
@@ -88,6 +98,7 @@ void MX_FREERTOS_Init(void) {
 
   /* USER CODE BEGIN RTOS_QUEUES */
   /* add queues, ... */
+  Q_YmodemReclength = xQueueCreate(1,sizeof(uint16_t));     // xQueueCreate(1,sizeof(uint16_t));
   /* USER CODE END RTOS_QUEUES */
 
   /* Create the thread(s) */
@@ -97,7 +108,7 @@ void MX_FREERTOS_Init(void) {
   /* USER CODE BEGIN RTOS_THREADS */
   /* add threads, ... */
   /* USER CODE END RTOS_THREADS */
-
+  OTA_taskHandle = osThreadNew(ota_task_runnable, NULL, &OTA_task_attributes);
   /* USER CODE BEGIN RTOS_EVENTS */
   /* add events, ... */
   /* USER CODE END RTOS_EVENTS */
@@ -114,19 +125,64 @@ void MX_FREERTOS_Init(void) {
 void StartDefaultTask(void *argument)
 {
   /* USER CODE BEGIN StartDefaultTask */
+    // HAL_UARTEx_ReceiveToIdle_DMA(&huart1, g_rec_cmd, 10);   // 这个函数的作用是�?启接收吗�?
+
+
   /* Infinite loop */
   for(;;)
   {
     //osDelay(1);
     HAL_GPIO_TogglePin(LED_GPIO_Port, LED_Pin);
     //HAL_Delay(500);
-    osDelay(500);
+    osDelay(100);
+
+    // test
+    // if( 0 != g_rec_len  )
+    // {
+    //     for( uint8_t i = 0; i < g_rec_len; i++ )
+    //     {
+    //         HAL_UART_Transmit(&huart1, &g_rec_cmd[i], 1,10);        // 向哪里传输？
+    //     }
+    //     g_rec_len = 0 ;
+    //     HAL_UARTEx_ReceiveToIdle_DMA(&huart1, g_rec_cmd, 10);
+    // }
   }
   /* USER CODE END StartDefaultTask */
 }
 
 /* Private application code --------------------------------------------------*/
 /* USER CODE BEGIN Application */
+
+void HAL_UARTEx_RxEventCallback( UART_HandleTypeDef * huart, uint16_t Size)
+{
+  UNUSED(huart);
+  UNUSED(Size);
+	uint16_t t_u16_rec_len = 0;
+	BaseType_t xHigherPriorityTaskWoken = pdFALSE;
+
+    // 判断是否是串�?1
+     if( huart->Instance == USART1 )
+     {
+        g_rec_len = Size ;
+		
+		t_u16_rec_len = Size;   //t_u16_rec_len = Size;
+        if(pdFALSE != xQueueSendFromISR(Q_YmodemReclength,&t_u16_rec_len,0))
+		{
+			xHigherPriorityTaskWoken = pdTRUE;
+		}
+		HAL_UART_DMAStop(huart);
+		portYIELD_FROM_ISR(xHigherPriorityTaskWoken);
+		
+        // 获取当前剩余传输�?
+//        if( 1 == __HAL_UART_GET_FLAG(huart, UART_FLAG_IDLE) )
+//        {
+//            g_rec_len = Size ;
+//        }
+        // DMA 传输完成后的操作
+     }
+
+}
+
 
 /* USER CODE END Application */
 

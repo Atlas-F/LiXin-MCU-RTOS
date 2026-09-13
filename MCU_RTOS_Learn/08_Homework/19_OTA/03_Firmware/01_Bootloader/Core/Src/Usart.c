@@ -19,8 +19,8 @@
 
 /* Includes ------------------------------------------------------------------*/
 
- #include "Usart.h"
-
+#include "Usart.h"
+#include <string.h>
 
 /* Private functions ---------------------------------------------------------*/
 
@@ -140,5 +140,25 @@ void USART1_Init(void)
     RCC_Configuration();
     GPIO_Configuration();
     USART_Configuration();
+}
+
+
+/**
+ * @brief  串口发送字符串函数
+ * 
+ * @param [in]  USARTx  串口
+ * @param [in]  string  字符串
+ * 
+ * @details
+ * @note
+ * @warning
+ */
+void USART_SendString( USART_TypeDef* USARTx, uint8_t * string , uint16_t strlength)
+{
+    for( int i = 0 ; i < strlength ; i++ )
+    {
+        USART_SendChar(USARTx, string[i]);
+    }
+    USART_SendChar(USARTx, '\n');
 }
 

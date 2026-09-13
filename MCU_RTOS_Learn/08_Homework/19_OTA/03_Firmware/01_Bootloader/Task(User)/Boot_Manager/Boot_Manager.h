@@ -33,6 +33,9 @@ extern uint32_t RamSource;
 // #define NVIC_VECTOR_FLASH               ((uint32_t)0x8000000)
 #define NVIC_VectTab_FLASH               ((uint32_t)0x8000000)
 
+#define EEPROM_CHECK_NO_APP_UPDATE                  0X00
+#define EEPROM_CHECK_APP_DOWNLOADING                0X11
+#define EEPROM_CHECK_APP_DOWNLOAD_COMPLETE          0X22
 
 
 
@@ -40,7 +43,15 @@ extern uint32_t RamSource;
 /* Private functions ---------------------------------------------------------*/
 void JumpToApp(void);
 // int8_t BackToApp( void );
- int8_t BackToApp(int32_t fl_size);
+// int8_t BackToApp(int32_t fl_size);
+
+void OTA_StateManager(void);
+int8_t ExA_To_ExB_AES(int32_t fl_size);
+int8_t App_To_ExA(int32_t fl_size);
+
+int8_t ExB_To_App(void);
+int8_t ExA_To_App(void);
+
 
 
 #endif /* __BOOT_MANAGER_H__ */

@@ -33,6 +33,7 @@ uint8_t USART_ReceiveChar(USART_TypeDef* USARTx);
 
 void USART1_Init(void);
 
+void USART_SendString( USART_TypeDef* USARTx, uint8_t * string , uint16_t strlength);
 
 
 

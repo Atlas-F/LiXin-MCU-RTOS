@@ -31,6 +31,7 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "stm32f4xx.h"
+#include <string.h>
 
 #define soft_pwm  (0)
 #define LED_C13_PORT GPIOC
@@ -42,6 +43,9 @@
 /* Exported functions ------------------------------------------------------- */
 void TimingDelay_Decrement(void);
 void Delay(__IO uint32_t nTime);
+
+void AppEasylogInit(void);
+
 
 #endif /* __MAIN_H */
 

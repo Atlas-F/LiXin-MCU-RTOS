@@ -31,3 +31,4 @@
 .\objects\spi.o: ..\Drivers\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_wwdg.h
 .\objects\spi.o: ..\Drivers\STM32F4xx_StdPeriph_Driver\inc\misc.h
 .\objects\spi.o: ..\Drivers\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_flash_ramfunc.h
+.\objects\spi.o: E:\MDK\Core\ARM\ARMCC\Bin\..\include\string.h

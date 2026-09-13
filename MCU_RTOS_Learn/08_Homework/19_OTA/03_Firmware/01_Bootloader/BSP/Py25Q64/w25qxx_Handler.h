@@ -28,6 +28,12 @@
 #include "main.h"
 #include "stm32f4xx.h"
 
+#define BLOCK_1     0       // 即备份区 A
+#define BLOCK_2     1       // 即备份区 B
+// #define BLOCK_SIZE  0xFFFF
+#define BLOCK_SIZE  0x1000
+
+
 /* Exported types ------------------------------------------------------------*/
 /*
 最小读写单元Pag = 256 byte
@@ -49,10 +55,16 @@ typedef struct
 #define EXTERN_Flash
 
 /* Exported functions ------------------------------------------------------- */
+
+void SetBlockParmeter( u8 block_index, int32_t app_size );
+
 void W25Q64_Init(void);
+void EraseFlashBlock(u8 block_index);
+uint32_t ReadBlockSize(u8 block_index);
+
 u8 W25Q64_EraseChip(void);
 
-u8 W25Q64_WriteData(u8 *data, u32 length);
-u8 W25Q64_WriteData_End(void);
-u8 W25Q64_ReadData(u8 *data, u16 *length);
+u8 W25Q64_WriteData(u8 block_index, u8 *data, u32 length);
+u8 W25Q64_WriteData_End(u8 block_index);
+u8 W25Q64_ReadData(u8 block_index, u8 *data, u16 *length);
 #endif /* __FLASH_H */

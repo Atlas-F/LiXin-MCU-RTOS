@@ -226,7 +226,7 @@ uint32_t SerialKeyPressed(uint8_t *key)
 *******************************************************************************/
 uint8_t GetKey(void)
 {
-    uint8_t key = 0;
+    //uint8_t key = 0;
 
     // //�ȴ���������
     // while (IS_TIMEOUT_1MS(eTim2, 6000))
@@ -234,7 +234,7 @@ uint8_t GetKey(void)
     //     if (SerialKeyPressed((uint8_t*)&key)) break;
     // }
     // return key;
-
+    return 0 ;
 }
 
 /*******************************************************************************
@@ -355,6 +355,7 @@ uint32_t FLASH_PagesMask(__IO uint32_t Size)
     //     pagenumber = size / PAGE_SIZE;
     // }
     // return pagenumber;
+    return 0;
 
 }
 

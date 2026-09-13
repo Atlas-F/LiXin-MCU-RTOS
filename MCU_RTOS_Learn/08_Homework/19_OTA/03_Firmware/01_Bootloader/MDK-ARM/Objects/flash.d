@@ -31,3 +31,4 @@
 .\objects\flash.o: ..\Drivers\STM32F4xx_StdPeriph_Driver\inc\misc.h
 .\objects\flash.o: ..\Drivers\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_flash_ramfunc.h
 .\objects\flash.o: ..\Core\Inc\main.h
+.\objects\flash.o: E:\MDK\Core\ARM\ARMCC\Bin\..\include\string.h

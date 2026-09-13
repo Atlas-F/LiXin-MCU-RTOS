@@ -19,11 +19,18 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "cmsis_os.h"
+#include "dma.h"
+#include "spi.h"
 #include "usart.h"
 #include "gpio.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+
+#include "AT24Cxx_Driver.h"
+#include "iic.h"
+// #include "w25qxx.h"
+#include "w25qxx_Handler.h"
 
 /* USER CODE END Includes */
 
@@ -101,9 +108,14 @@ int main(void)
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
+  MX_DMA_Init();
   MX_USART1_UART_Init();
+  MX_SPI1_Init();
   /* USER CODE BEGIN 2 */
-
+/* test AT24C02 */
+    uint8_t test_ee = ee_CheckOk();
+    // W25Qx_Init();
+    W25Q64_Init();
   /* USER CODE END 2 */
 
   /* Init scheduler */

@@ -31,5 +31,6 @@
 .\objects\w25qxx_handler.o: ..\Drivers\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_wwdg.h
 .\objects\w25qxx_handler.o: ..\Drivers\STM32F4xx_StdPeriph_Driver\inc\misc.h
 .\objects\w25qxx_handler.o: ..\Drivers\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_flash_ramfunc.h
+.\objects\w25qxx_handler.o: E:\MDK\Core\ARM\ARMCC\Bin\..\include\string.h
 .\objects\w25qxx_handler.o: ..\BSP\Py25Q64\w25qxx.h
 .\objects\w25qxx_handler.o: ..\Core\Inc\spi.h

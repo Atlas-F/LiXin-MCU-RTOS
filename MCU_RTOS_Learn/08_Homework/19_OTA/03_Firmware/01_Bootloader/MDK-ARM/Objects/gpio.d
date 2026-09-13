@@ -31,3 +31,4 @@
 .\objects\gpio.o: ..\Drivers\STM32F4xx_StdPeriph_Driver\inc\misc.h
 .\objects\gpio.o: ..\Drivers\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_flash_ramfunc.h
 .\objects\gpio.o: ..\Core\Inc\main.h
+.\objects\gpio.o: E:\MDK\Core\ARM\ARMCC\Bin\..\include\string.h

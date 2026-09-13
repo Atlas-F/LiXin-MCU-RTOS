@@ -28,6 +28,7 @@
 19-2_app\main.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ramfunc.h
 19-2_app\main.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr.h
 19-2_app\main.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h
+19-2_app\main.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_spi.h
 19-2_app\main.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h
 19-2_app\main.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h
 19-2_app\main.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h
@@ -42,5 +43,10 @@
 19-2_app\main.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/task.h
 19-2_app\main.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/list.h
 19-2_app\main.o: ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os2.h
+19-2_app\main.o: ../Core/Inc/dma.h
+19-2_app\main.o: ../Core/Inc/spi.h
 19-2_app\main.o: ../Core/Inc/usart.h
 19-2_app\main.o: ../Core/Inc/gpio.h
+19-2_app\main.o: ../BSP/AT24Cxx_Driver/AT24Cxx_Driver.h
+19-2_app\main.o: ../BSP/AT24Cxx_Driver/iic.h
+19-2_app\main.o: ..\BSP\Py25q\Handler\w25qxx_Handler.h
