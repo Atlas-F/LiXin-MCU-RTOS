@@ -38,3 +38,4 @@
 .\objects\ymodem.o: ..\Core\Inc\Flash.h
 .\objects\ymodem.o: ..\Core\Inc\main.h
 .\objects\ymodem.o: ..\BSP\Py25Q64\w25qxx_Handler.h
+.\objects\ymodem.o: ..\Middlewares\CRC\include\checksum.h

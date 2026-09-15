@@ -80,9 +80,9 @@
             <nStopB2X>0</nStopB2X>
           </BeforeMake>
           <AfterMake>
-            <RunUserProg1>0</RunUserProg1>
+            <RunUserProg1>1</RunUserProg1>
             <RunUserProg2>0</RunUserProg2>
-            <UserProg1Name></UserProg1Name>
+            <UserProg1Name>F:\EmbeddedProjects\CUBEMXProjects\LiXin-MCU-RTOS\Projects\MCU_RTOS_Learn\08_Homework\19_OTA\03_Firmware\01_Bootloader\MDK-ARM\keil-build-viewer.exe</UserProg1Name>
             <UserProg2Name></UserProg2Name>
             <UserProg1Dos16Mode>0</UserProg1Dos16Mode>
             <UserProg2Dos16Mode>0</UserProg2Dos16Mode>
@@ -314,7 +314,7 @@
           </ArmAdsMisc>
           <Cads>
             <interw>1</interw>
-            <Optim>1</Optim>
+            <Optim>4</Optim>
             <oTime>0</oTime>
             <SplitLS>0</SplitLS>
             <OneElfS>1</OneElfS>
@@ -340,7 +340,7 @@
               <MiscControls></MiscControls>
               <Define>USE_STDPERIPH_DRIVER,STM32F411xE</Define>
               <Undefine></Undefine>
-              <IncludePath>..\MDK-ARM;..\Core\Inc;..\Drivers\STM32F4xx_StdPeriph_Driver\inc;..\Drivers\CMSIS\Device\ST\STM32F4xx\Include;..\Drivers\CMSIS\Include;..\Middlewares\easylogger\inc;..\Task(User)\Debug;..\Middlewares\RTT;..\Task(User)\Boot_Manager;..\Middlewares\Ymodem;..\Middlewares\AES;..\BSP\Py25Q64;..\BSP\AT24Cxx_Driver</IncludePath>
+              <IncludePath>..\MDK-ARM;..\Core\Inc;..\Drivers\STM32F4xx_StdPeriph_Driver\inc;..\Drivers\CMSIS\Device\ST\STM32F4xx\Include;..\Drivers\CMSIS\Include;..\Middlewares\easylogger\inc;..\Task(User)\Debug;..\Middlewares\RTT;..\Task(User)\Boot_Manager;..\Middlewares\Ymodem;..\Middlewares\AES;..\BSP\Py25Q64;..\BSP\AT24Cxx_Driver;..\Middlewares\CRC\include</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -423,6 +423,11 @@
               <FileName>SPI.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Core\Src\SPI.c</FilePath>
+            </File>
+            <File>
+              <FileName>Iwdg.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Core\Src\Iwdg.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -1744,6 +1749,51 @@
               <FileName>iic.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\BSP\AT24Cxx_Driver\iic.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>Middlewares/CRC</GroupName>
+          <Files>
+            <File>
+              <FileName>crc8.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Middlewares\CRC\src\crc8.c</FilePath>
+            </File>
+            <File>
+              <FileName>crc16.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Middlewares\CRC\src\crc16.c</FilePath>
+            </File>
+            <File>
+              <FileName>crc32.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Middlewares\CRC\src\crc32.c</FilePath>
+            </File>
+            <File>
+              <FileName>crcccitt.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Middlewares\CRC\src\crcccitt.c</FilePath>
+            </File>
+            <File>
+              <FileName>crcdnp.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Middlewares\CRC\src\crcdnp.c</FilePath>
+            </File>
+            <File>
+              <FileName>crckrmit.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Middlewares\CRC\src\crckrmit.c</FilePath>
+            </File>
+            <File>
+              <FileName>crcsick.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Middlewares\CRC\src\crcsick.c</FilePath>
+            </File>
+            <File>
+              <FileName>nmea-chk.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Middlewares\CRC\src\nmea-chk.c</FilePath>
             </File>
           </Files>
         </Group>

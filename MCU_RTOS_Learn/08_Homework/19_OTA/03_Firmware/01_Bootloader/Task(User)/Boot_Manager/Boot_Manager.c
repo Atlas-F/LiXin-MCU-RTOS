@@ -89,107 +89,26 @@ void JumpToApp(void)
 /* 向量数据，初始参数*/
 unsigned char IV[16] = {0x31, 0x32, 0x33, 0x34, 0x35, 0x36, 0x37, 0x38,
                         0x39, 0x30, 0x61, 0x62, 0x63, 0x64, 0x65, 0x66};
+                        /* 1234567890abcdef */
 
 /* 密钥数据*/
 unsigned char Key[32] = {0x31, 0x32, 0x33, 0x34, 0x35, 0x36, 0x37, 0x38,
                         0x31, 0x32, 0x33, 0x34, 0x35, 0x36, 0x37, 0x38,
                         0x31, 0x32, 0x33, 0x34, 0x35, 0x36, 0x37, 0x38,
                         0x31, 0x32, 0x33, 0x34, 0x35, 0x36, 0x37, 0x38};
+                        /* 12345678123456781234567812345678 */
 
-
- /**
-  * @brief  将备份区的数据，解密并写入到运行区
-  * 
-  * @param [in]  fl_size 
-  * @return      
-  * 
-  * @details
-  * @note
-  * @warning
-  */
-
-//   u8  Mem_Read_buffer[4096];
-
-// int8_t BackToApp(int32_t fl_size)
-// {
-//     u8 Temp[16];  //原密文数据缓存
-//     u8 wirteTime=0;  //一个解析包写入次数
-//     u16 readTime=0,readDataCount=0;   //读取数据再解密的次数（每次解密16个字节）
-//     u32 AppSize=0;  //升级包的大小
-//     //u32 FlashDestination=ApplicationAddress;
-//     u16 Read_Memory_Size=0;
-//     u32 Read_Memory_index=0;
-//     uint8_t *pu8_IV_IN_OUT = IV;
-//     uint8_t *pu8_key256bit = Key;
-//     uint32_t RamSource = 0;
-//     uint32_t AppRunFlashDestination = APPLICATION_ADDRESS;
-//     if(fl_size <= 0)
-//     {
-//       return -1;
-//     }
-//     if ((g_AppSize > (0x18010 - 1)) ||\
-//     (g_AppSize < 0))
-//     {
-//       return -1;
-//     }
-//     //先读一帧，用来解析头文件格式
-//     W25Q64_ReadData(BLOCK_2, g_Mem_read_buffer,&Read_Memory_Size);
-//     if(Read_Memory_Size  >= 16)
-//     {
-//       memcpy(Temp,g_Mem_read_buffer,16);
-//       Aes_IV_key256bit_Decode(pu8_IV_IN_OUT,Temp,pu8_key256bit);//解析得到自定义内容+文件大小
-//       AppSize=(Temp[15]<<24)+(Temp[14]<<16)+(Temp[13]<<8)+Temp[12];
-//       log_d("AppSize=%d",AppSize);
-      
-//       //计算升级包读取次数
-//       readDataCount=AppSize/16;
-//       if(AppSize%16!=0)
-//       {
-//         readDataCount+=1;
-//       }
-//       Read_Memory_index += 16;
-//     }
-
-//     //数据帧
-//     //将待写入区的内容擦除
-//     uint8_t flash_erase_state = Flash_erase(AppRunFlashDestination,AppSize);
-//     if(flash_erase_state == 0)
-//     {
-//       for(readTime=0;readTime<readDataCount;readTime++)
-//       {
-//         //判断下当前buffer下的数据是否读取完毕
-//         if(Read_Memory_index == Read_Memory_Size)
-//         {
-//           if(2 == W25Q64_ReadData(BLOCK_2, g_Mem_read_buffer,&Read_Memory_Size))
-//           {
-//             log_d("Write_Flash_After_AES_Decode read extern buffer error");
-//             return -1;
-//           }
-//           Read_Memory_index = 0;
-//         }
-//         //拷贝16个数据
-//         memcpy(Temp,g_Mem_read_buffer + Read_Memory_index,16);
-//         Read_Memory_index += 16;
-//         //解析16个数据
-//         Aes_IV_key256bit_Decode(pu8_IV_IN_OUT,Temp,pu8_key256bit);//解析
-        
-//         RamSource = (uint32_t)Temp;
-//         for (wirteTime = 0;wirteTime<4;wirteTime++)
-//         {
-//           Flash_Write(AppRunFlashDestination, *(uint32_t*)RamSource);
-//           AppRunFlashDestination += 4;
-//           RamSource += 4;
-//         }
-//       }
-//       log_d("Write_Flash_After_AES_Decode end");
-//       return 0;
-//     }
-//     else
-//     {
-//       log_d("Write_Flash_After_AES_Decode Error");
-//       return -1;
-//     }
-// }
+/**
+ * @brief 软件复位单片机
+ * 
+ * @param None
+ * 
+ * @return: None
+ */
+void System_SoftwareReset(void)
+{
+  __NVIC_SystemReset();
+}
 
 
 /**
@@ -217,41 +136,47 @@ void OTA_StateManager(void)
             {                        // 下载第一份运行APP，然后才是从这里开始获取当前APP的大小                   
                 // 下载到外部 flash 的 A 区
                 file_size = Ymodem_Receive(g_au8_test);
-                /* */
-                // if( 0 == Flash_erase(0x8008000, 0x80000) )
-                // {
-                //     origin_app_size = file_size;
-                //     ee_WriteBytes((uint8_t *)&origin_app_size, 0x05, 4);    
-                //     log_i(" origin_app_size:[%d] \n", origin_app_size);;
-                // }
 
                 // 将备份区数据拷贝到外部 Flash B区中
-                if( 0 == ExA_To_ExB_AES(file_size))     // 0 == BackToApp()
+                if( 0 == ExA_To_ExB_AES(file_size))     
                 {
                     /* 将当前正在运行的APP的数据搬运到外部 Flash A 区, 进行备份，防止下载失败或者异常问题导致设备变砖 */
                     /* 增加一个代码回退功能 */
                     // 读取当前APP的大小
-                        // 此处的逻辑是第一次APP下载进入，即没有原始APP的情况下时
-                        // ee_WriteBytes((uint8_t *)&file_size, 0x05, 4);
                     ee_ReadBytes((uint8_t *)&current_app_size, 0x05, 4);
                         
                     App_To_ExA(current_app_size);
                     /* 外部flash B区搬运到内部flash 区 */
                     ExB_To_App();
-                    /* 执行跳转*/
-                    JumpToApp();
-                    /* 校验数据是否合法，如果数据无效，将外部 Flash A 区中的数据搬运到 APP 中 */
-                    ExA_To_App();
-                    JumpToApp();
+                    ota_state = EEPROM_APP_FIRST_CHECK_START ;
+                    ee_WriteBytes(&ota_state,0x00,1);
+                    //执行软件复位
+                    System_SoftwareReset();
+
+                        // /* 执行跳转*/
+                        // JumpToApp();
+                        // /* 校验数据是否合法，如果数据无效，将外部 Flash A 区中的数据搬运到 APP 中 */
+                        // ExA_To_App();
+                        // JumpToApp();
 
                 }else
                 {
                     log_a(" Boot download failed \n");
                     JumpToApp();
+                        //App校验无效
+                        ota_state = EEPROM_CHECK_NO_APP_UPDATE;
+                        ee_WriteBytes(&ota_state,0x00,1);
+                        /*软件复位*/
+                        System_SoftwareReset();
                 }
             }else
             {
                 JumpToApp();
+                    //App校验无效
+                    ota_state = EEPROM_CHECK_NO_APP_UPDATE;
+                    ee_WriteBytes(&ota_state,0x00,1);
+                    /*软件复位*/
+                    System_SoftwareReset();
             }
             break;
         case EEPROM_CHECK_APP_DOWNLOADING:
@@ -271,11 +196,16 @@ void OTA_StateManager(void)
                     App_To_ExA(current_app_size);
                     /* 外部flash B区搬运到内部flash 区 */
                     ExB_To_App();
-                    /* 执行跳转*/
-                    JumpToApp();
-                    /* 校验数据是否合法，如果数据无效，将外部 Flash A 区中的数据搬运到 APP 中 */
-                    ExA_To_App();
-                    JumpToApp();
+                    //App校验无效
+                    ota_state = EEPROM_APP_FIRST_CHECK_START;
+                    ee_WriteBytes(&ota_state,0x00,1);
+                    /*软件复位*/
+                    System_SoftwareReset();
+                        // /* 执行跳转逻辑 */
+                        // JumpToApp();
+                        // /* 校验数据是否合法，如果数据无效，将外部 Flash A 区中的数据搬运到 APP 中 */
+                        // ExA_To_App();
+                        // JumpToApp();
 
                 }else
                 {
@@ -299,33 +229,58 @@ void OTA_StateManager(void)
             if( 0 == ExA_To_ExB_AES(current_app_size))  
             {
                 // 读取当前APP的大小
-                // TEST 使用当前最新APP 25538 70A0  3910：3910为之前的加密固件
-                    // current_app_size = 0x3910;
-                    // ee_WriteBytes((uint8_t *)&current_app_size, 0x05, 4); 
                 ee_ReadBytes((uint8_t *)&current_app_size, 0x05, 4);
                 log_i(" read current_app_size APP size :[%d] ! \n ", current_app_size);
                 App_To_ExA(current_app_size);
                 /* 外部flash B区搬运到内部flash 区 */
                 ExB_To_App();       // 这里应该如果执行成功的话，执行前后的内存数据是不一样的
-                    /* 清除标志位 */
-                    int32_t clear_app_size = 0 ;
-                    ee_WriteBytes((uint8_t *)&clear_app_size, 0x00, 4); 
-                /* 执行跳转*/
-                JumpToApp();
-                /* 校验数据是否合法，如果数据无效，将外部 Flash A 区中的数据搬运到 APP 中 */
-                ExA_To_App();
-                JumpToApp();
+                    // /* 清除标志位 */
+                    // int32_t clear_app_size = 0 ;
+                    // ee_WriteBytes((uint8_t *)&clear_app_size, 0x00, 4); 
+                ota_state = EEPROM_APP_FIRST_CHECK_START;
+                ee_WriteBytes(&ota_state,0x00,1);
+                //执行软件复位
+                /*软件复位*/
+                System_SoftwareReset();
+                        // /* 执行跳转*/
+                        // JumpToApp();
+                        // /* 校验数据是否合法，如果数据无效，将外部 Flash A 区中的数据搬运到 APP 中 */
+                        // ExA_To_App();
+                        // JumpToApp();
 
             }else
             {
                 log_a(" Boot download failed \n");
                 JumpToApp();
+                    //App校验无效
+                    ota_state = EEPROM_CHECK_NO_APP_UPDATE;
+                    ee_WriteBytes(&ota_state,0x00,1);
+                    /*软件复位*/
+                    System_SoftwareReset();
             }
-
-
             /* 解密搬运数据 */
             break;
-        
+        case EEPROM_APP_FIRST_CHECK_START:
+            ota_state = EEPROM_APP_FIRST_CHECKING;
+            ee_WriteBytes(&ota_state,0x00,1);
+            /*开看门狗*/
+            IWDG_Init(IWDG_Prescaler_64,3000);
+            /*5.执行跳转逻辑*/
+            JumpToApp();
+            break;
+
+        case EEPROM_APP_FIRST_CHECKING:
+            //App校验无效
+            ota_state = EEPROM_CHECK_NO_APP_UPDATE;
+            ee_WriteBytes(&ota_state,0x00,1);
+            /*软件复位*/
+            System_SoftwareReset();
+            /*如果运行到这一步，说明数据无效，把外部A区的数据搬运到App中*/
+            //ExA_To_App();
+            /*再执行一次跳转*/
+            //JumpToApp();
+            break;
+
         default:
             break;
     }
@@ -406,13 +361,7 @@ int8_t ExA_To_ExB_AES(int32_t fl_size)
         Aes_IV_key256bit_Decode(pu8_IV_IN_OUT,Temp,pu8_key256bit);//解析
 
         W25Q64_WriteData(BLOCK_2, Temp, 16);        // 这里错误：BLOCK_1
-        // RamSource = (uint32_t)Temp;
-        // for (wirteTime = 0;wirteTime<4;wirteTime++)
-        // {
-        //     Flash_Write(AppRunFlashDestination, *(uint32_t*)RamSource);
-        //     AppRunFlashDestination += 4;
-        //     RamSource += 4;
-        // }
+
     }
     W25Q64_WriteData_End(BLOCK_2);
     log_d("Write_Flash_After_AES_Decode end");
@@ -564,112 +513,3 @@ int8_t ExA_To_App(void)
 
 
 
-//  int8_t BackToApp(int32_t fl_size)
-// {
-//     uint32_t AppRunFlashDestination = APPLICATION_ADDRESS;
-//     uint8_t *pu8_IV_IN_OUT = IV;
-//     uint8_t *pu8_key256bit = Key;
-//     uint8_t *pu8_temp = (uint8_t *)BACK_APPLICATION_ADDRESS;  // 原始数据 ，备份区地址
-//     uint8_t Temp[16];  // 原密文数据缓存
-//     uint8_t *pTemp = Temp;
-//     uint16_t readTime = 0, readDataCount = 0;  // 读取数据再解密的次数（每次解密16个字节）
-//     u32 AppSize = 0;  // 升级包的大小
-
-//     if (fl_size <= 0)    // 判断文件的大小
-//     {
-//         return -1;
-//     }
-
-//     if ((g_AppSize > (0x18010 - 1)) ||      // 0x18010 是0x18000 加上一帧加密软件的辅助数据 16 字节
-//         (g_AppSize < 0))
-//     {
-//         return -1;
-//     }
-
-//     // 擦除运行区数据
-
-//     memcpy(pTemp, pu8_temp, 16);
-//     pu8_temp += 16;
-//     Aes_IV_key256bit_Decode(pu8_IV_IN_OUT, pTemp, pu8_key256bit);  // 解析得到自定义内容+文件大小
-//     AppSize = (pTemp[15] << 24) + (pTemp[14] << 16) +
-//               (pTemp[13] << 8) + pTemp[12];     /* 这里的四个数据，是由于加密后的文件的特殊格式，\
-//                                                     加密后文件格式为 4字节自定义数据长度 + 自定义数据 + 4字节明文长度 + 明文数据
-//                                                     这里自定义的数据长度为 8个字节 */
-
-//                                                 // 解密后的数据是原地存储的吗？ 会，解密结果会覆盖原来的数据缓冲区，属于原地存储
-
-//     readDataCount = AppSize / 16;   // 计算需要解密多少次？16个字节为一个数据块，一次解密
-//     if (AppSize % 16 != 0)
-//     {
-//         readDataCount += 1;
-//     }
-
-//     if (1 == Flash_erase(APPLICATION_ADDRESS, AppSize))
-//     {
-//         return -1;
-//     }
-
-//     // 读数据的总次数
-//     for (readTime = 0; readTime < readDataCount; readTime++)
-//     {
-//         // 加密原文读取16个字节到临时区中
-//         pTemp = Temp;
-//         memcpy(pTemp, pu8_temp, 16);
-//         pu8_temp += 16;
-//         Aes_IV_key256bit_Decode(pu8_IV_IN_OUT, pTemp, pu8_key256bit);  // 解密数据
-
-//         // 解密后的数据存入App运行区中
-//         for (uint8_t j = 0; j < 16; j += 4)
-//         {
-//             Flash_Write(AppRunFlashDestination, *(uint32_t *)pTemp);
-//             if (*(uint32_t *)AppRunFlashDestination != *(uint32_t *)pTemp)
-//             {
-//                 return -1;
-//             }
-
-//             AppRunFlashDestination += 4;
-//             pTemp += 4;
-//         }
-//     }
-
-//     return 0;
-// }
-
-
-
-// /**
-//  * @brief  将备份区的数据，写入到 APP 运行区
-//  * 
-//  * @details
-//  * @note
-//  * @warning
-//  */
-// int8_t BackToApp( void  )
-// {
-//     int32_t j = 0 ;
-//     uint32_t FlashDestination = APPLICATION_ADDRESS;
-//     uint32_t BackflashSource;
-
-//     if( g_AppSize > (0x18000 -1 ) || g_AppSize < 0 )     // 因为这里设计的APP运行区域大小范围为96k
-//     {
-//         return ;
-//     }
-
-//     BackflashSource = BACK_APPLICATION_ADDRESS ;
-
-//     for (int32_t j = 0 ; j < g_AppSize ;j += 4)  
-//     {     
-//         /* Program the data received into STM32F10x Flash */
-//         //    FLASH_ProgramWord(FlashDestination, *(uint32_t*)RamSource);
-//         Flash_Write(FlashDestination, *(uint32_t*)BackflashSource);
-//         if (*(uint32_t*)FlashDestination != *(uint32_t*)BackflashSource)
-//         {
-//             /* End session */
-//             return -1;
-//         }
-//         FlashDestination += 4;
-//         BackflashSource += 4;
-//     }
-
-//     return 0 ;
-// }

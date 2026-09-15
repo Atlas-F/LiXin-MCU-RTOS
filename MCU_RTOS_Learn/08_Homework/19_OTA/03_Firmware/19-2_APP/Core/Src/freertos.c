@@ -135,17 +135,6 @@ void StartDefaultTask(void *argument)
     HAL_GPIO_TogglePin(LED_GPIO_Port, LED_Pin);
     //HAL_Delay(500);
     osDelay(100);
-
-    // test
-    // if( 0 != g_rec_len  )
-    // {
-    //     for( uint8_t i = 0; i < g_rec_len; i++ )
-    //     {
-    //         HAL_UART_Transmit(&huart1, &g_rec_cmd[i], 1,10);        // 向哪里传输？
-    //     }
-    //     g_rec_len = 0 ;
-    //     HAL_UARTEx_ReceiveToIdle_DMA(&huart1, g_rec_cmd, 10);
-    // }
   }
   /* USER CODE END StartDefaultTask */
 }
@@ -173,12 +162,7 @@ void HAL_UARTEx_RxEventCallback( UART_HandleTypeDef * huart, uint16_t Size)
 		HAL_UART_DMAStop(huart);
 		portYIELD_FROM_ISR(xHigherPriorityTaskWoken);
 		
-        // 获取当前剩余传输�?
-//        if( 1 == __HAL_UART_GET_FLAG(huart, UART_FLAG_IDLE) )
-//        {
-//            g_rec_len = Size ;
-//        }
-        // DMA 传输完成后的操作
+
      }
 
 }

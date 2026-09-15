@@ -50,3 +50,4 @@
 .\objects\main.o: ..\Middlewares\RTT\SEGGER_RTT_Conf.h
 .\objects\main.o: E:\MDK\Core\ARM\ARMCC\Bin\..\include\stdlib.h
 .\objects\main.o: E:\MDK\Core\ARM\ARMCC\Bin\..\include\stdarg.h
+.\objects\main.o: ..\Core\Inc\Iwdg.h

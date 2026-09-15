@@ -27,6 +27,8 @@
 #include "AT24Cxx_Driver.h"
 
 #include "SEGGER_RTT.h"
+
+#include "Iwdg.h"
 // 全局定义 STM32F411xE 或者 STM32F401xx
 // 当前定义 STM32F411xE
 
@@ -132,15 +134,18 @@ int main(void)
     RCC_GetClocksFreq(&RCC_Clocks);
     SysTick_Config(RCC_Clocks.HCLK_Frequency / 1000);
 
+    // IWDG_Init(IWDG_Prescaler_64, 3000);
+
     
 /* Add your application code here */
 /* Insert 50 ms delay */
     //   Delay(50);
         
-    //   GPIO_Config();
     // 测试基本外设操作和初始化
     Key_IO_Init();
     LED_IO_Init();
+    
+    TIM_Config();
     // 测试串口初始化
     USART1_Init();
     AppEasylogInit();
@@ -152,80 +157,31 @@ int main(void)
     
     uint8_t read_ota_state = 0 ;
     ee_ReadBytes(&read_ota_state, 0x00, 1);
-    // SEGGER_RTT_Write(0, &read_ota_state, 1);
     USART_SendChar(USART1, read_ota_state);
     USART_SendChar(USART1, 0XAB);
 
-    // SEGGER_RTT_WriteString(0, "ok\r\n");
 
     uint8_t hello_USART[] = "1234567890";
     for( int i= 0; i < 10; i++ )
     {
-        
         log_a(" This is  Bootloader");
         Delay(5);
     }
 
     //DebugAT24Clear();
     Debug_AT_Flags();
-    // if(KeyScan())
-    // {
-        // read_ota_state = 0x22 ;
-        // ee_WriteBytes(&read_ota_state, 0x00 , 1);
-        // ee_ReadBytes(&read_ota_state, 0x00, 1);
-        // USART_SendChar(USART1, read_ota_state);
-    // }
     
     OTA_StateManager();
-    // if( 0 == W25Qx_Init() )
-    // {
-    //     log_a(" W25 Init OK ! \n ");
-    // }
-
-    // if( KeyScan() )
-    // {
-    //     // 下载到备份区
-    //     // Ymodem_Receive(g_au8_test);
-    //     g_file_siz = Ymodem_Receive(g_au8_test);
-    //     // 将备份区数据拷贝到A区中
-    //     if( 0 == BackToApp(g_file_siz))     // 0 == BackToApp()
-    //     {
-    //         JumpToApp();
-    //     }else
-    //     {
-
-    //     }
-    // }else
-    // {
-    //     JumpToApp();
-    // }
-
-    // TIM_Config(); 
-    // TIM_Cmd(TIM3,DISABLE);
-
-
-    // 测试 Flash 操作函数
-    //    EreaseAppSector(FLASH_Sector_3);
-    //    Flash_Write(0x0800C000, 0x55);
-
-    //  Ymodem_Receive(g_au8_test);
-
-    //JumpToApp();
-    //   AppEasylogInit();
-
-    //JumpToApp();
-    //EasylogTest();
     
     Delay(10);
 
-//JumpToApp();
     int32_t file_size = 0 ;
     uint32_t current_app_size = 0 ;
     // static uint8_t g_au8_test[1024] = {0} ;     /* 这个变量是否添加需要考虑 */
 
 /* Infinite loop */
 while (1)
-{
+{   
     log_e("No Valid App,Please press key and download new App!");
     if( KeyScan() )
     {
@@ -254,6 +210,8 @@ while (1)
         }
         /* 下载流程  */
     }
+    Delay(50);
+    IWDG_ReloadCounter();
 }
 
 #if soft_pwm

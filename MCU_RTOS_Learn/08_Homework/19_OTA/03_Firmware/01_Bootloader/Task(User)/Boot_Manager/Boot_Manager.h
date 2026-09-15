@@ -36,7 +36,8 @@ extern uint32_t RamSource;
 #define EEPROM_CHECK_NO_APP_UPDATE                  0X00
 #define EEPROM_CHECK_APP_DOWNLOADING                0X11
 #define EEPROM_CHECK_APP_DOWNLOAD_COMPLETE          0X22
-
+#define EEPROM_APP_FIRST_CHECK_START                0x33
+#define EEPROM_APP_FIRST_CHECKING                   0x44
 
 
 

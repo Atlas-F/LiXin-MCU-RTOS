@@ -99,9 +99,9 @@ void ota_task_runnable(void *argument)
     uint8_t t_u8_rec_length = 0;
 
     int32_t app_data_length = 0 ;
-    /* 清除 EEProm 的状态*/
-    uint8_t EEP_Flag_ota_state = 0 ;
-        // ee_WriteBytes(&EEP_Flag_ota_state, 0x00 , 1);
+        /* 清除 EEProm 的状态*/
+        uint8_t EEP_Flag_ota_state = 0 ;
+        ee_WriteBytes(&EEP_Flag_ota_state, 0x00 , 1);
   /* Infinite loop */
     for(;;)
     {
@@ -110,9 +110,7 @@ void ota_task_runnable(void *argument)
         {
             case eOTA_WAIT_REQ_DOWNLOAD:
                 /* 阻塞式接收串口命令*/
-                //const uint8_t wait_req[23] = "eOTA_WAIT_REQ_DOWNLOAD";
-                //HAL_UART_Transmit(&huart1, &wait_req, 23 , 1000);
-                //HAL_UARTEx_ReceiveToIdle_DMA(&huart1, g_au8_ota_cmd, 4);
+
                 if( HAL_OK == HAL_UARTEx_ReceiveToIdle_DMA(&huart1, g_au8_ota_cmd, 4) )
                 {
                     __HAL_DMA_DISABLE_IT(huart1.hdmarx, DMA_IT_HT);
@@ -202,7 +200,6 @@ void ota_task_runnable(void *argument)
                 break;
             case eOTA_WAIT_REQ_UPDATE:
                 /* 阻塞式接收串口命令*/
-                // HAL_UARTEx_ReceiveToIdle_DMA(&huart1, g_au8_ota_cmd, 4);
                 if( HAL_OK == HAL_UARTEx_ReceiveToIdle_DMA(&huart1, g_au8_ota_cmd, 4) )
                 {
                     __HAL_DMA_DISABLE_IT(huart1.hdmarx, DMA_IT_HT);
@@ -330,8 +327,6 @@ void DownloadAppData_task_runnable(void *argument)
         }
         
         /* 执行写入w25q的逻辑 */
-        // TODO :
-        // W25Q64_WriteData(pu8_data, (uint32_t)packet_length); g_u32_datalength
         W25Q64_WriteData(pu8_data, g_u32_datalength); 
         xSemaphoreGive( Semphore_ExtFlashState );
 

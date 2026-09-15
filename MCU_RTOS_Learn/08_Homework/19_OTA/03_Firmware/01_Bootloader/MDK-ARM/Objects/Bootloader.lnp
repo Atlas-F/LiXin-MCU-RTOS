@@ -6,6 +6,7 @@
 ".\objects\usart.o"
 ".\objects\flash.o"
 ".\objects\spi.o"
+".\objects\iwdg.o"
 ".\objects\startup_stm32f411xe.o"
 ".\objects\system_stm32f4xx.o"
 ".\objects\misc.o"
@@ -49,6 +50,14 @@
 ".\objects\w25qxx_handler.o"
 ".\objects\at24cxx_driver.o"
 ".\objects\iic.o"
+".\objects\crc8.o"
+".\objects\crc16.o"
+".\objects\crc32.o"
+".\objects\crcccitt.o"
+".\objects\crcdnp.o"
+".\objects\crckrmit.o"
+".\objects\crcsick.o"
+".\objects\nmea-chk.o"
 --library_type=microlib --strict --scatter ".\Objects\Bootloader.sct"
 --summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers

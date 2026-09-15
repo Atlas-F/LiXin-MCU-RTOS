@@ -60,6 +60,8 @@ void SystemClock_Config(void);
 void MX_FREERTOS_Init(void);
 /* USER CODE BEGIN PFP */
 
+extern void SoftReset();
+
 void LedFlash(void)
 {
 
@@ -114,6 +116,25 @@ int main(void)
   /* USER CODE BEGIN 2 */
 /* test AT24C02 */
     uint8_t test_ee = ee_CheckOk();
+
+    /* 验证 APP 自检标识 */
+    uint8_t app_selfCheck = 255;
+    ee_ReadBytes(&app_selfCheck, 0x00, 1);
+    if( 0x44 == app_selfCheck)
+    {
+        app_selfCheck = 0x00 ;
+        ee_WriteBytes(&app_selfCheck, 0x00, 1);
+        /* 等待看门狗主动复位 */
+        while ( 1 );
+    }
+    else if (0x00 != app_selfCheck)
+    {
+        SoftReset();
+        /* code */
+    }
+    
+
+    
     // W25Qx_Init();
     W25Q64_Init();
   /* USER CODE END 2 */

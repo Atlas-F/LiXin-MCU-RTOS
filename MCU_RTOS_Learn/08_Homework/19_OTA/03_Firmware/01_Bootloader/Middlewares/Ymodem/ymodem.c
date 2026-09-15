@@ -30,7 +30,7 @@
 #include "Boot_Manager.h"
 
 #include "w25qxx_Handler.h" 
-
+#include "checksum.h"
 /* Private typedef -----------------------------------------------------------*/
 /* Private define ------------------------------------------------------------*/
 /* Private macro -------------------------------------------------------------*/
@@ -138,6 +138,15 @@ static int32_t Receive_Packet (uint8_t *data, int32_t *length, uint32_t timeout)
   {
     return -1;
   }
+	
+  //CRC check
+  uint16_t u16_CrcCheckData = crc_xmodem((data + PACKET_HEADER),packet_size);
+  uint16_t u16_CrcReceiveData = *(data + PACKET_HEADER + packet_size) << 8;
+  u16_CrcReceiveData += *(data + PACKET_HEADER + packet_size + 1);
+  if(u16_CrcCheckData != u16_CrcReceiveData)
+  {
+    return -1;
+  }
   *length = packet_size;
   return 0;
 }
@@ -215,20 +224,10 @@ int32_t Ymodem_Receive (uint8_t *buf)
 
                     /* Erase the needed pages where the user application will be loaded */
                     /* Define the number of page to be erased */
-                    //NbrOfPage = FLASH_PagesMask(size);
 
                     /* Erase the FLASH pages */
 										//����App
-                    // for (EraseCounter = 0; (EraseCounter < NbrOfPage) && (FLASHStatus == FLASH_COMPLETE); EraseCounter++)
-                    // {
-                    //   FLASHStatus = FLASH_ErasePage(FlashDestination + (PageSize * EraseCounter));
-                    // }
-                    // if( 1 == Flash_erase(BACK_APPLICATION_ADDRESS, size) )       // origin: APPLICATION_ADDRESS
-                    // {
-                    //   Send_Byte(CA);
-                    //   Send_Byte(CA);
-                    //   return -1;
-                    // }
+
                     Send_Byte(ACK);
                     Send_Byte(CRC16);
                   }
@@ -250,22 +249,6 @@ int32_t Ymodem_Receive (uint8_t *buf)
 
                     W25Q64_WriteData(BLOCK_1, buf_ptr, packet_length);
             
-                 //      RamSource = (uint32_t)buf;
-            //      for (j = 0;(j < packet_length) && (FlashDestination <  BACK_APPLICATION_ADDRESS + size);j += 4)        // origin:APPLICATION_ADDRESS
-            //      {
-            //        /* Program the data received into STM32F10x Flash */
-            // //    FLASH_ProgramWord(FlashDestination, *(uint32_t*)RamSource);
-            //         Flash_Write(FlashDestination, *(uint32_t*)RamSource);
-            //        if (*(uint32_t*)FlashDestination != *(uint32_t*)RamSource)
-            //        {
-            //          /* End session */
-            //          Send_Byte(CA);
-            //          Send_Byte(CA);
-            //          return -2;
-            //        }
-            //        FlashDestination += 4;
-            //        RamSource += 4;
-            //      }
                   Send_Byte(ACK);
                 }
                 packets_received ++;
