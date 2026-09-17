@@ -32,5 +32,13 @@
 .\objects\w25qxx_handler.o: ..\Drivers\STM32F4xx_StdPeriph_Driver\inc\misc.h
 .\objects\w25qxx_handler.o: ..\Drivers\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_flash_ramfunc.h
 .\objects\w25qxx_handler.o: E:\MDK\Core\ARM\ARMCC\Bin\..\include\string.h
+.\objects\w25qxx_handler.o: ..\Middlewares\SFUD\sfud_adapter.h
+.\objects\w25qxx_handler.o: ..\Middlewares\SFUD\inc/sfud.h
+.\objects\w25qxx_handler.o: ..\Middlewares\SFUD\inc/sfud_def.h
+.\objects\w25qxx_handler.o: E:\MDK\Core\ARM\ARMCC\Bin\..\include\stdio.h
+.\objects\w25qxx_handler.o: E:\MDK\Core\ARM\ARMCC\Bin\..\include\stdlib.h
+.\objects\w25qxx_handler.o: E:\MDK\Core\ARM\ARMCC\Bin\..\include\stdbool.h
+.\objects\w25qxx_handler.o: ..\Middlewares\SFUD\Inc\sfud_cfg.h
+.\objects\w25qxx_handler.o: ..\Middlewares\SFUD\inc/sfud_flash_def.h
 .\objects\w25qxx_handler.o: ..\BSP\Py25Q64\w25qxx.h
 .\objects\w25qxx_handler.o: ..\Core\Inc\spi.h

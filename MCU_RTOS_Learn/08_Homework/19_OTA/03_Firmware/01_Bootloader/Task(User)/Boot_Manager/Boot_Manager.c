@@ -46,6 +46,9 @@ uint8_t g_au8_test[1024] = {0} ;
 /* 一次读取的block 的大小 */
 u8 g_Mem_read_buffer[4096] = {0};       // 有类似的变量，需要核对，使用的是同一个，还是两个？
 
+extern uint32_t  g_JumpInit __attribute__((at(0x2001FFF0)));
+
+
 /* Private functions ---------------------------------------------------------*/
 
 /**
@@ -171,12 +174,14 @@ void OTA_StateManager(void)
                 }
             }else
             {
-                JumpToApp();
-                    //App校验无效
-                    ota_state = EEPROM_CHECK_NO_APP_UPDATE;
-                    ee_WriteBytes(&ota_state,0x00,1);
-                    /*软件复位*/
-                    System_SoftwareReset();
+                g_JumpInit = 0x55AA55AA;
+                System_SoftwareReset();
+                // JumpToApp();
+                //     //App校验无效
+                //     ota_state = EEPROM_CHECK_NO_APP_UPDATE;
+                //     ee_WriteBytes(&ota_state,0x00,1);
+                //     /*软件复位*/
+                //     System_SoftwareReset();
             }
             break;
         case EEPROM_CHECK_APP_DOWNLOADING:

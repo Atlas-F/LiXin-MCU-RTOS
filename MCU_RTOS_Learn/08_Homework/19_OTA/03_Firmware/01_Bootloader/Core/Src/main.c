@@ -58,6 +58,8 @@ RCC_ClocksTypeDef RCC_Clocks;
 extern uint8_t g_au8_test[1024]  ;     /* 这个变量是否添加需要考虑 */
 
 
+uint32_t  g_JumpInit __attribute__((at(0x2001FFF0)));
+
 
 
 /* Private function prototypes -----------------------------------------------*/
@@ -121,6 +123,14 @@ int main(void)
 {
     /* Enable Clock Security System(CSS): this will generate an NMI exception
     when HSE clock fails *****************************************************/
+    
+    /* 共享变量，判断之后直接初始化跳转 APP */
+    if(g_JumpInit == 0x55AA55AA)
+    {
+        g_JumpInit = 0xFFFFFFFF;
+        JumpToApp();
+    }
+
     RCC_ClockSecuritySystemCmd(ENABLE);
     
 /*!< At this stage the microcontroller clock setting is already configured, 

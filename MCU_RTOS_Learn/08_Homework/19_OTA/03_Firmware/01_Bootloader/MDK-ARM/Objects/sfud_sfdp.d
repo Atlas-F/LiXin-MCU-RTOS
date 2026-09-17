@@ -1,0 +1,9 @@
+.\objects\sfud_sfdp.o: ..\Middlewares\SFUD\Src\sfud_sfdp.c
+.\objects\sfud_sfdp.o: ..\Middlewares\SFUD\Inc\sfud.h
+.\objects\sfud_sfdp.o: ..\Middlewares\SFUD\Inc\sfud_def.h
+.\objects\sfud_sfdp.o: E:\MDK\Core\ARM\ARMCC\Bin\..\include\stdio.h
+.\objects\sfud_sfdp.o: E:\MDK\Core\ARM\ARMCC\Bin\..\include\stdlib.h
+.\objects\sfud_sfdp.o: E:\MDK\Core\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\sfud_sfdp.o: E:\MDK\Core\ARM\ARMCC\Bin\..\include\stdbool.h
+.\objects\sfud_sfdp.o: ..\Middlewares\SFUD\Inc\sfud_cfg.h
+.\objects\sfud_sfdp.o: ..\Middlewares\SFUD\Inc\sfud_flash_def.h

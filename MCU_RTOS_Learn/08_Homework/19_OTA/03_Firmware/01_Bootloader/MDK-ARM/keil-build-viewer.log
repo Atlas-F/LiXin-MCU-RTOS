@@ -34,10 +34,10 @@
 
 [region info]
 [load region] LR_IROM1
-	[execution region] ER_IROM1, 0x08000000, 0x00008000, 0x00004F30 [memory type] 2 [memory ID] 3
+	[execution region] ER_IROM1, 0x08000000, 0x00008000, 0x00005118 [memory type] 2 [memory ID] 3
 
-	[execution region] RW_IRAM1, 0x20000000, 0x00020000, 0x00004AA8 [memory type] 1 [memory ID] 2
-		[ZI block] addr: 0x200000A0, size: 0x00004A08 (18952)
+	[execution region] RW_IRAM1, 0x20000000, 0x00020000, 0x0001FFF4 [memory type] 1 [memory ID] 2
+		[ZI block] addr: 0x200000E4, size: 0x0001FF10 (130832)
 
 
 [object name max length] 25
@@ -60,6 +60,9 @@
 [object name] main.o                     [path] ..\Core\Src\main.c
 [object name] misc.o                     [path] ..\Drivers\STM32F4xx_StdPeriph_Driver\src\misc.c
 [object name] segger_rtt.o               [path] ..\Middlewares\RTT\SEGGER_RTT.c
+[object name] sfud.o                     [path] ..\Middlewares\SFUD\Src\sfud.c
+[object name] sfud_adapter.o             [path] ..\Middlewares\SFUD\sfud_adapter.c
+[object name] sfud_port.o                [path] ..\Middlewares\SFUD\Port\sfud_port.c
 [object name] spi.o                      [path] ..\Core\Src\SPI.c
 [object name] startup_stm32f411xe.o      [path] .\startup_stm32f411xe.s
 [object name] stm32f4xx_flash.o          [path] ..\Drivers\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_flash.c
@@ -73,7 +76,6 @@
 [object name] system_stm32f4xx.o         [path] ..\Core\Src\system_stm32f4xx.c
 [object name] tim.o                      [path] ..\Core\Src\tim.c
 [object name] usart.o                    [path] ..\Core\Src\Usart.c
-[object name] w25qxx.o                   [path] ..\BSP\Py25Q64\w25qxx.c
 [object name] w25qxx_handler.o           [path] ..\BSP\Py25Q64\w25qxx_Handler.c
 [object name] ymodem.o                   [path] ..\Middlewares\Ymodem\ymodem.c
 
@@ -137,32 +139,39 @@
 [old name] crckrmit.c                 [type] 1   [path] ..\Middlewares\CRC\src\crckrmit.c
 [old name] crcsick.c                  [type] 1   [path] ..\Middlewares\CRC\src\crcsick.c
 [old name] nmea-chk.c                 [type] 1   [path] ..\Middlewares\CRC\src\nmea-chk.c
+[old name] sfud_adapter.c             [type] 1   [path] ..\Middlewares\SFUD\sfud_adapter.c
+[old name] sfud.c                     [type] 1   [path] ..\Middlewares\SFUD\Src\sfud.c
+[old name] sfud_sfdp.c                [type] 1   [path] ..\Middlewares\SFUD\Src\sfud_sfdp.c
+[old name] sfud_port.c                [type] 1   [path] ..\Middlewares\SFUD\Port\sfud_port.c
 
 [record region info]
 [load region] LR_IROM1
-	[execution region] ER_IROM1, 0x08000000, 0x00008000, 0x00004F38 [type] 2 [ID] 3
-	[execution region] RW_IRAM1, 0x20000000, 0x00020000, 0x00004AA8 [type] 1 [ID] 2
+	[execution region] ER_IROM1, 0x08000000, 0x00008000, 0x00005C18 [type] 2 [ID] 3
+	[execution region] RW_IRAM1, 0x20000000, 0x00020000, 0x0001FFF4 [type] 1 [ID] 2
 -------------------------------------------------------------------------------------------------------------------------------
                                  FILE(s)                                |         RAM (byte)       |       FLASH (byte)       |
 -------------------------------------------------------------------------------------------------------------------------------
 ..\Middlewares\AES\AES.c():                                             |         256              |        1388              |
 ..\BSP\AT24Cxx_Driver\AT24Cxx_Driver.c():                               |           0              |         246              |
-..\Task(User)\Boot_Manager\Boot_Manager.c():                            |        5172              |        1698              |
+..\Task(User)\Boot_Manager\Boot_Manager.c():                            |        5172              |        1714              |
 ..\Middlewares\Ymodem\common.c():                                       |           0              |         232              |
 ..\Middlewares\CRC\src\crcccitt.c():                                    |         513              |         159              |
-..\Task(User)\Debug\Debug.c():                                          |           0              |          68              |
-..\Middlewares\easylogger\src\elog.c():                                 |        1324              |        2529              |
+..\Task(User)\Debug\Debug.c():                                          |           0              |          62  [-6]        |
+..\Middlewares\easylogger\src\elog.c():                                 |         532  [-792]      |        2341  [-188]      |
 ..\Middlewares\easylogger\port\elog_port.c():                           |           0              |          58              |
 ..\Middlewares\easylogger\src\elog_utils.c():                           |           0              |         287              |
 ..\Core\Src\Flash.c():                                                  |           0              |         350              |
 ..\Core\Src\gpio.c():                                                   |           0              |         140              |
 ..\BSP\AT24Cxx_Driver\iic.c():                                          |           0              |         580              |
 ..\Core\Src\Iwdg.c():                                                   |           0              |          38              |
-..\Core\Src\main.c():                                                   |          20              |         768  [-8]        |
+..\Core\Src\main.c():                                                   |          24              |         796              |
 ..\Drivers\STM32F4xx_StdPeriph_Driver\src\misc.c():                     |           0              |         120              |
 ..\Middlewares\RTT\SEGGER_RTT.c():                                      |        1208              |         434              |
+..\Middlewares\SFUD\Src\sfud.c():                                       |         329  [-48]       |        3205  [-1268]     |
+..\Middlewares\SFUD\sfud_adapter.c():                                   |          20              |         116              |
+..\Middlewares\SFUD\Port\sfud_port.c():                                 |           0              |         196              |
 ..\Core\Src\SPI.c():                                                    |           0              |         576              |
-.\startup_stm32f411xe.s():                                              |        2048              |         444              |
+.\startup_stm32f411xe.s():                                              |        2560              |         444              |
 ..\Drivers\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_flash.c():          |           0              |         310              |
 ..\Drivers\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_gpio.c():           |           0              |         226              |
 ..\Core\Src\stm32f4xx_it.c():                                           |           4              |          72              |
@@ -174,21 +183,20 @@
 ..\Core\Src\system_stm32f4xx.c():                                       |          20              |         408              |
 ..\Core\Src\tim.c():                                                    |           0              |         122              |
 ..\Core\Src\Usart.c():                                                  |           0              |         214              |
-..\BSP\Py25Q64\w25qxx.c():                                              |          28              |         780              |
-..\BSP\Py25Q64\w25qxx_Handler.c():                                      |        8232              |         644              |
+..\BSP\Py25Q64\w25qxx_Handler.c():                                      |        8232              |         496              |
 ..\Middlewares\Ymodem\ymodem.c():                                       |         260              |         572              |
 -------------------------------------------------------------------------------------------------------------------------------
 [memory print mode]: 0
 LR_IROM1
         RAM 1             [0x20000000 | 0x00020000 (131072)]
-                [zi start] 1   [zi end] 7
-                RW_IRAM1  [0x20000000]|¡ö¡õ¡õ¡õ¡õ¡õ¡õ___________________________________________| (  18.6 KB / 128.0 KB )  14.6%  
+                [zi start] 1   [zi end] 49
+                RW_IRAM1  [0x20000000]|¡ö¡õ¡õ¡õ¡õ¡õ¡õ¡õ¡õ¡õ¡õ¡õ¡õ¡õ¡õ¡õ¡õ¡õ¡õ¡õ¡õ¡õ¡õ¡õ¡õ¡õ¡õ¡õ¡õ¡õ¡õ¡õ¡õ¡õ¡õ¡õ¡õ¡õ¡õ¡õ¡õ¡õ¡õ¡õ¡õ¡õ¡õ¡õ¡õ_| ( 127.9 KB / 128.0 KB ) 100.0%  
  
         FLASH 1           [0x08000000 | 0x00080000 (524288)]
-                ER_IROM1  [0x08000000]|¡ö¡ö¡ö¡ö¡ö¡ö¡ö¡ö¡ö¡ö¡ö¡ö¡ö¡ö¡ö¡ö¡ö¡ö¡ö¡ö¡ö¡ö¡ö¡ö¡ö¡ö¡ö¡ö¡ö¡ö____________________| (  19.7 KB /  32.0 KB )  61.9%  [-8]
+                ER_IROM1  [0x08000000]|¡ö¡ö¡ö¡ö¡ö¡ö¡ö¡ö¡ö¡ö¡ö¡ö¡ö¡ö¡ö¡ö¡ö¡ö¡ö¡ö¡ö¡ö¡ö¡ö¡ö¡ö¡ö¡ö¡ö¡ö¡ö___________________| (  20.2 KB /  32.0 KB )  63.4%  [-2816]
  
 [htm file path] F:\EmbeddedProjects\CUBEMXProjects\LiXin-MCU-RTOS\Projects\MCU_RTOS_Learn\08_Homework\19_OTA\03_Firmware\01_Bootloader\MDK-ARM\Objects\Bootloader.htm
-Maximum Stack Usage =       1336 bytes + Unknown(Cycles, Untraceable Function Pointers)
+Maximum Stack Usage =       1376 bytes + Unknown(Cycles, Untraceable Function Pointers)
  
 =============================================================================================================================
 
