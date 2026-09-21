@@ -120,7 +120,7 @@
         <SetRegEntry>
           <Number>0</Number>
           <Key>DLGUARM</Key>
-          <Name></Name>
+          <Name>?</Name>
         </SetRegEntry>
         <SetRegEntry>
           <Number>0</Number>
@@ -154,7 +154,7 @@
           <Type>0</Type>
           <LineNumber>77</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>134226898</Address>
+          <Address>134226810</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -170,7 +170,7 @@
           <Type>0</Type>
           <LineNumber>135</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>134223064</Address>
+          <Address>134222976</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -184,25 +184,9 @@
         <Bp>
           <Number>2</Number>
           <Type>0</Type>
-          <LineNumber>154</LineNumber>
-          <EnabledFlag>1</EnabledFlag>
-          <Address>134223068</Address>
-          <ByteObject>0</ByteObject>
-          <HtxType>0</HtxType>
-          <ManyObjects>0</ManyObjects>
-          <SizeOfObject>0</SizeOfObject>
-          <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>1</BreakIfRCount>
-          <Filename>..\Task(User)\Boot_Manager\Boot_Manager.c</Filename>
-          <ExecCommand></ExecCommand>
-          <Expression>\\Bootloader\../Task(User)/Boot_Manager/Boot_Manager.c\154</Expression>
-        </Bp>
-        <Bp>
-          <Number>3</Number>
-          <Type>0</Type>
           <LineNumber>274</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>134223162</Address>
+          <Address>134223074</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -214,11 +198,11 @@
           <Expression>\\Bootloader\../Task(User)/Boot_Manager/Boot_Manager.c\274</Expression>
         </Bp>
         <Bp>
-          <Number>4</Number>
+          <Number>3</Number>
           <Type>0</Type>
           <LineNumber>165</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>134234924</Address>
+          <Address>134234596</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -230,20 +214,36 @@
           <Expression>\\Bootloader\../Core/Src/main.c\165</Expression>
         </Bp>
         <Bp>
-          <Number>5</Number>
+          <Number>4</Number>
           <Type>0</Type>
-          <LineNumber>124</LineNumber>
+          <LineNumber>131</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>0</Address>
+          <Address>134234508</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
           <SizeOfObject>0</SizeOfObject>
           <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>0</BreakIfRCount>
+          <BreakIfRCount>1</BreakIfRCount>
           <Filename>..\Core\Src\main.c</Filename>
           <ExecCommand></ExecCommand>
-          <Expression></Expression>
+          <Expression>\\Bootloader\../Core/Src/main.c\131</Expression>
+        </Bp>
+        <Bp>
+          <Number>5</Number>
+          <Type>0</Type>
+          <LineNumber>184</LineNumber>
+          <EnabledFlag>1</EnabledFlag>
+          <Address>134234676</Address>
+          <ByteObject>0</ByteObject>
+          <HtxType>0</HtxType>
+          <ManyObjects>0</ManyObjects>
+          <SizeOfObject>0</SizeOfObject>
+          <BreakByAccess>0</BreakByAccess>
+          <BreakIfRCount>1</BreakIfRCount>
+          <Filename>..\Core\Src\main.c</Filename>
+          <ExecCommand></ExecCommand>
+          <Expression>\\Bootloader\../Core/Src/main.c\184</Expression>
         </Bp>
         <Bp>
           <Number>6</Number>
@@ -376,7 +376,7 @@
         <Bp>
           <Number>14</Number>
           <Type>0</Type>
-          <LineNumber>127</LineNumber>
+          <LineNumber>124</LineNumber>
           <EnabledFlag>1</EnabledFlag>
           <Address>0</Address>
           <ByteObject>0</ByteObject>
@@ -392,7 +392,7 @@
         <Bp>
           <Number>15</Number>
           <Type>0</Type>
-          <LineNumber>177</LineNumber>
+          <LineNumber>127</LineNumber>
           <EnabledFlag>1</EnabledFlag>
           <Address>0</Address>
           <ByteObject>0</ByteObject>
@@ -408,6 +408,118 @@
         <Bp>
           <Number>16</Number>
           <Type>0</Type>
+          <LineNumber>132</LineNumber>
+          <EnabledFlag>1</EnabledFlag>
+          <Address>0</Address>
+          <ByteObject>0</ByteObject>
+          <HtxType>0</HtxType>
+          <ManyObjects>0</ManyObjects>
+          <SizeOfObject>0</SizeOfObject>
+          <BreakByAccess>0</BreakByAccess>
+          <BreakIfRCount>0</BreakIfRCount>
+          <Filename>.\startup_stm32f411xe.s</Filename>
+          <ExecCommand></ExecCommand>
+          <Expression></Expression>
+        </Bp>
+        <Bp>
+          <Number>17</Number>
+          <Type>0</Type>
+          <LineNumber>174</LineNumber>
+          <EnabledFlag>1</EnabledFlag>
+          <Address>0</Address>
+          <ByteObject>0</ByteObject>
+          <HtxType>0</HtxType>
+          <ManyObjects>0</ManyObjects>
+          <SizeOfObject>0</SizeOfObject>
+          <BreakByAccess>0</BreakByAccess>
+          <BreakIfRCount>0</BreakIfRCount>
+          <Filename>.\startup_stm32f411xe.s</Filename>
+          <ExecCommand></ExecCommand>
+          <Expression></Expression>
+        </Bp>
+        <Bp>
+          <Number>18</Number>
+          <Type>0</Type>
+          <LineNumber>177</LineNumber>
+          <EnabledFlag>1</EnabledFlag>
+          <Address>0</Address>
+          <ByteObject>0</ByteObject>
+          <HtxType>0</HtxType>
+          <ManyObjects>0</ManyObjects>
+          <SizeOfObject>0</SizeOfObject>
+          <BreakByAccess>0</BreakByAccess>
+          <BreakIfRCount>0</BreakIfRCount>
+          <Filename>.\startup_stm32f411xe.s</Filename>
+          <ExecCommand></ExecCommand>
+          <Expression></Expression>
+        </Bp>
+        <Bp>
+          <Number>19</Number>
+          <Type>0</Type>
+          <LineNumber>183</LineNumber>
+          <EnabledFlag>1</EnabledFlag>
+          <Address>0</Address>
+          <ByteObject>0</ByteObject>
+          <HtxType>0</HtxType>
+          <ManyObjects>0</ManyObjects>
+          <SizeOfObject>0</SizeOfObject>
+          <BreakByAccess>0</BreakByAccess>
+          <BreakIfRCount>0</BreakIfRCount>
+          <Filename>.\startup_stm32f411xe.s</Filename>
+          <ExecCommand></ExecCommand>
+          <Expression></Expression>
+        </Bp>
+        <Bp>
+          <Number>20</Number>
+          <Type>0</Type>
+          <LineNumber>264</LineNumber>
+          <EnabledFlag>1</EnabledFlag>
+          <Address>0</Address>
+          <ByteObject>0</ByteObject>
+          <HtxType>0</HtxType>
+          <ManyObjects>0</ManyObjects>
+          <SizeOfObject>0</SizeOfObject>
+          <BreakByAccess>0</BreakByAccess>
+          <BreakIfRCount>0</BreakIfRCount>
+          <Filename>.\startup_stm32f411xe.s</Filename>
+          <ExecCommand></ExecCommand>
+          <Expression></Expression>
+        </Bp>
+        <Bp>
+          <Number>21</Number>
+          <Type>0</Type>
+          <LineNumber>304</LineNumber>
+          <EnabledFlag>1</EnabledFlag>
+          <Address>0</Address>
+          <ByteObject>0</ByteObject>
+          <HtxType>0</HtxType>
+          <ManyObjects>0</ManyObjects>
+          <SizeOfObject>0</SizeOfObject>
+          <BreakByAccess>0</BreakByAccess>
+          <BreakIfRCount>0</BreakIfRCount>
+          <Filename>.\startup_stm32f411xe.s</Filename>
+          <ExecCommand></ExecCommand>
+          <Expression></Expression>
+        </Bp>
+        <Bp>
+          <Number>22</Number>
+          <Type>0</Type>
+          <LineNumber>309</LineNumber>
+          <EnabledFlag>1</EnabledFlag>
+          <Address>0</Address>
+          <ByteObject>0</ByteObject>
+          <HtxType>0</HtxType>
+          <ManyObjects>0</ManyObjects>
+          <SizeOfObject>0</SizeOfObject>
+          <BreakByAccess>0</BreakByAccess>
+          <BreakIfRCount>0</BreakIfRCount>
+          <Filename>.\startup_stm32f411xe.s</Filename>
+          <ExecCommand></ExecCommand>
+          <Expression></Expression>
+        </Bp>
+        <Bp>
+          <Number>23</Number>
+          <Type>0</Type>
           <LineNumber>304</LineNumber>
           <EnabledFlag>1</EnabledFlag>
           <Address>0</Address>
@@ -422,7 +534,7 @@
           <Expression></Expression>
         </Bp>
         <Bp>
-          <Number>17</Number>
+          <Number>24</Number>
           <Type>0</Type>
           <LineNumber>132</LineNumber>
           <EnabledFlag>1</EnabledFlag>
@@ -438,7 +550,7 @@
           <Expression></Expression>
         </Bp>
         <Bp>
-          <Number>18</Number>
+          <Number>25</Number>
           <Type>0</Type>
           <LineNumber>183</LineNumber>
           <EnabledFlag>1</EnabledFlag>
@@ -454,7 +566,7 @@
           <Expression></Expression>
         </Bp>
         <Bp>
-          <Number>19</Number>
+          <Number>26</Number>
           <Type>0</Type>
           <LineNumber>264</LineNumber>
           <EnabledFlag>1</EnabledFlag>
@@ -470,7 +582,7 @@
           <Expression></Expression>
         </Bp>
         <Bp>
-          <Number>20</Number>
+          <Number>27</Number>
           <Type>0</Type>
           <LineNumber>309</LineNumber>
           <EnabledFlag>1</EnabledFlag>

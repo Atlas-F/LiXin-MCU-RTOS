@@ -146,7 +146,7 @@
 
 [record region info]
 [load region] LR_IROM1
-	[execution region] ER_IROM1, 0x08000000, 0x00008000, 0x00005C18 [type] 2 [ID] 3
+	[execution region] ER_IROM1, 0x08000000, 0x00008000, 0x00005118 [type] 2 [ID] 3
 	[execution region] RW_IRAM1, 0x20000000, 0x00020000, 0x0001FFF4 [type] 1 [ID] 2
 -------------------------------------------------------------------------------------------------------------------------------
                                  FILE(s)                                |         RAM (byte)       |       FLASH (byte)       |
@@ -156,8 +156,8 @@
 ..\Task(User)\Boot_Manager\Boot_Manager.c():                            |        5172              |        1714              |
 ..\Middlewares\Ymodem\common.c():                                       |           0              |         232              |
 ..\Middlewares\CRC\src\crcccitt.c():                                    |         513              |         159              |
-..\Task(User)\Debug\Debug.c():                                          |           0              |          62  [-6]        |
-..\Middlewares\easylogger\src\elog.c():                                 |         532  [-792]      |        2341  [-188]      |
+..\Task(User)\Debug\Debug.c():                                          |           0              |          62              |
+..\Middlewares\easylogger\src\elog.c():                                 |         532              |        2341              |
 ..\Middlewares\easylogger\port\elog_port.c():                           |           0              |          58              |
 ..\Middlewares\easylogger\src\elog_utils.c():                           |           0              |         287              |
 ..\Core\Src\Flash.c():                                                  |           0              |         350              |
@@ -167,7 +167,7 @@
 ..\Core\Src\main.c():                                                   |          24              |         796              |
 ..\Drivers\STM32F4xx_StdPeriph_Driver\src\misc.c():                     |           0              |         120              |
 ..\Middlewares\RTT\SEGGER_RTT.c():                                      |        1208              |         434              |
-..\Middlewares\SFUD\Src\sfud.c():                                       |         329  [-48]       |        3205  [-1268]     |
+..\Middlewares\SFUD\Src\sfud.c():                                       |         329              |        3205              |
 ..\Middlewares\SFUD\sfud_adapter.c():                                   |          20              |         116              |
 ..\Middlewares\SFUD\Port\sfud_port.c():                                 |           0              |         196              |
 ..\Core\Src\SPI.c():                                                    |           0              |         576              |
@@ -193,11 +193,11 @@ LR_IROM1
                 RW_IRAM1  [0x20000000]|¡ö¡õ¡õ¡õ¡õ¡õ¡õ¡õ¡õ¡õ¡õ¡õ¡õ¡õ¡õ¡õ¡õ¡õ¡õ¡õ¡õ¡õ¡õ¡õ¡õ¡õ¡õ¡õ¡õ¡õ¡õ¡õ¡õ¡õ¡õ¡õ¡õ¡õ¡õ¡õ¡õ¡õ¡õ¡õ¡õ¡õ¡õ¡õ¡õ_| ( 127.9 KB / 128.0 KB ) 100.0%  
  
         FLASH 1           [0x08000000 | 0x00080000 (524288)]
-                ER_IROM1  [0x08000000]|¡ö¡ö¡ö¡ö¡ö¡ö¡ö¡ö¡ö¡ö¡ö¡ö¡ö¡ö¡ö¡ö¡ö¡ö¡ö¡ö¡ö¡ö¡ö¡ö¡ö¡ö¡ö¡ö¡ö¡ö¡ö___________________| (  20.2 KB /  32.0 KB )  63.4%  [-2816]
+                ER_IROM1  [0x08000000]|¡ö¡ö¡ö¡ö¡ö¡ö¡ö¡ö¡ö¡ö¡ö¡ö¡ö¡ö¡ö¡ö¡ö¡ö¡ö¡ö¡ö¡ö¡ö¡ö¡ö¡ö¡ö¡ö¡ö¡ö¡ö___________________| (  20.2 KB /  32.0 KB )  63.4%  
  
 [htm file path] F:\EmbeddedProjects\CUBEMXProjects\LiXin-MCU-RTOS\Projects\MCU_RTOS_Learn\08_Homework\19_OTA\03_Firmware\01_Bootloader\MDK-ARM\Objects\Bootloader.htm
 Maximum Stack Usage =       1376 bytes + Unknown(Cycles, Untraceable Function Pointers)
  
 =============================================================================================================================
 
-run time: 0.110 s
+run time: 0.187 s

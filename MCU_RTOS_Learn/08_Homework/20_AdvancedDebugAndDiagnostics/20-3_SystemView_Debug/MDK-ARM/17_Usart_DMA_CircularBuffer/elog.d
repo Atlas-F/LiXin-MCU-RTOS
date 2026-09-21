@@ -1,0 +1,9 @@
+17_usart_dma_circularbuffer\elog.o: ..\Middlewares\easylogger\src\elog.c
+17_usart_dma_circularbuffer\elog.o: ../Middlewares/easylogger/inc/elog.h
+17_usart_dma_circularbuffer\elog.o: ../Middlewares/easylogger/inc/elog_cfg.h
+17_usart_dma_circularbuffer\elog.o: E:\MDK\Core\ARM\ARMCC\Bin\..\include\stdint.h
+17_usart_dma_circularbuffer\elog.o: E:\MDK\Core\ARM\ARMCC\Bin\..\include\stddef.h
+17_usart_dma_circularbuffer\elog.o: E:\MDK\Core\ARM\ARMCC\Bin\..\include\stdbool.h
+17_usart_dma_circularbuffer\elog.o: E:\MDK\Core\ARM\ARMCC\Bin\..\include\string.h
+17_usart_dma_circularbuffer\elog.o: E:\MDK\Core\ARM\ARMCC\Bin\..\include\stdarg.h
+17_usart_dma_circularbuffer\elog.o: E:\MDK\Core\ARM\ARMCC\Bin\..\include\stdio.h

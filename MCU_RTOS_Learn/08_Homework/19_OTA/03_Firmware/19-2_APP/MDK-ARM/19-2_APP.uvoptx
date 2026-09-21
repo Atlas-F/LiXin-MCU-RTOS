@@ -120,7 +120,6 @@
         <SetRegEntry>
           <Number>0</Number>
           <Key>DLGUARM</Key>
-          <Name>?</Name>
         </SetRegEntry>
         <SetRegEntry>
           <Number>0</Number>
@@ -159,7 +158,7 @@
           <Type>0</Type>
           <LineNumber>96</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>134268836</Address>
+          <Address>134268888</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -175,7 +174,7 @@
           <Type>0</Type>
           <LineNumber>116</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>134268884</Address>
+          <Address>134268948</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -189,41 +188,9 @@
         <Bp>
           <Number>2</Number>
           <Type>0</Type>
-          <LineNumber>157</LineNumber>
-          <EnabledFlag>1</EnabledFlag>
-          <Address>134269060</Address>
-          <ByteObject>0</ByteObject>
-          <HtxType>0</HtxType>
-          <ManyObjects>0</ManyObjects>
-          <SizeOfObject>0</SizeOfObject>
-          <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>1</BreakIfRCount>
-          <Filename>..\User\SWC_OTA\SWC_OTA.c</Filename>
-          <ExecCommand></ExecCommand>
-          <Expression>\\19_2_APP\../User/SWC_OTA/SWC_OTA.c\157</Expression>
-        </Bp>
-        <Bp>
-          <Number>3</Number>
-          <Type>0</Type>
-          <LineNumber>176</LineNumber>
-          <EnabledFlag>1</EnabledFlag>
-          <Address>134269150</Address>
-          <ByteObject>0</ByteObject>
-          <HtxType>0</HtxType>
-          <ManyObjects>0</ManyObjects>
-          <SizeOfObject>0</SizeOfObject>
-          <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>1</BreakIfRCount>
-          <Filename>..\User\SWC_OTA\SWC_OTA.c</Filename>
-          <ExecCommand></ExecCommand>
-          <Expression>\\19_2_APP\../User/SWC_OTA/SWC_OTA.c\176</Expression>
-        </Bp>
-        <Bp>
-          <Number>4</Number>
-          <Type>0</Type>
           <LineNumber>205</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>134269260</Address>
+          <Address>134269330</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -235,11 +202,11 @@
           <Expression>\\19_2_APP\../User/SWC_OTA/SWC_OTA.c\205</Expression>
         </Bp>
         <Bp>
-          <Number>5</Number>
+          <Number>3</Number>
           <Type>0</Type>
           <LineNumber>234</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>134269370</Address>
+          <Address>134269430</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -251,11 +218,11 @@
           <Expression>\\19_2_APP\../User/SWC_OTA/SWC_OTA.c\234</Expression>
         </Bp>
         <Bp>
-          <Number>6</Number>
+          <Number>4</Number>
           <Type>0</Type>
           <LineNumber>118</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>134268462</Address>
+          <Address>134268460</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -267,11 +234,11 @@
           <Expression>\\19_2_APP\../Core/Src/main.c\118</Expression>
         </Bp>
         <Bp>
-          <Number>7</Number>
+          <Number>5</Number>
           <Type>0</Type>
           <LineNumber>190</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>134269212</Address>
+          <Address>134269284</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -283,36 +250,68 @@
           <Expression>\\19_2_APP\../User/SWC_OTA/SWC_OTA.c\190</Expression>
         </Bp>
         <Bp>
-          <Number>8</Number>
+          <Number>6</Number>
           <Type>0</Type>
-          <LineNumber>218</LineNumber>
+          <LineNumber>126</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>134269338</Address>
+          <Address>0</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
           <SizeOfObject>0</SizeOfObject>
           <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>1</BreakIfRCount>
+          <BreakIfRCount>0</BreakIfRCount>
           <Filename>..\User\SWC_OTA\SWC_OTA.c</Filename>
           <ExecCommand></ExecCommand>
-          <Expression>\\19_2_APP\../User/SWC_OTA/SWC_OTA.c\218</Expression>
+          <Expression></Expression>
+        </Bp>
+        <Bp>
+          <Number>7</Number>
+          <Type>0</Type>
+          <LineNumber>157</LineNumber>
+          <EnabledFlag>1</EnabledFlag>
+          <Address>0</Address>
+          <ByteObject>0</ByteObject>
+          <HtxType>0</HtxType>
+          <ManyObjects>0</ManyObjects>
+          <SizeOfObject>0</SizeOfObject>
+          <BreakByAccess>0</BreakByAccess>
+          <BreakIfRCount>0</BreakIfRCount>
+          <Filename>..\User\SWC_OTA\SWC_OTA.c</Filename>
+          <ExecCommand></ExecCommand>
+          <Expression></Expression>
+        </Bp>
+        <Bp>
+          <Number>8</Number>
+          <Type>0</Type>
+          <LineNumber>176</LineNumber>
+          <EnabledFlag>1</EnabledFlag>
+          <Address>0</Address>
+          <ByteObject>0</ByteObject>
+          <HtxType>0</HtxType>
+          <ManyObjects>0</ManyObjects>
+          <SizeOfObject>0</SizeOfObject>
+          <BreakByAccess>0</BreakByAccess>
+          <BreakIfRCount>0</BreakIfRCount>
+          <Filename>..\User\SWC_OTA\SWC_OTA.c</Filename>
+          <ExecCommand></ExecCommand>
+          <Expression></Expression>
         </Bp>
         <Bp>
           <Number>9</Number>
           <Type>0</Type>
-          <LineNumber>126</LineNumber>
+          <LineNumber>218</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>134268938</Address>
+          <Address>0</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
           <SizeOfObject>0</SizeOfObject>
           <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>1</BreakIfRCount>
+          <BreakIfRCount>0</BreakIfRCount>
           <Filename>..\User\SWC_OTA\SWC_OTA.c</Filename>
           <ExecCommand></ExecCommand>
-          <Expression>\\19_2_APP\../User/SWC_OTA/SWC_OTA.c\126</Expression>
+          <Expression></Expression>
         </Bp>
       </Breakpoint>
       <WatchWindow1>

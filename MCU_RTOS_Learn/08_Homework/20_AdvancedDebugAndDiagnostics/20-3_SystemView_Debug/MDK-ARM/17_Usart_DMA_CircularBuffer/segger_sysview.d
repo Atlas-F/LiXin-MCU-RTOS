@@ -1,0 +1,13 @@
+17_usart_dma_circularbuffer\segger_sysview.o: ..\Middlewares\SystemView\src\SEGGER_SYSVIEW.c
+17_usart_dma_circularbuffer\segger_sysview.o: E:\MDK\Core\ARM\ARMCC\Bin\..\include\string.h
+17_usart_dma_circularbuffer\segger_sysview.o: E:\MDK\Core\ARM\ARMCC\Bin\..\include\stdlib.h
+17_usart_dma_circularbuffer\segger_sysview.o: E:\MDK\Core\ARM\ARMCC\Bin\..\include\stdarg.h
+17_usart_dma_circularbuffer\segger_sysview.o: ..\Middlewares\SystemView\inc\SEGGER_SYSVIEW_Int.h
+17_usart_dma_circularbuffer\segger_sysview.o: ..\Middlewares\SystemView\inc\SEGGER_SYSVIEW.h
+17_usart_dma_circularbuffer\segger_sysview.o: ..\Middlewares\SystemView\inc\SEGGER.h
+17_usart_dma_circularbuffer\segger_sysview.o: ..\Middlewares\SystemView\inc\Global.h
+17_usart_dma_circularbuffer\segger_sysview.o: ..\Middlewares\SystemView\inc\SEGGER_SYSVIEW_ConfDefaults.h
+17_usart_dma_circularbuffer\segger_sysview.o: ..\Middlewares\SystemView\inc\SEGGER_SYSVIEW_Conf.h
+17_usart_dma_circularbuffer\segger_sysview.o: ..\Middlewares\SystemView\inc\SEGGER_RTT_Conf.h
+17_usart_dma_circularbuffer\segger_sysview.o: ../Middlewares/RTT/SEGGER_RTT.h
+17_usart_dma_circularbuffer\segger_sysview.o: ../Middlewares/RTT/SEGGER_RTT_Conf.h
