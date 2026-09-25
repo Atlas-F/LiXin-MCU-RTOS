@@ -1,0 +1,41 @@
+# 先采用 Google 的大多数规则，再覆盖你自己的要求
+BasedOnStyle: Google
+
+# 缩进
+IndentWidth: 4
+TabWidth: 4
+UseTab: Never
+
+# 大括号独立占行：
+# typedef enum
+# {
+# }
+BreakBeforeBraces: Allman
+
+# 枚举/连续赋值的等号对齐
+AlignConsecutiveAssignments: Consecutive
+
+# 连续变量声明也对齐
+AlignConsecutiveDeclarations: Consecutive
+
+# 不把 case 标签再额外缩进一级
+IndentCaseLabels: true
+
+# 指针星号靠变量名：uint32_t *ptr
+PointerAlignment: Right
+
+# 不自动打乱 include 的顺序
+SortIncludes: Never
+
+# 空枚举、空函数等不压成一行
+AllowShortEnumsOnASingleLine: false
+AllowShortFunctionsOnASingleLine: Empty
+
+# 一行放不下时，让参数逐行排列
+BinPackParameters: false
+
+# 参数与函数左括号后的第一个参数对齐
+AlignAfterOpenBracket: Align
+
+# 函数声明太长时，尽早换行；数值可按屏幕宽度调整
+ColumnLimit: 110

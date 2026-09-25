@@ -1,0 +1,16 @@
+21_led_driver_bridgemode\tasks.o: ../Middlewares/Third_Party/FreeRTOS/Source/tasks.c
+21_led_driver_bridgemode\tasks.o: E:\MDK\Core\ARM\ARMCC\Bin\..\include\stdlib.h
+21_led_driver_bridgemode\tasks.o: E:\MDK\Core\ARM\ARMCC\Bin\..\include\string.h
+21_led_driver_bridgemode\tasks.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h
+21_led_driver_bridgemode\tasks.o: E:\MDK\Core\ARM\ARMCC\Bin\..\include\stddef.h
+21_led_driver_bridgemode\tasks.o: E:\MDK\Core\ARM\ARMCC\Bin\..\include\stdint.h
+21_led_driver_bridgemode\tasks.o: ../Core/Inc/FreeRTOSConfig.h
+21_led_driver_bridgemode\tasks.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/projdefs.h
+21_led_driver_bridgemode\tasks.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/portable.h
+21_led_driver_bridgemode\tasks.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/deprecated_definitions.h
+21_led_driver_bridgemode\tasks.o: ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F/portmacro.h
+21_led_driver_bridgemode\tasks.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/mpu_wrappers.h
+21_led_driver_bridgemode\tasks.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/task.h
+21_led_driver_bridgemode\tasks.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/list.h
+21_led_driver_bridgemode\tasks.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/timers.h
+21_led_driver_bridgemode\tasks.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/stack_macros.h

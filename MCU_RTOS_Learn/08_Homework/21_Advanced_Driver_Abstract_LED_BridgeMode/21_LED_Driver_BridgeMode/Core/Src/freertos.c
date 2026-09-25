@@ -67,6 +67,7 @@ Time_Base_ms_t Time_Base_myown = {
 
 Led_Status_t pf_OS_Delay_ms(const uint32_t delay_time)
 {
+    //TODO：
     printf("pf_OS_Delay_ms 1 ms\r\n");
     for(int i=500; i > 0; i--);
     printf("finished 1 ms \r\n");
@@ -156,9 +157,10 @@ void StartDefaultTask(void *argument)
 {
   /* USER CODE BEGIN StartDefaultTask */
   /* Infinite loop */
-
+ 
   BSP_LedDriver_t LED_1;
   LedDriver_inst(&LED_1, &led_operations_myown, &Time_Base_myown , &OS_Delay_myown);
+  LED_1.pf_LedController(&LED_1, 10, 10, ePROPORTION_1_1);      /* 这里的闪烁次数也需要考虑 */
   for(;;)
   {
     osDelay(100);
