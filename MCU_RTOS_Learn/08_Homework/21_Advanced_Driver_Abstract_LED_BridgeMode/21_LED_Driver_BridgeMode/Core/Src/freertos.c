@@ -22,10 +22,15 @@
 #include "task.h"
 #include "main.h"
 #include "cmsis_os.h"
+#include "queue.h"
+
+#include <stdint.h>
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+
 #include "BSP_Led_Driver.h"
+#include "BSP_LED_Handler.h"
 
 /* USER CODE END Includes */
 
@@ -38,45 +43,214 @@
 /* USER CODE BEGIN PD */
 
 
-Led_Status_t led_on_myown(void)
+static BspLedStatus_t BspLedDemo_On(void)
 {
     printf("led is on \r\n");
-    return LED_OK ;
+    return LED_STATUS_OK;
 }
-Led_Status_t led_off_myown(void)
+static BspLedStatus_t BspLedDemo_Off(void)
 {
     printf("led is off \r\n");
-    return LED_OK ;
+    return LED_STATUS_OK;
 }
 
-Led_Operations_t led_operations_myown = {
-    .pf_Led_On = led_on_myown ,
-    .pf_Led_Off = led_off_myown ,
+static BspLedOperations_t g_bsp_led_demo_operations = {
+    .BspLed_On = BspLedDemo_On,
+    .BspLed_Off = BspLedDemo_Off,
 };
 
-Led_Status_t pf_Get_Time_ms_myown (uint32_t * const time_stamp)
+static BspLedStatus_t BspLedDemo_GetTimeMs(uint32_t *const time_stamp)
 {
     printf("get time now time zero \r\n");
-    *time_stamp = 0 ;
-	  return LED_OK ;
+    *time_stamp = 0U;
+	return LED_STATUS_OK;
 }
-
-Time_Base_ms_t Time_Base_myown = {
-    .pf_Get_Time_ms = pf_Get_Time_ms_myown
+/* 时基函数怎么抽象？ */
+static BspLedTimeBaseMs_t g_bsp_led_demo_time_base_ms = {
+    .BspLed_GetTimeMs = BspLedDemo_GetTimeMs
 };
 
-Led_Status_t pf_OS_Delay_ms(const uint32_t delay_time)
+static BspLedStatus_t BspLedDemo_DelayMs(uint32_t delay_time)
 {
     //TODO：
     printf("pf_OS_Delay_ms 1 ms\r\n");
-    for(int i=500; i > 0; i--);
+    (void)delay_time;
+    for (int32_t delay_index = 500; delay_index > 0; --delay_index)
+    {
+    }
     printf("finished 1 ms \r\n");
-        return LED_OK ;
+    return LED_STATUS_OK;
 }
 
-OS_Delay_t OS_Delay_myown = {
-    .pf_OS_Delay_ms = pf_OS_Delay_ms,
+static BspLedOsDelay_t g_bsp_led_demo_os_delay = {
+    .BspLed_DelayMs = BspLedDemo_DelayMs,
 };
+
+
+/* ---------------------- Unity Test ---------------------------------------*/
+#ifdef BSP_LED_DEBUG_UNITY_TEST
+
+// TBD: Handler OS queue functions.
+
+static BspLedHandlerStatus_t BspLedDemo_QueueCreate(uint32_t item_num,
+                                                     uint32_t item_size,
+                                                     void **queue_handle)
+{
+#ifdef DEBUG_ENABLED
+    DEBUG_OUT("BspLedDemo_QueueCreate \r\n");
+#endif
+    BspLedHandlerStatus_t status = LED_HANDLER_STATUS_OK; 
+    /* TBD：填充接口 */
+        // (void)item_num;
+        // (void)item_size;
+        // (void)queue_handle;
+    // *queue_handle = xQueueCreate(item_num, item_size);
+    /* *************************** 1、checking input parameters ******************** */
+    if( (item_num <= 0) || ( item_size <= 0))
+    {
+#ifdef DEBUG_ENABLED
+        DEBUG_OUT("xQueueCreate error parameters \r\n");
+#endif   
+        return LED_HANDLER_STATUS_ERROR_PARAMETER ;
+    }
+
+
+    /* *************************** 2、Do the action ******************************** */
+    *queue_handle = xQueueGenericCreate(item_num, item_size, queueQUEUE_TYPE_BASE);
+    if(NULL == *queue_handle)
+    {
+#ifdef DEBUG_ENABLED
+        DEBUG_OUT("xQueueCreate failed \r\n");
+#endif   
+        return LED_HANDLER_STATUS_ERROR_NULL_POINTER ;
+    }
+
+
+    return LED_HANDLER_STATUS_OK;
+}
+
+static BspLedHandlerStatus_t BspLedDemo_QueueDestroy(void **queue_handle)
+{
+#ifdef DEBUG_ENABLED
+    DEBUG_OUT("BspLedDemo_QueueDestroy \r\n");
+#endif
+    BspLedHandlerStatus_t status = LED_HANDLER_STATUS_OK; 
+    /* *************************** 1、checking input parameters ******************** */
+    // (void)queue_handle;
+    if ((queue_handle == NULL) || (*queue_handle == NULL))
+    {
+#ifdef DEBUG_ENABLED
+        DEBUG_OUT("QueueDestroy error parameters \r\n");
+#endif  
+        return LED_HANDLER_STATUS_ERROR_NULL_POINTER;
+    }
+
+    /* *************************** 2、Do the action ******************************** */
+    vQueueDelete((QueueHandle_t)*queue_handle);
+    /* 释放后句柄应该指向 NULL 对吗？ */
+    /* 这里是否需要检查 delete 是否成功？ */
+    *queue_handle = NULL;
+    /* 队列销毁之后，系统只是去特定地址销毁内存是吗？但是句柄中的数据地址还是在的？所以需要
+        专门设置为 NULL， 否则里面存储的还是原本的数据 */
+
+    return LED_HANDLER_STATUS_OK;
+}
+
+static BspLedHandlerStatus_t BspLedDemo_QueuePut(void *const queue_handle,
+                                                  void *const queue_item,
+                                                  uint32_t timeout)
+{
+#ifdef DEBUG_ENABLED
+    DEBUG_OUT("BspLedDemo_QueuePut \r\n");
+#endif
+    BspLedHandlerStatus_t status = LED_HANDLER_STATUS_OK; 
+    /* *************************** 1、checking input parameters ******************** */
+    if( (NULL == queue_handle) || ( NULL == queue_item))
+    {
+#ifdef DEBUG_ENABLED
+        DEBUG_OUT("xQueueCreate error parameters \r\n");
+#endif   
+        return LED_HANDLER_STATUS_ERROR_PARAMETER ;
+    }
+
+
+    /* *************************** 2、Do the action ******************************** */
+    /* TBD：填充接口 */
+    status = xQueueSendToBack((QueueHandle_t)queue_handle, queue_item, timeout);
+    if ( pdFALSE == status)
+    {
+#ifdef DEBUG_ENABLED
+        DEBUG_OUT("BspLedDemo_QueuePut QueueSendToBack failed \r\n");
+#endif 
+        return LED_HANDLER_STATUS_ERROR;
+    }
+    return LED_HANDLER_STATUS_OK;
+}
+
+static BspLedHandlerStatus_t BspLedDemo_QueuePop(void *const queue_handle,
+                                                  void *const     queue_item,
+                                                  uint32_t   timeout)
+{
+#ifdef DEBUG_ENABLED
+    DEBUG_OUT("BspLedDemo_QueuePop \r\n");
+#endif
+    BspLedHandlerStatus_t status = LED_HANDLER_STATUS_OK; 
+    /* *************************** 1、checking input parameters ******************** */
+    if( (NULL == queue_handle) || ( NULL == queue_item))
+    {
+#ifdef DEBUG_ENABLED
+        DEBUG_OUT("xQueueCreate error parameters \r\n");
+#endif   
+        return LED_HANDLER_STATUS_ERROR_PARAMETER ;
+    }
+
+    /* *************************** 2、Do the action ******************************** */
+    /* TBD：填充接口 */
+
+    /* 这里的实现是否正确 ？将数据存放在一个临时的机构体中，传递指针给外面，应该用二级指针才对吧？ */
+    status = xQueueReceive((QueueHandle_t)queue_handle, queue_item, timeout);
+    if ( pdFALSE == status)
+    {
+#ifdef DEBUG_ENABLED
+        DEBUG_OUT("BspLedDemo_QueuePop QueueReceive failed \r\n");
+#endif 
+        return LED_HANDLER_STATUS_ERROR;
+    }
+
+    return LED_HANDLER_STATUS_OK;
+}
+
+
+static BspLedHandlerTimeBaseMs_t g_bsp_led_handler_demo_time_base_ms = {
+    .BspLedHandler_GetTimeMs = BspLedDemo_GetTimeMs,
+};
+
+
+static BspLedHandlerOsDelay_t g_bsp_led_handler_demo_os_delay = {
+    .BspLedHandler_DelayMs = BspLedDemo_DelayMs
+};
+
+
+
+
+static BspLedHandlerOsQueue_t g_bsp_led_handler_demo_os_queue = {
+    .BspLedHandler_CreateQueue  = BspLedDemo_QueueCreate,
+    .BspLedHandler_DestroyQueue = BspLedDemo_QueueDestroy,
+    .BspLedHandler_PopQueue     = BspLedDemo_QueuePop,
+    .BspLedHandler_PutQueue     = BspLedDemo_QueuePut
+};
+
+static BspLedHandlerOsThread_t g_bsp_led_handler_demo_os_thread = {
+    .BspLedHandler_CreateThread  = xTaskCreate,
+    .BspLedHandler_DestroyThread = vTaskDelete
+};
+
+
+
+#endif /* BSP_LED_DEBUG_UNITY_TEST */
+
+/* ---------------------- Unity Test ---------------------------------------*/
+
 
 /* USER CODE END PD */
 
@@ -158,9 +332,36 @@ void StartDefaultTask(void *argument)
   /* USER CODE BEGIN StartDefaultTask */
   /* Infinite loop */
  
-  BSP_LedDriver_t LED_1;
-  LedDriver_inst(&LED_1, &led_operations_myown, &Time_Base_myown , &OS_Delay_myown);
-  LED_1.pf_LedController(&LED_1, 10, 10, ePROPORTION_1_1);      /* 这里的闪烁次数也需要考虑 */
+//   BspLedDriver_t led_1;
+
+
+#ifdef BSP_LED_DEBUG_UNITY_TEST
+
+    static BspLedHandler_t bsp_led_handler_instance = {0};
+    BspLedHandler_Instantiate(&bsp_led_handler_instance,
+                              &g_bsp_led_handler_demo_time_base_ms,
+                              &g_bsp_led_handler_demo_os_delay,
+                              &g_bsp_led_handler_demo_os_queue,
+                              &g_bsp_led_handler_demo_os_thread);
+
+    BspLedDriver_t led_1 = {0};
+    BspLedDriver_Instantiate(&led_1,
+                             &g_bsp_led_demo_operations,
+                             &g_bsp_led_demo_time_base_ms,
+                             &g_bsp_led_demo_os_delay);
+
+    bsp_led_handler_instance.BspLedHandler_RegisterDriver(&bsp_led_handler_instance,
+                                                           &led_1,
+                                                           &bsp_led_handler_instance.led_index);
+    bsp_led_handler_instance.BspLedHandler_Control(&bsp_led_handler_instance, 6U, 4U, LED_PROPORTION_1_2);
+
+
+#endif /* BSP_LED_DEBUG_UNITY_TEST */
+
+
+    // led_1.BspLedDriver_Control(&led_1, 4U, 6U, LED_PROPORTION_1_1);
+
+
   for(;;)
   {
     osDelay(100);

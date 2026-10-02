@@ -42,5 +42,7 @@
 21_led_driver_bridgemode\freertos.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h
 21_led_driver_bridgemode\freertos.o: ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os.h
 21_led_driver_bridgemode\freertos.o: ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os2.h
+21_led_driver_bridgemode\freertos.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/queue.h
 21_led_driver_bridgemode\freertos.o: ..\BSP\LED\Driver\Inc\BSP_Led_Driver.h
 21_led_driver_bridgemode\freertos.o: E:\MDK\Core\ARM\ARMCC\Bin\..\include\stdio.h
+21_led_driver_bridgemode\freertos.o: ..\BSP\LED\Handler\Inc\BSP_LED_Handler.h

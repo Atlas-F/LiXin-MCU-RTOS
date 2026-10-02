@@ -119,6 +119,10 @@
       <TargetDriverDllRegistry>
         <SetRegEntry>
           <Number>0</Number>
+          <Key>DLGUARM</Key>
+        </SetRegEntry>
+        <SetRegEntry>
+          <Number>0</Number>
           <Key>ARMRTXEVENTFLAGS</Key>
           <Name>-L70 -Z18 -C0 -M0 -T1</Name>
         </SetRegEntry>
@@ -131,10 +135,6 @@
           <Number>0</Number>
           <Key>ARMDBGFLAGS</Key>
           <Name></Name>
-        </SetRegEntry>
-        <SetRegEntry>
-          <Number>0</Number>
-          <Key>DLGUARM</Key>
         </SetRegEntry>
         <SetRegEntry>
           <Number>0</Number>
@@ -156,20 +156,51 @@
         <Bp>
           <Number>0</Number>
           <Type>0</Type>
-          <LineNumber>79</LineNumber>
+          <LineNumber>211</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>134223756</Address>
+          <Address>134219126</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
           <SizeOfObject>0</SizeOfObject>
           <BreakByAccess>0</BreakByAccess>
           <BreakIfRCount>1</BreakIfRCount>
-          <Filename>..\BSP\LED\Driver\Src\BSP_Led_Driver.c</Filename>
+          <Filename>../Core/Src/freertos.c</Filename>
           <ExecCommand></ExecCommand>
-          <Expression>\\21_LED_Driver_BridgeMode\../BSP/LED/Driver/Src/BSP_Led_Driver.c\79</Expression>
+          <Expression>\\21_LED_Driver_BridgeMode\../Core/Src/freertos.c\211</Expression>
+        </Bp>
+        <Bp>
+          <Number>1</Number>
+          <Type>0</Type>
+          <LineNumber>164</LineNumber>
+          <EnabledFlag>1</EnabledFlag>
+          <Address>134221116</Address>
+          <ByteObject>0</ByteObject>
+          <HtxType>0</HtxType>
+          <ManyObjects>0</ManyObjects>
+          <SizeOfObject>0</SizeOfObject>
+          <BreakByAccess>0</BreakByAccess>
+          <BreakIfRCount>1</BreakIfRCount>
+          <Filename>..\BSP\LED\Handler\Src\BSP_LED_Handler.c</Filename>
+          <ExecCommand></ExecCommand>
+          <Expression>\\21_LED_Driver_BridgeMode\../BSP/LED/Handler/Src/BSP_LED_Handler.c\164</Expression>
         </Bp>
       </Breakpoint>
+      <WatchWindow1>
+        <Ww>
+          <count>0</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>MAX_LED_INSTANCE_NUM</ItemText>
+        </Ww>
+      </WatchWindow1>
+      <MemoryWindow1>
+        <Mm>
+          <WinNumber>1</WinNumber>
+          <SubType>0</SubType>
+          <ItemText>0X20004E48</ItemText>
+          <AccSizeX>0</AccSizeX>
+        </Mm>
+      </MemoryWindow1>
       <Tracepoint>
         <THDelay>0</THDelay>
       </Tracepoint>
@@ -697,6 +728,18 @@
       <bDave2>0</bDave2>
       <PathWithFileName>..\BSP\LED\Driver\Src\BSP_Led_Driver.c</PathWithFileName>
       <FilenameWithoutPath>BSP_Led_Driver.c</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
+    </File>
+    <File>
+      <GroupNumber>6</GroupNumber>
+      <FileNumber>37</FileNumber>
+      <FileType>1</FileType>
+      <tvExp>0</tvExp>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <bDave2>0</bDave2>
+      <PathWithFileName>..\BSP\LED\Handler\Src\BSP_LED_Handler.c</PathWithFileName>
+      <FilenameWithoutPath>BSP_LED_Handler.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
