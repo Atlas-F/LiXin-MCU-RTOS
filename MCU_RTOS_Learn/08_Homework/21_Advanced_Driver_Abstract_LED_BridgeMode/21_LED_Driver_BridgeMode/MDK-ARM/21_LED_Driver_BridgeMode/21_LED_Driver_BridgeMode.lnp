@@ -36,7 +36,8 @@
 "21_led_driver_bridgemode\port.o"
 "21_led_driver_bridgemode\bsp_led_driver.o"
 "21_led_driver_bridgemode\bsp_led_handler.o"
---library_type=microlib --strict --scatter "21_LED_Driver_BridgeMode\21_LED_Driver_BridgeMode.sct"
+"21_led_driver_bridgemode\system_adaption.o"
+--library_type=microlib --strict --scatter ".\21_LED_Driver_BridgeMode\21_LED_Driver_BridgeMode_MyCustom.sct"
 --summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers
 --list "21_LED_Driver_BridgeMode.map" -o 21_LED_Driver_BridgeMode\21_LED_Driver_BridgeMode.axf

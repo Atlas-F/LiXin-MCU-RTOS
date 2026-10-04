@@ -25,8 +25,14 @@
 #include <stdint.h>
 #include <stdio.h>
 
+#include "System_configuration.h"
+
+// #include "System_adaption.h"
+
+
 /*----------- Private define -------------------------------------------------*/
 
+#if 0
 #define BSP_LED_INITIALIZED            1U     /* 已完成初始化 */
 #define BSP_LED_NOT_INITIALIZED        0U     /* 尚未初始化 */
 
@@ -36,6 +42,8 @@
 #define DEBUG_OUT(message)     printf(message) /* 自定义 debug 输出方式 */
 
 #define BSP_LED_DEBUG_UNITY_TEST
+
+#endif
 
 /*----------- Private typedef ------------------------------------------------*/
 
@@ -120,6 +128,57 @@ typedef struct BspLedDriver
 /*--------- Private declaring  ------------------------------------------------*/
 
 /**
+ * @brief  Do the action of LED blink
+ *
+ * @param [in]  self
+ * @return
+ *
+ * @details
+ * @note
+ * @warning
+ */
+// static BspLedStatus_t BspLedDriver_Blink(BspLedDriver_t *const self);
+
+
+
+/**
+ * @brief   Control the LED , and do the action
+ *
+ * @param [in]  self
+ * @param [in]  cycle_time_ms
+ * @param [in]  blink_times
+ * @param [in]  proportion_on_off
+ * @return
+ *
+ * @details
+ * @note
+ * @warning
+ */
+// BspLedStatus_t BspLedDriver_Control(BspLedDriver_t *const self,
+//                                      uint32_t cycle_time_ms,
+//                                      uint32_t blink_times,
+//                                      BspLedProportionOnOff_t proportion_on_off);
+
+
+/**
+ * @brief  Init the target BspLedDriver_t
+ *
+ * @param [in]  self pointer of input data
+ * @return    BspLedStatus_t the status of running
+ *
+ * @details
+ * @note        这个函数有待优化！
+ * @warning
+ */
+// static BspLedStatus_t BspLedDriver_Initialize(BspLedDriver_t *const self);
+
+
+
+
+
+
+
+/**
  * @brief   Instiantiate the target of BSP_Led_Driver  实例化
  *
  * Steps:
@@ -136,13 +195,13 @@ typedef struct BspLedDriver
  * @note
  * @warning
  */
-BspLedStatus_t BspLedDriver_Instantiate(BspLedDriver_t *const self,
-                                         BspLedOperations_t *const operations,
-                                         BspLedTimeBaseMs_t *const time_base_ms,
-#ifdef OS_SUPPORTING
-                                         BspLedOsDelay_t *const os_delay
-#endif /* OS_SUPPORTING */
-);
+// BspLedStatus_t BspLedDriver_Instantiate(BspLedDriver_t *const self,
+//                                          BspLedOperations_t *const operations,
+//                                          BspLedTimeBaseMs_t *const time_base_ms,
+// #ifdef OS_SUPPORTING
+//                                          BspLedOsDelay_t *const os_delay
+// #endif /* OS_SUPPORTING */
+// );
 
 
 
@@ -160,10 +219,10 @@ BspLedStatus_t BspLedDriver_Instantiate(BspLedDriver_t *const self,
  * @note
  * @warning
  */
-BspLedStatus_t BspLedDriver_Control(BspLedDriver_t *const self,
-                                     uint32_t cycle_time_ms,
-                                     uint32_t blink_times,
-                                     BspLedProportionOnOff_t proportion_on_off);
+// BspLedStatus_t BspLedDriver_Control(BspLedDriver_t *const self,
+//                                      uint32_t cycle_time_ms,
+//                                      uint32_t blink_times,
+//                                      BspLedProportionOnOff_t proportion_on_off);
 
 /*--------- Private variables ------------------------------------------------*/
 

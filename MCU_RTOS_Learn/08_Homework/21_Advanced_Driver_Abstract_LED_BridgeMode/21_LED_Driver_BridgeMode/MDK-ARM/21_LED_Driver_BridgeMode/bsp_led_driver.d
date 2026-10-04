@@ -33,3 +33,4 @@
 21_led_driver_bridgemode\bsp_led_driver.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h
 21_led_driver_bridgemode\bsp_led_driver.o: ..\BSP\LED\Driver\Inc\BSP_Led_Driver.h
 21_led_driver_bridgemode\bsp_led_driver.o: E:\MDK\Core\ARM\ARMCC\Bin\..\include\stdio.h
+21_led_driver_bridgemode\bsp_led_driver.o: ..\System\System_configuration.h

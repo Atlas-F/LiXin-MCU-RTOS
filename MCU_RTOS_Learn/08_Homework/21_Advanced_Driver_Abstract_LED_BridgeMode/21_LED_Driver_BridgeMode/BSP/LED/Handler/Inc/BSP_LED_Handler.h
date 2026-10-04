@@ -25,9 +25,15 @@
 
 #include "BSP_Led_Driver.h"
 
+#include "System_configuration.h"
+// #include "System_adaption.h"
+
+
 /*----------- Private define -------------------------------------------------*/
+#if 0
 #define BSP_LED_HANDLER_MAX_INSTANCE_NUM  (10U)
 
+#endif
 /*----------- Private typedef ------------------------------------------------*/
 
 typedef struct BspLedHandler BspLedHandler_t;
@@ -44,7 +50,9 @@ typedef enum
     LED_INDEX_7,
     LED_INDEX_8,
     LED_INDEX_9,
-    LED_INDEX_MAX
+    MAX_INDEX_NUMBER,
+    LED_NOT_INITIALIZED = UINT32_MAX // UINT32_MAX        // 0XFFFFFFFF
+                                        /* 这里 MAX_INDEX_NUMBER 和 LED_NOT_INITIALIZED 的作用可以看做是一样的吧 ？*/
 } BspLedHandlerIndex_t;
 
 
@@ -82,6 +90,7 @@ typedef struct
     uint32_t                        cycle_time_ms;
     uint32_t                          blink_times;
     BspLedProportionOnOff_t     proportion_on_off;
+    BspLedHandlerIndex_t                led_index;
 } BspLedHandlerEvent_t;
 
 
@@ -121,8 +130,9 @@ typedef struct
 typedef BspLedHandlerStatus_t (*BspLedHandlerControl_t)(BspLedHandler_t *const    self,
                                                          uint32_t                cycle_time_ms,          /* 闪烁周期，单位：ms */
                                                          uint32_t                blink_times,            /* 闪烁次数 */
-                                                         BspLedProportionOnOff_t proportion_on_off /* LED 亮灭时间占比 */
-);
+                                                         BspLedProportionOnOff_t proportion_on_off, /* LED 亮灭时间占比 */
+                                                         BspLedHandlerIndex_t    led_index
+                                                        );
 
 typedef BspLedHandlerStatus_t (*BspLedHandlerRegister_t)(BspLedHandler_t *const       self,
                                                           BspLedDriver_t *const       led_driver,
@@ -219,6 +229,79 @@ typedef struct BspLedHandler
 
 
 /**
+ * @brief  
+ * 
+ * @param [in]  self 
+ * @return      
+ * 
+ * @details
+ * @note    这里的led 控制仍然属于操作策略层面，所以不下放到 driver 层进行操作
+ *          
+ *          但是实际上可以使用更加贴合实际的策略模型，即动画模型，K 帧，按照动作起始点、结束点、动作内容
+ *          来精细分段控制，以实现更加丰富的效果。可以通过亮灭、间隔、亮度等的调整来实现丰富效果
+ * @warning
+ */
+// static BspLedHandlerStatus_t BspLedhandler_BlinkProcess(BspLedDriver_t *const self);
+
+/**
+ * @brief  
+ * 
+ * @param [in]  self 
+ * @param [in]  cycle_time_ms 
+ * @param [in]  blink_times 
+ * @param [in]  proportion_on_off 
+ * @return      
+ * 
+ * @details
+ * @note
+ *      什么时候应该使用这种前置双下划线的方式？什么程度算是内核
+ * @warning
+ */
+// static BspLedHandlerStatus_t __Led_EventProcess(BspLedHandler_t *const   self,
+//                                                BspLedHandlerEvent_t led_msg );
+
+/**
+ * @brief 
+ *
+ * @return
+ *
+ * @details
+ * @note
+ *      这个函数应该放在适配层吗？
+ * @warning
+ */
+// static BspLedHandlerStatus_t BspLedHandler_CriticalExit(void);
+
+/**
+ * @brief
+ *
+ * @return
+ *
+ * @details
+ * @note
+ * @warning
+ */
+// static BspLedHandlerStatus_t BspLedHandler_CriticalEnter(void);
+
+/**
+ * @brief
+ *
+ * @param [in]  instance_group
+ * @param [in]  instance_num
+ * @return
+ *
+ * @details
+ * @note    这个函数有待进行逻辑检查，初始化方式
+ * @warning
+ */
+// static BspLedHandlerStatus_t BspLedHandler_InitializeArray(BspLedDriver_t **const instance_group,
+//                                                           uint32_t instance_num);
+
+
+
+
+
+/**
  * @brief
  *
  * @param [in]  self
@@ -262,7 +345,7 @@ BspLedHandlerStatus_t BspLedHandler_Instantiate(BspLedHandler_t *const handler_s
  * @note
  * @warning
  */
-static void BspLedHandler_ThreadController(void *argument);
+//static void BspLedHandler_ThreadController(void *argument);
 
 
 

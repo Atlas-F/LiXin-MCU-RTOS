@@ -193,6 +193,8 @@ static BspLedStatus_t BspLedDriver_Initialize(BspLedDriver_t *const self)
     return status;
 }
 
+#if 1
+
 /**
  * @brief   Instiantiate the target of BSP_Led_Driver  实例化
  *
@@ -285,3 +287,6 @@ BspLedStatus_t BspLedDriver_Instantiate(BspLedDriver_t *const self,
 #endif
     return status;
 }
+
+
+#endif

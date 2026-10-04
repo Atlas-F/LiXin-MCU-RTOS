@@ -21,9 +21,10 @@
 /*---------- Private Includes -------------------------------------------------- */
 #include "main.h"
 
-#include "BSP_LED_Handler.h"
+#include "FreeRTOS.h"
+#include "task.h"
 
-#include "FreeRTOSConfig.h"
+#include "BSP_LED_Handler.h"
 
 /*----------- Private typedef ------------------------------------------------*/
 
@@ -31,8 +32,188 @@
 
 /*--------- Private variables ------------------------------------------------*/
 
+
+
+/*--------- Private declarations ------------------------------------------------*/
+static void BspLedHandler_ThreadController(void *argument);
+
+static BspLedHandlerStatus_t BspLedHandler_CriticalEnter(void);
+static BspLedHandlerStatus_t BspLedHandler_CriticalExit(void);
+
 /*--------- Private function prototypes --------------------------------------*/
 
+
+
+/**
+ * @brief  
+ * 
+ * @param [in]  self 
+ * @return      
+ * 
+ * @details
+ * @note    这里的led 控制仍然属于操作策略层面，所以不下放到 driver 层进行操作
+ *          
+ *          但是实际上可以使用更加贴合实际的策略模型，即动画模型，K 帧，按照动作起始点、结束点、动作内容
+ *          来精细分段控制，以实现更加丰富的效果。可以通过亮灭、间隔、亮度等的调整来实现丰富效果
+ * @warning
+ */
+static BspLedHandlerStatus_t BspLedhandler_BlinkProcess(BspLedDriver_t *const self)
+{
+    BspLedHandlerStatus_t status = LED_STATUS_OK;
+#ifdef DEBUG_ENABLED
+    DEBUG_OUT("BspLedhandler_BlinkProcess start \r\n");
+#endif
+    /**************** 1.Checing the input parameters **************** */
+    if (NULL == self || BSP_LED_NOT_INITIALIZED == self->initialized) 
+        return LED_STATUS_ERROR_NULL_POINTER;
+    if (BSP_LED_NOT_INITIALIZED == self->initialized) 
+        return LED_STATUS_ERROR_RESOURCE;
+
+
+    /**************** 2.Checing the Resources *********************** */
+    if ((self->cycle_time_ms > 1000U) || 
+        ((self->proportion_on_off > LED_PROPORTION_1_1) || 
+         (self->proportion_on_off < LED_PROPORTION_1_3)) ||
+        (self->blink_times > 1000U))
+    {
+        return LED_HANDLER_STATUS_ERROR_PARAMETER;
+    }
+
+
+    /**************** 3、do the action ****************************** */
+
+        /* 此处是否有必要使用一层局部变量再解耦 ？ */
+        /* 避免竞态，修改数据 */
+        /* Options: 此处可以通过一层局部变量赋值来保存使用的数据，可以避免竞态情况下第三者对数据的修改，
+                    或者使用互斥锁或者信号量来解耦，避免此处执行出现问题 */
+    uint32_t                    cycle_time_local;
+    uint32_t                    blink_time_local;
+    BspLedProportionOnOff_t     proportion_local;
+    uint32_t                    led_toggle_times;
+
+    cycle_time_local = self->blink_times;
+    blink_time_local = self->cycle_time_ms;
+    proportion_local = self->proportion_on_off;
+
+        /* calculate the time for each led to toggle times */
+    led_toggle_times = 0;
+    switch (proportion_local)
+    {
+        case LED_PROPORTION_1_3:
+            led_toggle_times = cycle_time_local / 4U;
+            break;
+        case LED_PROPORTION_1_2:
+            led_toggle_times = cycle_time_local / 3U;
+            break;
+        case LED_PROPORTION_1_1:
+            led_toggle_times = cycle_time_local / 2U;
+            break;
+        default:
+#ifdef DEBUG_ENABLED
+            DEBUG_OUT("BspLedDriver_Blink LED_STATUS_ERROR_PARAMETER  \r\n");
+#endif
+            return LED_STATUS_ERROR_PARAMETER;
+    }
+
+        /* Do the Blink action */
+    for (uint32_t blink_index = 0U; blink_index < blink_time_local; blink_index++)
+    {
+        for (uint32_t time_index = 0U; time_index < cycle_time_local; time_index++)
+        {
+            if (time_index < led_toggle_times) /* 这里怎么能确保 J++ 一次的时间就是一毫秒 ？ */
+            {
+                self->operations->BspLed_On();
+            }
+            else
+            {
+                self->operations->BspLed_Off();
+            }
+        }
+    }
+    status = LED_STATUS_OK;
+
+#ifdef DEBUG_ENABLED
+    DEBUG_OUT("BspLedhandler_BlinkProcess End \r\n");
+#endif
+
+    return status;
+}
+
+
+
+/**
+ * @brief  
+ * 
+ * @param [in]  self 
+ * @param [in]  cycle_time_ms 
+ * @param [in]  blink_times 
+ * @param [in]  proportion_on_off 
+ * @return      
+ * 
+ * @details
+ * @note
+ *      什么时候应该使用这种前置双下划线的方式？什么程度算是内核
+ * @warning
+ */
+static BspLedHandlerStatus_t __Led_EventProcess(BspLedHandler_t *const   self,
+                                                BspLedHandlerEvent_t led_msg )/* LED 亮灭时间占比 */
+{
+//    BspLedHandlerStatus_t status = LED_HANDLER_STATUS_OK;
+
+#ifdef DEBUG_ENABLED
+    DEBUG_OUT("__Led_EventProcess \r\n");
+#endif
+
+    /**************** 1.Checing the input parameters **************** */
+    if ( (NULL == self) || (BSP_LED_INITIALIZED != self->initialized)) 
+        return LED_HANDLER_STATUS_ERROR_PARAMETER;
+
+
+    /**************** 2.Checing the Resources *********************** */
+
+        /* 这里的参数检查是基于业务逻辑的限幅检查，实际项目中可灵活采用 */
+    if ((led_msg.cycle_time_ms > 1000U) || 
+        ((led_msg.proportion_on_off > LED_PROPORTION_1_1) || (led_msg.proportion_on_off < LED_PROPORTION_1_3)) ||
+        (led_msg.blink_times > 1000U) )
+    {
+        return LED_HANDLER_STATUS_ERROR_PARAMETER;
+    }
+
+    if( !(( LED_NOT_INITIALIZED == led_msg.led_index) || 
+         ( MAX_INDEX_NUMBER > led_msg.led_index)) )
+    {
+#ifdef DEBUG_ENABLED
+        DEBUG_OUT("led_msg.led_index error parameter \r\n");
+#endif
+        return  LED_HANDLER_STATUS_ERROR_PARAMETER;
+    }
+
+    /*  check the led driver target if registerted : compare the pattern data */
+        /* TODO: */
+
+
+    /*  check the led driver target if registerted  */
+    
+    /* 数据拷贝 */
+    self->instance_group->instance_group[led_msg.led_index]->cycle_time_ms     = led_msg.cycle_time_ms;
+    self->instance_group->instance_group[led_msg.led_index]->blink_times       = led_msg.blink_times;
+    self->instance_group->instance_group[led_msg.led_index]->proportion_on_off = led_msg.proportion_on_off;
+    
+    /**************** 3、do the action ****************************** */
+    BspLedStatus_t retval = LED_STATUS_OK;
+    retval = BspLedhandler_BlinkProcess(self->instance_group->instance_group[led_msg.led_index]);
+    if( LED_STATUS_OK != retval )
+    {
+#ifdef DEBUG_ENABLED
+        DEBUG_OUT("BspLedDriver_Control failed \r\n");
+#endif
+        return  LED_STATUS_ERROR;
+    }
+
+    return  LED_STATUS_OK;
+
+}
+#if 1
 
 /**
  * @brief 
@@ -41,6 +222,7 @@
  *
  * @details
  * @note
+ *      这个函数应该放在适配层吗？
  * @warning
  */
 static BspLedHandlerStatus_t BspLedHandler_CriticalExit(void)
@@ -50,8 +232,8 @@ static BspLedHandlerStatus_t BspLedHandler_CriticalExit(void)
 #ifdef DEBUG_ENABLED
     DEBUG_OUT("BspLedHandler_CriticalExit \r\n");
 #endif
-
-
+    /* TODO: 真实逻辑填充*/
+    taskEXIT_CRITICAL();
 
     return status;
 }
@@ -72,12 +254,15 @@ static BspLedHandlerStatus_t BspLedHandler_CriticalEnter(void)
 #ifdef DEBUG_ENABLED
     DEBUG_OUT("BspLedHandler_CriticalEnter \r\n");
 #endif
-
+    /* TODO: 真是逻辑填充*/
+    taskENTER_CRITICAL();
 
 
 
     return status;
 }
+
+#endif
 
 /**
  * @brief
@@ -181,9 +366,6 @@ BspLedHandler_CriticalEnter();
 BspLedHandler_CriticalExit();
     return LED_HANDLER_STATUS_OK;
 
-
-    return status;
-
 }
 
 
@@ -195,7 +377,7 @@ BspLedHandler_CriticalExit();
  * @param [in]  blink_times
  * @param [in]  proportion_on_off
  * @return
- *
+ * 
  * @details
  * @note
  * @warning
@@ -203,7 +385,8 @@ BspLedHandler_CriticalExit();
 static BspLedHandlerStatus_t BspLedHandler_Control(BspLedHandler_t *const self,
                                                    uint32_t cycle_time_ms,
                                                    uint32_t blink_times,
-                                                   BspLedProportionOnOff_t proportion_on_off)
+                                                   BspLedProportionOnOff_t proportion_on_off,
+                                                   BspLedHandlerIndex_t   led_index)
 {
 #ifdef DEBUG_ENABLED
     DEBUG_OUT("BspLedHandler_Control \r\n");
@@ -246,7 +429,8 @@ static BspLedHandlerStatus_t BspLedHandler_Control(BspLedHandler_t *const self,
     BspLedHandlerEvent_t led_event = {
         .cycle_time_ms     = cycle_time_ms,
         .blink_times       = blink_times,
-        .proportion_on_off = proportion_on_off
+        .proportion_on_off = proportion_on_off,
+        .led_index         = led_index          /* 这里的 设备驱动序列如何传进来？难道要修改函数定义吗？ */
     };
     /* 将操作指令入队 */
     status = self->os_queue->BspLedHandler_PutQueue(self->queue_handle, &led_event, 0);
@@ -262,7 +446,7 @@ static BspLedHandlerStatus_t BspLedHandler_Control(BspLedHandler_t *const self,
 
 }
 
-
+#if 1
 
 
 /**
@@ -399,6 +583,9 @@ BspLedHandlerStatus_t BspLedHandler_Instantiate(BspLedHandler_t *const handler_s
 }
 
 
+#endif
+
+
 /**
  * @brief  BspLedHandler_ThreadController 执行 LED 控制操作的专有线程
  * 
@@ -444,7 +631,8 @@ static void BspLedHandler_ThreadController(void *argument)
     BspLedHandlerEvent_t led_event = {
         .cycle_time_ms     = 0,
         .blink_times       = 0,
-        .proportion_on_off = 0
+        .proportion_on_off = LED_PROPORTION_INVALID,
+        .led_index         = LED_NOT_INITIALIZED
     };
 
     /**************** 3、do the action ****************************** */
@@ -463,21 +651,26 @@ static void BspLedHandler_ThreadController(void *argument)
         /** 
          * @note
          *      这里的逻辑不对
-         *      1、为什么在一直出队？
-         *      2、为什么会一直执行 队列 0 号的 control 函数 ？
-         *          0 号应该是没有数据的，因为是从队尾发送的
+         *      1、为什么在一直接收失败？
          *      3、一直在循环入队出队？但是为什么出队失败？
+         * 
+         *      因为发送只调用了一次，但是在一直接收，接收不到数据就会报错
+         * 
+         * 这里使用了原有的执行逻辑，但是实际的执行逻辑可能识别的业务
          */
-        // handler_self->BspLedHandler_Control(&handler_self,led_event.cycle_time_ms, led_event.blink_times,led_event.proportion_on_off);
         /* 这里应该执行具体的 LED 逻辑，而不再是控制函数，因为已经将数据发送到队列中了 */
-        handler_self->instance_group->instance_group[0]->BspLedDriver_Control(  handler_self->instance_group->instance_group[0],
-                                                                                led_event.cycle_time_ms,
-                                                                                led_event.blink_times,
-                                                                                led_event.proportion_on_off);
-        /******************** exe the event of the led  *********************************** */
-
-
-
+        // handler_self->instance_group->instance_group[led_event.led_index]->BspLedDriver_Control(  
+        //                                                                         handler_self->instance_group->instance_group[led_event.led_index],
+        //                                                                         led_event.cycle_time_ms,
+        //                                                                         led_event.blink_times,
+        //                                                                         led_event.proportion_on_off);
+        /******************** Execute the event of the led  *********************************** */
+//        __Led_EventProcess( handler_self->instance_group->instance_group[led_event.led_index],
+//                            led_event.cycle_time_ms,
+//                            led_event.blink_times,
+//                            led_event.proportion_on_off);
+			__Led_EventProcess(handler_self,led_event);
+	
 
 
 
@@ -485,3 +678,5 @@ static void BspLedHandler_ThreadController(void *argument)
     }
 
 }
+
+

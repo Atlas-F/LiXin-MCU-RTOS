@@ -29,8 +29,10 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 
-#include "BSP_Led_Driver.h"
-#include "BSP_LED_Handler.h"
+// #include "BSP_Led_Driver.h"
+// #include "BSP_LED_Handler.h"
+
+#include "System_adaption.h"
 
 /* USER CODE END Includes */
 
@@ -42,7 +44,7 @@
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
 
-
+#if 0
 static BspLedStatus_t BspLedDemo_On(void)
 {
     printf("led is on \r\n");
@@ -92,6 +94,18 @@ static BspLedOsDelay_t g_bsp_led_demo_os_delay = {
 
 // TBD: Handler OS queue functions.
 
+/**
+ * @brief  
+ * 
+ * @param [in]  item_num 
+ * @param [in]  item_size 
+ * @param [in]  queue_handle 
+ * @return      
+ * 
+ * @details
+ * @note
+ * @warning
+ */
 static BspLedHandlerStatus_t BspLedDemo_QueueCreate(uint32_t item_num,
                                                      uint32_t item_size,
                                                      void **queue_handle)
@@ -129,6 +143,16 @@ static BspLedHandlerStatus_t BspLedDemo_QueueCreate(uint32_t item_num,
     return LED_HANDLER_STATUS_OK;
 }
 
+/**
+ * @brief  
+ * 
+ * @param [in]  queue_handle 
+ * @return      
+ * 
+ * @details
+ * @note
+ * @warning
+ */
 static BspLedHandlerStatus_t BspLedDemo_QueueDestroy(void **queue_handle)
 {
 #ifdef DEBUG_ENABLED
@@ -156,6 +180,18 @@ static BspLedHandlerStatus_t BspLedDemo_QueueDestroy(void **queue_handle)
     return LED_HANDLER_STATUS_OK;
 }
 
+/**
+ * @brief  
+ * 
+ * @param [in]  queue_handle 
+ * @param [in]  queue_item 
+ * @param [in]  timeout 
+ * @return      
+ * 
+ * @details
+ * @note
+ * @warning
+ */
 static BspLedHandlerStatus_t BspLedDemo_QueuePut(void *const queue_handle,
                                                   void *const queue_item,
                                                   uint32_t timeout)
@@ -187,6 +223,18 @@ static BspLedHandlerStatus_t BspLedDemo_QueuePut(void *const queue_handle,
     return LED_HANDLER_STATUS_OK;
 }
 
+/**
+ * @brief  
+ * 
+ * @param [in]  queue_handle 
+ * @param [in]  queue_item 
+ * @param [in]  timeout 
+ * @return      
+ * 
+ * @details
+ * @note
+ * @warning
+ */
 static BspLedHandlerStatus_t BspLedDemo_QueuePop(void *const queue_handle,
                                                   void *const     queue_item,
                                                   uint32_t   timeout)
@@ -249,6 +297,7 @@ static BspLedHandlerOsThread_t g_bsp_led_handler_demo_os_thread = {
 
 #endif /* BSP_LED_DEBUG_UNITY_TEST */
 
+#endif 
 /* ---------------------- Unity Test ---------------------------------------*/
 
 
@@ -333,27 +382,38 @@ void StartDefaultTask(void *argument)
   /* Infinite loop */
  
 //   BspLedDriver_t led_1;
-
+    SystemAdaption_LedDemoInit();
 
 #ifdef BSP_LED_DEBUG_UNITY_TEST
 
-    static BspLedHandler_t bsp_led_handler_instance = {0};
-    BspLedHandler_Instantiate(&bsp_led_handler_instance,
-                              &g_bsp_led_handler_demo_time_base_ms,
-                              &g_bsp_led_handler_demo_os_delay,
-                              &g_bsp_led_handler_demo_os_queue,
-                              &g_bsp_led_handler_demo_os_thread);
+    // // static BspLedHandler_t bsp_led_handler_instance = {0};
+    // BspLedHandler_Instantiate(&bsp_led_handler_instance,
+    //                           &g_bsp_led_handler_demo_time_base_ms,
+    //                           &g_bsp_led_handler_demo_os_delay,
+    //                           &g_bsp_led_handler_demo_os_queue,
+    //                           &g_bsp_led_handler_demo_os_thread);
 
-    BspLedDriver_t led_1 = {0};
-    BspLedDriver_Instantiate(&led_1,
-                             &g_bsp_led_demo_operations,
-                             &g_bsp_led_demo_time_base_ms,
-                             &g_bsp_led_demo_os_delay);
+    // // BspLedDriver_t led_1 = {0};
+    // BspLedDriver_Instantiate(&led_1,
+    //                          &g_bsp_led_demo_operations,
+    //                          &g_bsp_led_demo_time_base_ms,
+    //                          &g_bsp_led_demo_os_delay);
+    
+    // BspLedHandlerEvent_t led_event = {
+    //     .cycle_time_ms     = 6,
+    //     .blink_times       = 4,
+    //     .proportion_on_off = LED_PROPORTION_1_2,
+    //     .led_index         = LED_INDEX_1,
+    // } ;                        
 
-    bsp_led_handler_instance.BspLedHandler_RegisterDriver(&bsp_led_handler_instance,
-                                                           &led_1,
-                                                           &bsp_led_handler_instance.led_index);
-    bsp_led_handler_instance.BspLedHandler_Control(&bsp_led_handler_instance, 6U, 4U, LED_PROPORTION_1_2);
+    // bsp_led_handler_instance.BspLedHandler_RegisterDriver(&bsp_led_handler_instance,
+    //                                                        &led_1,
+    //                                                        &bsp_led_handler_instance.led_index);
+    // bsp_led_handler_instance.BspLedHandler_Control(&bsp_led_handler_instance, 
+    //                                                 led_event.cycle_time_ms, 
+    //                                                 led_event.blink_times, 
+    //                                                 led_event.proportion_on_off,
+    //                                                 led_event.led_index);
 
 
 #endif /* BSP_LED_DEBUG_UNITY_TEST */

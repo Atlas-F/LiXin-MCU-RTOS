@@ -31,7 +31,16 @@
 21_led_driver_bridgemode\bsp_led_handler.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h
 21_led_driver_bridgemode\bsp_led_handler.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h
 21_led_driver_bridgemode\bsp_led_handler.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h
+21_led_driver_bridgemode\bsp_led_handler.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h
+21_led_driver_bridgemode\bsp_led_handler.o: ../Core/Inc/FreeRTOSConfig.h
+21_led_driver_bridgemode\bsp_led_handler.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/projdefs.h
+21_led_driver_bridgemode\bsp_led_handler.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/portable.h
+21_led_driver_bridgemode\bsp_led_handler.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/deprecated_definitions.h
+21_led_driver_bridgemode\bsp_led_handler.o: ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F/portmacro.h
+21_led_driver_bridgemode\bsp_led_handler.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/mpu_wrappers.h
+21_led_driver_bridgemode\bsp_led_handler.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/task.h
+21_led_driver_bridgemode\bsp_led_handler.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/list.h
 21_led_driver_bridgemode\bsp_led_handler.o: ..\BSP\LED\Handler\Inc\BSP_LED_Handler.h
 21_led_driver_bridgemode\bsp_led_handler.o: E:\MDK\Core\ARM\ARMCC\Bin\..\include\stdio.h
 21_led_driver_bridgemode\bsp_led_handler.o: ..\BSP\LED\Driver\Inc\BSP_Led_Driver.h
-21_led_driver_bridgemode\bsp_led_handler.o: ../Core/Inc/FreeRTOSConfig.h
+21_led_driver_bridgemode\bsp_led_handler.o: ..\System\System_configuration.h
