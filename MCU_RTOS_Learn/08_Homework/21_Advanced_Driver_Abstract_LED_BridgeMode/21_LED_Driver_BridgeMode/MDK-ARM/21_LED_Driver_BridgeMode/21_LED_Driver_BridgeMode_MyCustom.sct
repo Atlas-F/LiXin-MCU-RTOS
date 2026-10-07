@@ -17,7 +17,7 @@ LR_IROM1 0x08000000 0x00080000  {    ; load region size_region
 LR_IROM2 0x08007000 0x00001000
 {
     ER_IROM2 0x08007000 0x0001000 {
-
+		
     }
 }
 

@@ -1,7 +1,7 @@
 Dependencies for Project '21_LED_Driver_BridgeMode', Target '21_LED_Driver_BridgeMode': (DO NOT MODIFY !)
 CompilerVersion: 5060960::V5.06 update 7 (build 960)::.\ARMCC
 F (startup_stm32f411xe.s)(0x6AB3C1F5)(--cpu Cortex-M4.fp.sp -g --apcs=interwork --pd "__MICROLIB SETA 1" -I ../Core/Inc-I.\RTE\_21_LED_Driver_BridgeMode-IE:\MDK\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include-IE:\MDK\Packs\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include--pd "__UVISION_VERSION SETA 538" --pd "_RTE_ SETA 1" --pd "STM32F411xE SETA 1" --pd "_RTE_ SETA 1"--list startup_stm32f411xe.lst --xref -o 21_led_driver_bridgemode\startup_stm32f411xe.o --depend 21_led_driver_bridgemode\startup_stm32f411xe.d)
-F (../Core/Src/main.c)(0x6AB3C1F2)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ..\BSP\LED\Driver\Inc -I ..\BSP\LED\Handler\Inc -I ..\System-I.\RTE\_21_LED_Driver_BridgeMode-IE:\MDK\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include-IE:\MDK\Packs\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F411xE -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F411xE-o 21_led_driver_bridgemode\main.o --omf_browse 21_led_driver_bridgemode\main.crf --depend 21_led_driver_bridgemode\main.d)
+F (../Core/Src/main.c)(0x6AC3A469)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ..\BSP\LED\Driver\Inc -I ..\BSP\LED\Handler\Inc -I ..\System-I.\RTE\_21_LED_Driver_BridgeMode-IE:\MDK\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include-IE:\MDK\Packs\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F411xE -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F411xE-o 21_led_driver_bridgemode\main.o --omf_browse 21_led_driver_bridgemode\main.crf --depend 21_led_driver_bridgemode\main.d)
 I (../Core/Inc/main.h)(0x6AB3C1F2)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x6A251DCE)
 I (../Core/Inc/stm32f4xx_hal_conf.h)(0x6AB3C1F1)
@@ -79,7 +79,7 @@ I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h)(0x6A251DCE)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h)(0x6A251DCE)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h)(0x6A251DCE)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h)(0x6A251DCE)
-F (../Core/Src/freertos.c)(0x6AC2237B)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ..\BSP\LED\Driver\Inc -I ..\BSP\LED\Handler\Inc -I ..\System-I.\RTE\_21_LED_Driver_BridgeMode-IE:\MDK\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include-IE:\MDK\Packs\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F411xE -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F411xE-o 21_led_driver_bridgemode\freertos.o --omf_browse 21_led_driver_bridgemode\freertos.crf --depend 21_led_driver_bridgemode\freertos.d)
+F (../Core/Src/freertos.c)(0x6AC2655D)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ..\BSP\LED\Driver\Inc -I ..\BSP\LED\Handler\Inc -I ..\System-I.\RTE\_21_LED_Driver_BridgeMode-IE:\MDK\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include-IE:\MDK\Packs\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F411xE -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F411xE-o 21_led_driver_bridgemode\freertos.o --omf_browse 21_led_driver_bridgemode\freertos.crf --depend 21_led_driver_bridgemode\freertos.d)
 I (../Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h)(0x6A251B7F)
 I (E:\MDK\Core\ARM\ARMCC\include\stddef.h)(0x6025237E)
 I (E:\MDK\Core\ARM\ARMCC\include\stdint.h)(0x6025237E)
@@ -123,11 +123,11 @@ I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h)(0x6A251DCE)
 I (../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os.h)(0x6A251B7F)
 I (../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os2.h)(0x6A251B7F)
 I (../Middlewares/Third_Party/FreeRTOS/Source/include/queue.h)(0x6ABF5EB5)
-I (..\System\System_adaption.h)(0x6AC23DCC)
-I (..\BSP\LED\Driver\Inc\BSP_Led_Driver.h)(0x6AC22C89)
+I (..\System\System_adaption.h)(0x6AC270F2)
+I (..\BSP\LED\Driver\Inc\BSP_Led_Driver.h)(0x6AC33C1A)
 I (E:\MDK\Core\ARM\ARMCC\include\stdio.h)(0x60252374)
-I (..\System\System_configuration.h)(0x6AC2210A)
-I (..\BSP\LED\Handler\Inc\BSP_LED_Handler.h)(0x6AC237DA)
+I (..\System\System_configuration.h)(0x6AC24A69)
+I (..\BSP\LED\Handler\Inc\BSP_LED_Handler.h)(0x6AC26504)
 F (../Core/Src/usart.c)(0x6AB4E093)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ..\BSP\LED\Driver\Inc -I ..\BSP\LED\Handler\Inc -I ..\System-I.\RTE\_21_LED_Driver_BridgeMode-IE:\MDK\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include-IE:\MDK\Packs\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F411xE -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F411xE-o 21_led_driver_bridgemode\usart.o --omf_browse 21_led_driver_bridgemode\usart.crf --depend 21_led_driver_bridgemode\usart.d)
 I (../Core/Inc/usart.h)(0x6AB3C1F1)
 I (../Core/Inc/main.h)(0x6AB3C1F2)
@@ -162,7 +162,7 @@ I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h)(0x6A251DCE)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h)(0x6A251DCE)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h)(0x6A251DCE)
 I (E:\MDK\Core\ARM\ARMCC\include\stdio.h)(0x60252374)
-F (../Core/Src/stm32f4xx_it.c)(0x6AB3C1F1)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ..\BSP\LED\Driver\Inc -I ..\BSP\LED\Handler\Inc -I ..\System-I.\RTE\_21_LED_Driver_BridgeMode-IE:\MDK\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include-IE:\MDK\Packs\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F411xE -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F411xE-o 21_led_driver_bridgemode\stm32f4xx_it.o --omf_browse 21_led_driver_bridgemode\stm32f4xx_it.crf --depend 21_led_driver_bridgemode\stm32f4xx_it.d)
+F (../Core/Src/stm32f4xx_it.c)(0x6AC39449)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ..\BSP\LED\Driver\Inc -I ..\BSP\LED\Handler\Inc -I ..\System-I.\RTE\_21_LED_Driver_BridgeMode-IE:\MDK\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include-IE:\MDK\Packs\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F411xE -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F411xE-o 21_led_driver_bridgemode\stm32f4xx_it.o --omf_browse 21_led_driver_bridgemode\stm32f4xx_it.crf --depend 21_led_driver_bridgemode\stm32f4xx_it.d)
 I (../Core/Inc/main.h)(0x6AB3C1F2)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x6A251DCE)
 I (../Core/Inc/stm32f4xx_hal_conf.h)(0x6AB3C1F1)
@@ -958,7 +958,7 @@ I (../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F/portmacro.h
 I (../Middlewares/Third_Party/FreeRTOS/Source/include/mpu_wrappers.h)(0x6A251B7F)
 I (../Middlewares/Third_Party/FreeRTOS/Source/include/task.h)(0x6ABE4ACE)
 I (../Middlewares/Third_Party/FreeRTOS/Source/include/list.h)(0x6A251B7F)
-F (..\BSP\LED\Driver\Src\BSP_Led_Driver.c)(0x6AC22259)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ..\BSP\LED\Driver\Inc -I ..\BSP\LED\Handler\Inc -I ..\System-I.\RTE\_21_LED_Driver_BridgeMode-IE:\MDK\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include-IE:\MDK\Packs\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F411xE -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F411xE-o 21_led_driver_bridgemode\bsp_led_driver.o --omf_browse 21_led_driver_bridgemode\bsp_led_driver.crf --depend 21_led_driver_bridgemode\bsp_led_driver.d)
+F (..\BSP\LED\Driver\Src\BSP_Led_Driver.c)(0x6AC33EFF)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ..\BSP\LED\Driver\Inc -I ..\BSP\LED\Handler\Inc -I ..\System-I.\RTE\_21_LED_Driver_BridgeMode-IE:\MDK\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include-IE:\MDK\Packs\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F411xE -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F411xE-o 21_led_driver_bridgemode\bsp_led_driver.o --omf_browse 21_led_driver_bridgemode\bsp_led_driver.crf --depend 21_led_driver_bridgemode\bsp_led_driver.d)
 I (../Core/Inc/main.h)(0x6AB3C1F2)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x6A251DCE)
 I (../Core/Inc/stm32f4xx_hal_conf.h)(0x6AB3C1F1)
@@ -990,10 +990,10 @@ I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h)(0x6A251DCE)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h)(0x6A251DCE)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h)(0x6A251DCE)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h)(0x6A251DCE)
-I (..\BSP\LED\Driver\Inc\BSP_Led_Driver.h)(0x6AC22C89)
+I (..\BSP\LED\Driver\Inc\BSP_Led_Driver.h)(0x6AC33C1A)
 I (E:\MDK\Core\ARM\ARMCC\include\stdio.h)(0x60252374)
-I (..\System\System_configuration.h)(0x6AC2210A)
-F (..\BSP\LED\Handler\Src\BSP_LED_Handler.c)(0x6AC234C7)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ..\BSP\LED\Driver\Inc -I ..\BSP\LED\Handler\Inc -I ..\System-I.\RTE\_21_LED_Driver_BridgeMode-IE:\MDK\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include-IE:\MDK\Packs\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F411xE -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F411xE-o 21_led_driver_bridgemode\bsp_led_handler.o --omf_browse 21_led_driver_bridgemode\bsp_led_handler.crf --depend 21_led_driver_bridgemode\bsp_led_handler.d)
+I (..\System\System_configuration.h)(0x6AC24A69)
+F (..\BSP\LED\Handler\Src\BSP_LED_Handler.c)(0x6AC33E7C)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ..\BSP\LED\Driver\Inc -I ..\BSP\LED\Handler\Inc -I ..\System-I.\RTE\_21_LED_Driver_BridgeMode-IE:\MDK\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include-IE:\MDK\Packs\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F411xE -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F411xE-o 21_led_driver_bridgemode\bsp_led_handler.o --omf_browse 21_led_driver_bridgemode\bsp_led_handler.crf --depend 21_led_driver_bridgemode\bsp_led_handler.d)
 I (../Core/Inc/main.h)(0x6AB3C1F2)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x6A251DCE)
 I (../Core/Inc/stm32f4xx_hal_conf.h)(0x6AB3C1F1)
@@ -1034,11 +1034,11 @@ I (../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F/portmacro.h
 I (../Middlewares/Third_Party/FreeRTOS/Source/include/mpu_wrappers.h)(0x6A251B7F)
 I (../Middlewares/Third_Party/FreeRTOS/Source/include/task.h)(0x6ABE4ACE)
 I (../Middlewares/Third_Party/FreeRTOS/Source/include/list.h)(0x6A251B7F)
-I (..\BSP\LED\Handler\Inc\BSP_LED_Handler.h)(0x6AC237DA)
+I (..\BSP\LED\Handler\Inc\BSP_LED_Handler.h)(0x6AC26504)
 I (E:\MDK\Core\ARM\ARMCC\include\stdio.h)(0x60252374)
-I (..\BSP\LED\Driver\Inc\BSP_Led_Driver.h)(0x6AC22C89)
-I (..\System\System_configuration.h)(0x6AC2210A)
-F (..\System\System_adaption.c)(0x6AC24915)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ..\BSP\LED\Driver\Inc -I ..\BSP\LED\Handler\Inc -I ..\System-I.\RTE\_21_LED_Driver_BridgeMode-IE:\MDK\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include-IE:\MDK\Packs\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F411xE -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F411xE-o 21_led_driver_bridgemode\system_adaption.o --omf_browse 21_led_driver_bridgemode\system_adaption.crf --depend 21_led_driver_bridgemode\system_adaption.d)
+I (..\BSP\LED\Driver\Inc\BSP_Led_Driver.h)(0x6AC33C1A)
+I (..\System\System_configuration.h)(0x6AC24A69)
+F (..\System\System_adaption.c)(0x6AC3A477)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ..\BSP\LED\Driver\Inc -I ..\BSP\LED\Handler\Inc -I ..\System-I.\RTE\_21_LED_Driver_BridgeMode-IE:\MDK\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include-IE:\MDK\Packs\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F411xE -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F411xE-o 21_led_driver_bridgemode\system_adaption.o --omf_browse 21_led_driver_bridgemode\system_adaption.crf --depend 21_led_driver_bridgemode\system_adaption.d)
 I (E:\MDK\Core\ARM\ARMCC\include\stdint.h)(0x6025237E)
 I (E:\MDK\Core\ARM\ARMCC\include\stdio.h)(0x60252374)
 I (../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os.h)(0x6A251B7F)
@@ -1085,7 +1085,7 @@ I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h)(0x6A251DCE)
 I (../Core/Inc/usart.h)(0x6AB3C1F1)
 I (../Core/Inc/gpio.h)(0x6AB3C1EF)
 I (../Middlewares/Third_Party/FreeRTOS/Source/include/queue.h)(0x6ABF5EB5)
-I (..\System\System_adaption.h)(0x6AC23DCC)
-I (..\BSP\LED\Driver\Inc\BSP_Led_Driver.h)(0x6AC22C89)
-I (..\System\System_configuration.h)(0x6AC2210A)
-I (..\BSP\LED\Handler\Inc\BSP_LED_Handler.h)(0x6AC237DA)
+I (..\System\System_adaption.h)(0x6AC270F2)
+I (..\BSP\LED\Driver\Inc\BSP_Led_Driver.h)(0x6AC33C1A)
+I (..\System\System_configuration.h)(0x6AC24A69)
+I (..\BSP\LED\Handler\Inc\BSP_LED_Handler.h)(0x6AC26504)

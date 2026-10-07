@@ -38,11 +38,10 @@
 
 
 /**
- * @brief  Do the action of LED blink
+ * @brief  按配置执行 LED 闪烁序列。
  *
- * @param [in]  self
- * @return
- *
+ * @param [in]  self LED Driver 驱动对象
+ * @return      模块调用结果或错误状态。模块调用结果或错误状态。`r`n *
  * @details
  * @note
  * @warning
@@ -112,14 +111,13 @@ static BspLedStatus_t BspLedDriver_Blink(BspLedDriver_t *const self)
 
 
 /**
- * @brief   Control the LED , and do the action
+ * @brief   LED Driver 对象设置参数并执行 LED 控制动作。
  *
- * @param [in]  self
- * @param [in]  cycle_time_ms
- * @param [in]  blink_times
- * @param [in]  proportion_on_off
- * @return
- *
+ * @param [in]  self                LED Driver 对象
+ * @param [in]  cycle_time_ms       闪烁周期时间
+ * @param [in]  blink_times         闪烁时间
+ * @param [in]  proportion_on_off   闪烁亮灭时间占比
+ * @return      模块调用结果或错误状态。模块调用结果或错误状态。`r`n *
  * @details
  * @note
  * @warning
@@ -168,10 +166,10 @@ BspLedStatus_t BspLedDriver_Control(BspLedDriver_t *const self,
 
 
 /**
- * @brief  Init the target BspLedDriver_t
+ * @brief  Init the target BspLedDriver_t LED 驱动对象初始化
  *
- * @param [in]  self pointer of input data
- * @return    BspLedStatus_t the status of running
+ * @param [in]  self LED 驱动对象
+ * @return      模块调用结果或错误状态。    BspLedStatus_t the status of running
  *
  * @details
  * @note        这个函数有待优化！
@@ -211,10 +209,10 @@ static BspLedStatus_t BspLedDriver_Initialize(BspLedDriver_t *const self)
  * @param[in]     os_delay     操作系统    延时接口，必须指向有效的 BspLedOsDelay_t 对象，
  *                              并提供毫秒延时的 BspLed_DelayMs 回调函数；仅在定义
  *                              OS_SUPPORTING 时生效。
- * @return      LED_STATUS_OK              实例化成功。
- * @return      LED_STATUS_ERROR_PARAMETER self、operations、time_base_ms 或 os_delay 为 NULL。
- * @return      LED_STATUS_ERROR_RESOURCE  self 对象已经完成实例化。
- * @return      其他 BspLedStatus_t        驱动初始化流程返回的错误状态。
+ * @return      模块调用结果或错误状态。      模块调用结果或错误状态。LED_STATUS_OK              实例化成功。
+ * @return      模块调用结果或错误状态。      模块调用结果或错误状态。LED_STATUS_ERROR_PARAMETER self、operations、time_base_ms 或 os_delay 为 NULL。
+ * @return      模块调用结果或错误状态。      模块调用结果或错误状态。LED_STATUS_ERROR_RESOURCE  self 对象已经完成实例化。
+ * @return      模块调用结果或错误状态。      模块调用结果或错误状态。其他 BspLedStatus_t        驱动初始化流程返回的错误状态。
  *
  * @details
  *  函数成功后，@p self 会持有上述接口对象的地址，因此这些对象在驱动使用期间
@@ -287,6 +285,64 @@ BspLedStatus_t BspLedDriver_Instantiate(BspLedDriver_t *const self,
 #endif
     return status;
 }
+
+/**
+ * @brief  点亮 对应 LED 驱动对象对应的 LED。
+ * 
+ * @param [in]  self LED 驱动对象
+ * @return      
+ * @details
+ * @note
+ * @warning
+ */
+BspLedStatus_t BspLedDriver_On(BspLedDriver_t *self)
+{
+    if (self == NULL) {
+        return LED_STATUS_ERROR_NULL_POINTER;
+    }
+
+    if (self->initialized != BSP_LED_INITIALIZED) {
+        return LED_STATUS_ERROR_RESOURCE;
+    }
+
+    if (self->operations == NULL ||
+        self->operations->BspLed_On == NULL) {
+        return LED_STATUS_ERROR_PARAMETER;
+    }
+
+    return self->operations->BspLed_On();
+}
+
+
+
+/**
+ * @brief 熄灭 对应 LED 驱动对象对应的 LED。
+ * 
+ * @param [in]  self LED 驱动对象
+ * @return      
+ * @details
+ * @note
+ * @warning
+ */
+BspLedStatus_t BspLedDriver_Off(BspLedDriver_t *self)
+{
+    if (self == NULL) {
+        return LED_STATUS_ERROR_NULL_POINTER;
+    }
+
+    if (self->initialized != BSP_LED_INITIALIZED) {
+        return LED_STATUS_ERROR_RESOURCE;
+    }
+
+    if (self->operations == NULL ||
+        self->operations->BspLed_Off == NULL) {
+        return LED_STATUS_ERROR_PARAMETER;
+    }
+
+    return self->operations->BspLed_Off();
+}
+
+
 
 
 #endif

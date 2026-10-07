@@ -1,106 +1,233 @@
 *** Using Compiler 'V5.06 update 7 (build 960)', folder: 'E:\MDK\Core\ARM\ARMCC\Bin'
 Rebuild target '21_LED_Driver_BridgeMode'
 assembling startup_stm32f411xe.s...
-compiling gpio.c...
-compiling stm32f4xx_hal_timebase_tim.c...
-compiling stm32f4xx_hal_flash_ex.c...
-compiling stm32f4xx_hal_rcc_ex.c...
-compiling stm32f4xx_hal_gpio.c...
-compiling stm32f4xx_hal_msp.c...
-compiling stm32f4xx_hal_flash.c...
-compiling stm32f4xx_it.c...
-compiling usart.c...
-compiling stm32f4xx_hal_flash_ramfunc.c...
+compiling stm32f4xx_hal_dma.c...
 compiling stm32f4xx_hal_pwr.c...
-compiling croutine.c...
+compiling stm32f4xx_hal_flash.c...
+compiling gpio.c...
+compiling stm32f4xx_hal_rcc_ex.c...
+compiling stm32f4xx_hal_rcc.c...
+compiling freertos.c...
+..\BSP\LED\Handler\Inc\BSP_LED_Handler.h(39): error:  #130: expected a "{"
+  typedef struct BspLedHandler Bsp_Led_Handler_t;
+..\BSP\LED\Handler\Inc\BSP_LED_Handler.h(43): warning:  #12-D: parsing restarts here after previous syntax error
+  {
+..\BSP\LED\Handler\Inc\BSP_LED_Handler.h(44): error:  #20: identifier "LED_INDEX_1" is undefined
+      LED_INDEX_1 = 0,
+..\BSP\LED\Handler\Inc\BSP_LED_Handler.h(45): error:  #20: identifier "LED_INDEX_2" is undefined
+      LED_INDEX_2,
+..\BSP\LED\Handler\Inc\BSP_LED_Handler.h(46): error:  #20: identifier "LED_INDEX_3" is undefined
+      LED_INDEX_3,
+..\BSP\LED\Handler\Inc\BSP_LED_Handler.h(47): error:  #20: identifier "LED_INDEX_4" is undefined
+      LED_INDEX_4,
+..\BSP\LED\Handler\Inc\BSP_LED_Handler.h(48): error:  #20: identifier "LED_INDEX_5" is undefined
+      LED_INDEX_5,
+..\BSP\LED\Handler\Inc\BSP_LED_Handler.h(49): error:  #20: identifier "LED_INDEX_6" is undefined
+      LED_INDEX_6,
+..\BSP\LED\Handler\Inc\BSP_LED_Handler.h(50): error:  #20: identifier "LED_INDEX_7" is undefined
+      LED_INDEX_7,
+..\BSP\LED\Handler\Inc\BSP_LED_Handler.h(51): error:  #20: identifier "LED_INDEX_8" is undefined
+      LED_INDEX_8,
+..\BSP\LED\Handler\Inc\BSP_LED_Handler.h(52): error:  #20: identifier "LED_INDEX_9" is undefined
+      LED_INDEX_9,
+..\BSP\LED\Handler\Inc\BSP_LED_Handler.h(53): error:  #20: identifier "MAX_INDEX_NUMBER" is undefined
+      MAX_INDEX_NUMBER,
+..\BSP\LED\Handler\Inc\BSP_LED_Handler.h(54): error:  #20: identifier "LED_NOT_INITIALIZED" is undefined
+      LED_NOT_INITIALIZED = UINT32_MAX // UINT32_MAX        // 0XFFFFFFFF
+..\BSP\LED\Handler\Inc\BSP_LED_Handler.h(56): error:  #65: expected a ";"
+  } BspLedHandlerIndex_t;
+..\BSP\LED\Handler\Inc\BSP_LED_Handler.h(56): warning:  #940-D: missing return statement at end of non-void function "BspLedDriver_Instantiate" 
+  } BspLedHandlerIndex_t;
+..\BSP\LED\Handler\Inc\BSP_LED_Handler.h(56): error:  #77-D: this declaration has no storage class or type specifier
+  } BspLedHandlerIndex_t;
+..\BSP\LED\Handler\Inc\BSP_LED_Handler.h(93): error:  #757: variable "BspLedHandlerIndex_t"  is not a type name
+      BspLedHandlerIndex_t                led_index;
+..\BSP\LED\Handler\Inc\BSP_LED_Handler.h(130): error:  #20: identifier "Bsp_Led_Handler_t" is undefined
+  typedef BspLedHandlerStatus_t (*Bsp_Led_Handler_Control_t)(Bsp_Led_Handler_t *const    self,
+..\BSP\LED\Handler\Inc\BSP_LED_Handler.h(134): error:  #757: variable "BspLedHandlerIndex_t"  is not a type name
+                                                           BspLedHandlerIndex_t    led_index
+..\BSP\LED\Handler\Inc\BSP_LED_Handler.h(137): error:  #20: identifier "Bsp_Led_Handler_t" is undefined
+  typedef BspLedHandlerStatus_t (*Bsp_Led_Handler_Register_t)(Bsp_Led_Handler_t *const       self,
+..\BSP\LED\Handler\Inc\BSP_LED_Handler.h(139): error:  #757: variable "BspLedHandlerIndex_t"  is not a type name
+                                                            BspLedHandlerIndex_t *const led_index /* 这里不是通过 led_index 返回数据，而是写入固定在该 index 位置中了  */
+..\BSP\LED\Handler\Inc\BSP_LED_Handler.h(202): error:  #757: variable "BspLedHandlerIndex_t"  is not a type name
+      BspLedHandlerIndex_t                       led_index;
+../Core/Src/freertos.c: 2 warnings, 20 errors
+compiling stm32f4xx_hal_gpio.c...
+compiling stm32f4xx_hal_timebase_tim.c...
+compiling stm32f4xx_hal_dma_ex.c...
+compiling usart.c...
 compiling main.c...
 compiling event_groups.c...
-compiling freertos.c...
-..\BSP\LED\Handler\Inc\BSP_LED_Handler.h(54): warning:  #66-D: enumeration value is out of "int" range
-      LED_NOT_INITIALIZED = 0xFFFFFFFFU // UINT32_MAX        // 0XFFFFFFFF
-../Core/Src/freertos.c: 1 warning, 0 errors
+compiling croutine.c...
 compiling list.c...
-compiling stm32f4xx_hal_dma_ex.c...
-compiling stm32f4xx_hal_dma.c...
+compiling stm32f4xx_hal_msp.c...
+compiling stm32f4xx_hal_flash_ramfunc.c...
 compiling queue.c...
+compiling stm32f4xx_it.c...
+compiling tasks.c...
 compiling stream_buffer.c...
 compiling timers.c...
-compiling tasks.c...
+compiling stm32f4xx_hal_flash_ex.c...
 compiling heap_4.c...
 compiling port.c...
-compiling stm32f4xx_hal_rcc.c...
-compiling stm32f4xx_hal_exti.c...
+compiling stm32f4xx_hal.c...
 compiling stm32f4xx_hal_pwr_ex.c...
 compiling stm32f4xx_hal_cortex.c...
-compiling stm32f4xx_hal.c...
-compiling stm32f4xx_hal_tim_ex.c...
+compiling stm32f4xx_hal_exti.c...
 compiling system_stm32f4xx.c...
-compiling stm32f4xx_hal_uart.c...
-compiling BSP_LED_Handler.c...
-..\BSP\LED\Handler\Inc\BSP_LED_Handler.h(54): warning:  #66-D: enumeration value is out of "int" range
-      LED_NOT_INITIALIZED = 0xFFFFFFFFU // UINT32_MAX        // 0XFFFFFFFF
-..\BSP\LED\Handler\Src\BSP_LED_Handler.c(52): warning:  #188-D: enumerated type mixed with another type
-      BspLedHandlerStatus_t status = LED_STATUS_OK;
-..\BSP\LED\Handler\Src\BSP_LED_Handler.c(58): warning:  #188-D: enumerated type mixed with another type
-          return LED_STATUS_ERROR_NULL_POINTER;
-..\BSP\LED\Handler\Src\BSP_LED_Handler.c(60): warning:  #188-D: enumerated type mixed with another type
-          return LED_STATUS_ERROR_RESOURCE;
-..\BSP\LED\Handler\Src\BSP_LED_Handler.c(66): warning:  #186-D: pointless comparison of unsigned integer with zero
-           (self->proportion_on_off < LED_PROPORTION_1_3)) ||
-..\BSP\LED\Handler\Src\BSP_LED_Handler.c(105): warning:  #188-D: enumerated type mixed with another type
-              return LED_STATUS_ERROR_PARAMETER;
-..\BSP\LED\Handler\Src\BSP_LED_Handler.c(123): warning:  #188-D: enumerated type mixed with another type
-      status = LED_STATUS_OK;
-..\BSP\LED\Handler\Src\BSP_LED_Handler.c(166): warning:  #186-D: pointless comparison of unsigned integer with zero
-          ((led_msg.proportion_on_off > LED_PROPORTION_1_1) || (led_msg.proportion_on_off < LED_PROPORTION_1_3)) ||
-..\BSP\LED\Handler\Src\BSP_LED_Handler.c(194): warning:  #188-D: enumerated type mixed with another type
-      retval = BspLedhandler_BlinkProcess(self->instance_group->instance_group[led_msg.led_index]);
-..\BSP\LED\Handler\Src\BSP_LED_Handler.c(200): warning:  #188-D: enumerated type mixed with another type
-          return  LED_STATUS_ERROR;
-..\BSP\LED\Handler\Src\BSP_LED_Handler.c(203): warning:  #188-D: enumerated type mixed with another type
-      return  LED_STATUS_OK;
-..\BSP\LED\Handler\Src\BSP_LED_Handler.c(151): warning:  #177-D: variable "status"  was declared but never referenced
-      BspLedHandlerStatus_t status = LED_HANDLER_STATUS_OK;
-..\BSP\LED\Handler\Src\BSP_LED_Handler.c(345): warning:  #223-D: function "BspLedHandler_CriticalEnter" declared implicitly
-  BspLedHandler_CriticalEnter();
-..\BSP\LED\Handler\Src\BSP_LED_Handler.c(356): warning:  #223-D: function "BspLedHandler_CriticalExit" declared implicitly
-  BspLedHandler_CriticalExit();
-..\BSP\LED\Handler\Src\BSP_LED_Handler.c(360): warning:  #111-D: statement is unreachable
-      return status;
-..\BSP\LED\Handler\Src\BSP_LED_Handler.c(512): error:  #20: identifier "BspLedHandler_CriticalEnter" is undefined
-          handler_self->critical_region.BspLedHandler_CriticalEnter = BspLedHandler_CriticalEnter; /* 这里的临界区操作应该只是 对于该模块handler 来说，需要应用到其他模块吗？ */
-..\BSP\LED\Handler\Src\BSP_LED_Handler.c(513): error:  #20: identifier "BspLedHandler_CriticalExit" is undefined
-          handler_self->critical_region.BspLedHandler_CriticalExit  = BspLedHandler_CriticalExit;
-..\BSP\LED\Handler\Src\BSP_LED_Handler.c(550): error:  #20: identifier "BspLedHandler_ThreadController" is undefined
-      status = handler_self->os_thread->BspLedHandler_CreateThread(BspLedHandler_ThreadController,      /* 这个函数指针应该怎么传？ 这个算是线程函数，应该和 handler 在同一层吗？或者是driver�?*/
-..\BSP\LED\Handler\Src\BSP_LED_Handler.c(592): warning:  #177-D: function "BspLedHandler_ThreadController"  was declared but never referenced
-  static void BspLedHandler_ThreadController(void *argument)
-..\BSP\LED\Handler\Src\BSP_LED_Handler.c: 16 warnings, 3 errors
-compiling stm32f4xx_hal_tim.c...
-compiling System_adaption.c...
-..\BSP\LED\Handler\Inc\BSP_LED_Handler.h(54): warning:  #66-D: enumeration value is out of "int" range
-      LED_NOT_INITIALIZED = 0xFFFFFFFFU // UINT32_MAX        // 0XFFFFFFFF
-..\System\System_adaption.c(127): warning:  #177-D: variable "status"  was declared but never referenced
-      BspLedHandlerStatus_t status = LED_HANDLER_STATUS_OK; 
-..\System\System_adaption.c(172): warning:  #177-D: variable "status"  was declared but never referenced
-      BspLedHandlerStatus_t status = LED_HANDLER_STATUS_OK; 
-..\System\System_adaption.c(226): warning:  #188-D: enumerated type mixed with another type
-      status = xQueueSendToBack((QueueHandle_t)queue_handle, queue_item, timeout);
-..\System\System_adaption.c(270): warning:  #188-D: enumerated type mixed with another type
-      status = xQueueReceive((QueueHandle_t)queue_handle, queue_item, timeout);
-..\System\System_adaption.c(303): warning:  #144-D: a value of type "BaseType_t (*)(TaskFunction_t, const char *const, const uint16_t, void *const, UBaseType_t, TaskHandle_t *const)" cannot be used to initialize an entity of type "BspLedHandlerStatus_t (*)(void *, const char *const, uint16_t, void *const, uint16_t, void **)"
-      .BspLedHandler_CreateThread  = xTaskCreate,
-..\System\System_adaption.c(304): warning:  #144-D: a value of type "void (*)(TaskHandle_t)" cannot be used to initialize an entity of type "BspLedHandlerStatus_t (*)(void *)"
-      .BspLedHandler_DestroyThread = vTaskDelete
-..\System\System_adaption.c(632): error:  #36: the #if for this directive is missing
-  #endif /* BSP_LED_DEBUG_UNITY_TEST */
-..\System\System_adaption.c(454): warning:  #177-D: function "BspLedHandler_CriticalExit"  was declared but never referenced
-  static BspLedHandlerStatus_t BspLedHandler_CriticalExit(void)
-..\System\System_adaption.c(476): warning:  #177-D: function "BspLedHandler_CriticalEnter"  was declared but never referenced
-  static BspLedHandlerStatus_t BspLedHandler_CriticalEnter(void)
-..\System\System_adaption.c: 9 warnings, 1 error
+compiling stm32f4xx_hal_tim_ex.c...
 compiling BSP_Led_Driver.c...
+..\BSP\LED\Driver\Src\BSP_Led_Driver.c(50): error:  #130: expected a "{"
+  static BspLedStatus_t BspLedDriver_Blink(BspLedDriver_t *const self)
+..\BSP\LED\Driver\Src\BSP_Led_Driver.c(157): warning:  #223-D: function "BspLedDriver_Blink" declared implicitly
+      BspLedStatus_t status = BspLedDriver_Blink(self);
+..\BSP\LED\Driver\Src\BSP_Led_Driver.c(157): warning:  #188-D: enumerated type mixed with another type
+      BspLedStatus_t status = BspLedDriver_Blink(self);
+..\BSP\LED\Driver\Src\BSP_Led_Driver.c(225): error:  #247: function "BspLedDriver_Instantiate"  has already been defined
+  BspLedStatus_t BspLedDriver_Instantiate(BspLedDriver_t *const self,
+..\BSP\LED\Driver\Src\BSP_Led_Driver.c: 2 warnings, 2 errors
+compiling stm32f4xx_hal_uart.c...
+compiling System_adaption.c...
+..\BSP\LED\Handler\Inc\BSP_LED_Handler.h(39): error:  #130: expected a "{"
+  typedef struct BspLedHandler Bsp_Led_Handler_t;
+..\BSP\LED\Handler\Inc\BSP_LED_Handler.h(43): warning:  #12-D: parsing restarts here after previous syntax error
+  {
+..\BSP\LED\Handler\Inc\BSP_LED_Handler.h(44): error:  #20: identifier "LED_INDEX_1" is undefined
+      LED_INDEX_1 = 0,
+..\BSP\LED\Handler\Inc\BSP_LED_Handler.h(45): error:  #20: identifier "LED_INDEX_2" is undefined
+      LED_INDEX_2,
+..\BSP\LED\Handler\Inc\BSP_LED_Handler.h(46): error:  #20: identifier "LED_INDEX_3" is undefined
+      LED_INDEX_3,
+..\BSP\LED\Handler\Inc\BSP_LED_Handler.h(47): error:  #20: identifier "LED_INDEX_4" is undefined
+      LED_INDEX_4,
+..\BSP\LED\Handler\Inc\BSP_LED_Handler.h(48): error:  #20: identifier "LED_INDEX_5" is undefined
+      LED_INDEX_5,
+..\BSP\LED\Handler\Inc\BSP_LED_Handler.h(49): error:  #20: identifier "LED_INDEX_6" is undefined
+      LED_INDEX_6,
+..\BSP\LED\Handler\Inc\BSP_LED_Handler.h(50): error:  #20: identifier "LED_INDEX_7" is undefined
+      LED_INDEX_7,
+..\BSP\LED\Handler\Inc\BSP_LED_Handler.h(51): error:  #20: identifier "LED_INDEX_8" is undefined
+      LED_INDEX_8,
+..\BSP\LED\Handler\Inc\BSP_LED_Handler.h(52): error:  #20: identifier "LED_INDEX_9" is undefined
+      LED_INDEX_9,
+..\BSP\LED\Handler\Inc\BSP_LED_Handler.h(53): error:  #20: identifier "MAX_INDEX_NUMBER" is undefined
+      MAX_INDEX_NUMBER,
+..\BSP\LED\Handler\Inc\BSP_LED_Handler.h(54): error:  #20: identifier "LED_NOT_INITIALIZED" is undefined
+      LED_NOT_INITIALIZED = UINT32_MAX // UINT32_MAX        // 0XFFFFFFFF
+..\BSP\LED\Handler\Inc\BSP_LED_Handler.h(56): error:  #65: expected a ";"
+  } BspLedHandlerIndex_t;
+..\BSP\LED\Handler\Inc\BSP_LED_Handler.h(56): warning:  #940-D: missing return statement at end of non-void function "BspLedDriver_Instantiate" 
+  } BspLedHandlerIndex_t;
+..\BSP\LED\Handler\Inc\BSP_LED_Handler.h(56): error:  #77-D: this declaration has no storage class or type specifier
+  } BspLedHandlerIndex_t;
+..\BSP\LED\Handler\Inc\BSP_LED_Handler.h(93): error:  #757: variable "BspLedHandlerIndex_t"  is not a type name
+      BspLedHandlerIndex_t                led_index;
+..\BSP\LED\Handler\Inc\BSP_LED_Handler.h(130): error:  #20: identifier "Bsp_Led_Handler_t" is undefined
+  typedef BspLedHandlerStatus_t (*Bsp_Led_Handler_Control_t)(Bsp_Led_Handler_t *const    self,
+..\BSP\LED\Handler\Inc\BSP_LED_Handler.h(134): error:  #757: variable "BspLedHandlerIndex_t"  is not a type name
+                                                           BspLedHandlerIndex_t    led_index
+..\BSP\LED\Handler\Inc\BSP_LED_Handler.h(137): error:  #20: identifier "Bsp_Led_Handler_t" is undefined
+  typedef BspLedHandlerStatus_t (*Bsp_Led_Handler_Register_t)(Bsp_Led_Handler_t *const       self,
+..\BSP\LED\Handler\Inc\BSP_LED_Handler.h(139): error:  #757: variable "BspLedHandlerIndex_t"  is not a type name
+                                                            BspLedHandlerIndex_t *const led_index /* 这里不是通过 led_index 返回数据，而是写入固定在该 index 位置中了  */
+..\BSP\LED\Handler\Inc\BSP_LED_Handler.h(202): error:  #757: variable "BspLedHandlerIndex_t"  is not a type name
+      BspLedHandlerIndex_t                       led_index;
+..\System\System_adaption.c(313): warning:  #188-D: enumerated type mixed with another type
+      status = xQueueSendToBack((QueueHandle_t)queue_handle, queue_item, timeout);
+..\System\System_adaption.c(358): warning:  #188-D: enumerated type mixed with another type
+      status = xQueueReceive((QueueHandle_t)queue_handle, queue_item, timeout);
+..\System\System_adaption.c(406): error:  #147: declaration is incompatible with "void SystemAdaption_LedInit(void)"  (declared at line 69 of "..\System\System_adaption.h")
+  SystemAdaptStatus_t SystemAdaption_LedInit(void){
+..\System\System_adaption.c(453): error:  #20: identifier "LED_INDEX_1" is undefined
+          .led_index         = LED_INDEX_1,
+..\System\System_adaption.c(469): warning:  #188-D: enumerated type mixed with another type
+          return LED_HANDLER_STATUS_ERROR;
+..\System\System_adaption.c(480): warning:  #940-D: missing return statement at end of non-void function "SystemAdaption_LedInit" 
+  }
+..\System\System_adaption.c(456): warning:  #550-D: variable "register_status"  was set but never used
+      BspLedHandlerStatus_t register_status = LED_HANDLER_STATUS_RESERVED ;
+..\System\System_adaption.c: 7 warnings, 22 errors
+compiling BSP_LED_Handler.c...
+..\BSP\LED\Handler\Inc\BSP_LED_Handler.h(39): error:  #130: expected a "{"
+  typedef struct BspLedHandler Bsp_Led_Handler_t;
+..\BSP\LED\Handler\Inc\BSP_LED_Handler.h(43): warning:  #12-D: parsing restarts here after previous syntax error
+  {
+..\BSP\LED\Handler\Inc\BSP_LED_Handler.h(44): error:  #20: identifier "LED_INDEX_1" is undefined
+      LED_INDEX_1 = 0,
+..\BSP\LED\Handler\Inc\BSP_LED_Handler.h(45): error:  #20: identifier "LED_INDEX_2" is undefined
+      LED_INDEX_2,
+..\BSP\LED\Handler\Inc\BSP_LED_Handler.h(46): error:  #20: identifier "LED_INDEX_3" is undefined
+      LED_INDEX_3,
+..\BSP\LED\Handler\Inc\BSP_LED_Handler.h(47): error:  #20: identifier "LED_INDEX_4" is undefined
+      LED_INDEX_4,
+..\BSP\LED\Handler\Inc\BSP_LED_Handler.h(48): error:  #20: identifier "LED_INDEX_5" is undefined
+      LED_INDEX_5,
+..\BSP\LED\Handler\Inc\BSP_LED_Handler.h(49): error:  #20: identifier "LED_INDEX_6" is undefined
+      LED_INDEX_6,
+..\BSP\LED\Handler\Inc\BSP_LED_Handler.h(50): error:  #20: identifier "LED_INDEX_7" is undefined
+      LED_INDEX_7,
+..\BSP\LED\Handler\Inc\BSP_LED_Handler.h(51): error:  #20: identifier "LED_INDEX_8" is undefined
+      LED_INDEX_8,
+..\BSP\LED\Handler\Inc\BSP_LED_Handler.h(52): error:  #20: identifier "LED_INDEX_9" is undefined
+      LED_INDEX_9,
+..\BSP\LED\Handler\Inc\BSP_LED_Handler.h(53): error:  #20: identifier "MAX_INDEX_NUMBER" is undefined
+      MAX_INDEX_NUMBER,
+..\BSP\LED\Handler\Inc\BSP_LED_Handler.h(54): error:  #20: identifier "LED_NOT_INITIALIZED" is undefined
+      LED_NOT_INITIALIZED = UINT32_MAX // UINT32_MAX        // 0XFFFFFFFF
+..\BSP\LED\Handler\Inc\BSP_LED_Handler.h(56): error:  #65: expected a ";"
+  } BspLedHandlerIndex_t;
+..\BSP\LED\Handler\Inc\BSP_LED_Handler.h(56): warning:  #940-D: missing return statement at end of non-void function "BspLedDriver_Instantiate" 
+  } BspLedHandlerIndex_t;
+..\BSP\LED\Handler\Inc\BSP_LED_Handler.h(56): error:  #77-D: this declaration has no storage class or type specifier
+  } BspLedHandlerIndex_t;
+..\BSP\LED\Handler\Inc\BSP_LED_Handler.h(93): error:  #757: variable "BspLedHandlerIndex_t"  is not a type name
+      BspLedHandlerIndex_t                led_index;
+..\BSP\LED\Handler\Inc\BSP_LED_Handler.h(130): error:  #20: identifier "Bsp_Led_Handler_t" is undefined
+  typedef BspLedHandlerStatus_t (*Bsp_Led_Handler_Control_t)(Bsp_Led_Handler_t *const    self,
+..\BSP\LED\Handler\Inc\BSP_LED_Handler.h(134): error:  #757: variable "BspLedHandlerIndex_t"  is not a type name
+                                                           BspLedHandlerIndex_t    led_index
+..\BSP\LED\Handler\Inc\BSP_LED_Handler.h(137): error:  #20: identifier "Bsp_Led_Handler_t" is undefined
+  typedef BspLedHandlerStatus_t (*Bsp_Led_Handler_Register_t)(Bsp_Led_Handler_t *const       self,
+..\BSP\LED\Handler\Inc\BSP_LED_Handler.h(139): error:  #757: variable "BspLedHandlerIndex_t"  is not a type name
+                                                            BspLedHandlerIndex_t *const led_index /* 这里不是通过 led_index 返回数据，而是写入固定在该 index 位置中了  */
+..\BSP\LED\Handler\Inc\BSP_LED_Handler.h(202): error:  #757: variable "BspLedHandlerIndex_t"  is not a type name
+      BspLedHandlerIndex_t                       led_index;
+..\BSP\LED\Handler\Src\BSP_LED_Handler.c(62): warning:  #188-D: enumerated type mixed with another type
+      BspLedHandlerStatus_t status = LED_STATUS_OK;
+..\BSP\LED\Handler\Src\BSP_LED_Handler.c(68): warning:  #188-D: enumerated type mixed with another type
+          return LED_STATUS_ERROR_NULL_POINTER;
+..\BSP\LED\Handler\Src\BSP_LED_Handler.c(70): warning:  #188-D: enumerated type mixed with another type
+          return LED_STATUS_ERROR_RESOURCE;
+..\BSP\LED\Handler\Src\BSP_LED_Handler.c(76): warning:  #186-D: pointless comparison of unsigned integer with zero
+           (self->proportion_on_off < LED_PROPORTION_1_3)) ||
+..\BSP\LED\Handler\Src\BSP_LED_Handler.c(115): warning:  #188-D: enumerated type mixed with another type
+              return LED_STATUS_ERROR_PARAMETER;
+..\BSP\LED\Handler\Src\BSP_LED_Handler.c(133): warning:  #188-D: enumerated type mixed with another type
+      status = LED_STATUS_OK;
+..\BSP\LED\Handler\Src\BSP_LED_Handler.c(176): warning:  #186-D: pointless comparison of unsigned integer with zero
+          ((led_msg.proportion_on_off > LED_PROPORTION_1_1) || (led_msg.proportion_on_off < LED_PROPORTION_1_3)) ||
+..\BSP\LED\Handler\Src\BSP_LED_Handler.c(189): error:  #20: identifier "LED_NOT_INITIALIZED" is undefined
+      if( !(( LED_NOT_INITIALIZED == led_msg.led_index) || 
+..\BSP\LED\Handler\Src\BSP_LED_Handler.c(190): error:  #20: identifier "MAX_INDEX_NUMBER" is undefined
+           ( MAX_INDEX_NUMBER > led_msg.led_index)) )
+..\BSP\LED\Handler\Src\BSP_LED_Handler.c(211): warning:  #188-D: enumerated type mixed with another type
+      retval = Bsp_Led_Handler_BlinkProcess(self->instance_group->instance_group[led_msg.led_index]);
+..\BSP\LED\Handler\Src\BSP_LED_Handler.c(217): warning:  #188-D: enumerated type mixed with another type
+          return  LED_STATUS_ERROR;
+..\BSP\LED\Handler\Src\BSP_LED_Handler.c(220): warning:  #188-D: enumerated type mixed with another type
+      return  LED_STATUS_OK;
+..\BSP\LED\Handler\Src\BSP_LED_Handler.c(325): error:  #757: variable "BspLedHandlerIndex_t"  is not a type name
+                                                      BspLedHandlerIndex_t *const led_index)
+..\BSP\LED\Handler\Src\BSP_LED_Handler.c(368): error:  #65: expected a ";"
+          *led_index = (BspLedHandlerIndex_t)self->instance_group->instance_num;
+..\BSP\LED\Handler\Src\BSP_LED_Handler.c(398): error:  #757: variable "BspLedHandlerIndex_t"  is not a type name
+                                                     BspLedHandlerIndex_t   led_index)
+..\BSP\LED\Handler\Src\BSP_LED_Handler.c(648): error:  #20: identifier "LED_NOT_INITIALIZED" is undefined
+          .led_index         = LED_NOT_INITIALIZED
+..\BSP\LED\Handler\Src\BSP_LED_Handler.c: 12 warnings, 26 errors
+compiling stm32f4xx_hal_tim.c...
 compiling cmsis_os2.c...
-"21_LED_Driver_BridgeMode\21_LED_Driver_BridgeMode.axf" - 4 Error(s), 26 Warning(s).
+"21_LED_Driver_BridgeMode\21_LED_Driver_BridgeMode.axf" - 70 Error(s), 23 Warning(s).
 Target not created.
 Build Time Elapsed:  00:00:05

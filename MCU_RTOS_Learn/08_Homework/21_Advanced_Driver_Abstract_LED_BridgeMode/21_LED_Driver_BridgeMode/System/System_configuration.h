@@ -1,7 +1,7 @@
 /**
  * 
  * @file   System_configuration.h
- * @brief  
+ * @brief  LED BSP 与系统适配层的编译期配置项。
  * 
  * @author AtlasFg
  * @date   2026-10-04
