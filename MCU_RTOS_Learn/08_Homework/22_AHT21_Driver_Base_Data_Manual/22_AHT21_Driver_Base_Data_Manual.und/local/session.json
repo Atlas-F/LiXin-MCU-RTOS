@@ -1,0 +1,249 @@
+{
+    "Session": "default",
+    "Sessions": {
+        "default": {
+            "SessionData": {
+                "2_1920x1080_1600x1000": {
+                    "AnalysisLog": {
+                        "Dock Area": 8,
+                        "Dock In Drawer Mode": false,
+                        "Dock Is Floating": false,
+                        "Dock Tab Group": [
+                        ]
+                    },
+                    "DockWidgets": {
+                        "FloatingWidgetOrder": [
+                        ],
+                        "OpenWindows": {
+                            "00ProjectOverviewWidget": {
+                                "height": 436,
+                                "width": 250
+                            },
+                            "01SuggestionsBrowser": {
+                                "height": 658,
+                                "width": 311
+                            },
+                            "02EntityFilter": {
+                                "height": 459,
+                                "width": 250
+                            },
+                            "03IssueBrowser": {
+                                "height": 234,
+                                "width": 821
+                            },
+                            "04InfoBrowserWidget_0": {
+                                "height": 456,
+                                "width": 270
+                            },
+                            "05AnalysisLog": {
+                                "height": 234,
+                                "width": 821
+                            }
+                        },
+                        "TabGroupFrontWidgets": [
+                            "ProjectOverviewWidget"
+                        ]
+                    },
+                    "EntityFilter": {
+                        "Dock Area": 1,
+                        "Dock In Drawer Mode": false,
+                        "Dock Is Floating": false,
+                        "Dock Tab Group": [
+                            "ProjectOverviewWidget"
+                        ]
+                    },
+                    "InfoBrowserWidget_0": {
+                        "Dock Area": 1,
+                        "Dock In Drawer Mode": false,
+                        "Dock Is Floating": false,
+                        "Dock Tab Group": [
+                        ]
+                    },
+                    "IssueBrowser": {
+                        "Dock Area": 8,
+                        "Dock In Drawer Mode": false,
+                        "Dock Is Floating": false,
+                        "Dock Tab Group": [
+                        ]
+                    },
+                    "ProjectOverviewWidget": {
+                        "Dock Area": 1,
+                        "Dock In Drawer Mode": false,
+                        "Dock Is Floating": false,
+                        "Dock Tab Group": [
+                            "EntityFilter"
+                        ]
+                    },
+                    "SuggestionsBrowser": {
+                        "Dock Area": 2,
+                        "Dock In Drawer Mode": false,
+                        "Dock Is Floating": false,
+                        "Dock Tab Group": [
+                        ]
+                    }
+                },
+                "CodeCheckFiles": {
+                    "lastCustomState": "selected",
+                    "lastSelectedEnts": [
+                    ],
+                    "lastSelectedFilterInt": 3,
+                    "lastSelectedTags": [
+                        "Directory Structure/Bsp"
+                    ]
+                },
+                "EditorWindowList": [
+                    "./22_AHT21_Simulate_IIC/Drivers/CMSIS/Include/core_cm4.h",
+                    "./22_AHT21_Simulate_IIC/Bsp/AHT21B/Driver/Bsp_AHT21B_Driver.c"
+                ],
+                "EditorWindowSetting": {
+                    "41ea5c0310a76dcb0acaa384571f5c97": {
+                        "anchor": {
+                            "line": 1680,
+                            "offset": 0
+                        },
+                        "caret": {
+                            "line": 1680,
+                            "offset": 0
+                        },
+                        "container": 1,
+                        "height": 658,
+                        "hscroll": 0,
+                        "isMaximized": false,
+                        "vscroll": 1655,
+                        "width": 1331,
+                        "x": 0,
+                        "y": 0
+                    },
+                    "d44952dea9f5b26fc23f43383ac5af87": {
+                        "anchor": {
+                            "line": 145,
+                            "offset": 63
+                        },
+                        "caret": {
+                            "line": 145,
+                            "offset": 63
+                        },
+                        "container": 1,
+                        "height": 658,
+                        "hscroll": 0,
+                        "isMaximized": false,
+                        "vscroll": 140,
+                        "width": 1331,
+                        "x": 0,
+                        "y": 0
+                    }
+                },
+                "EntityFilter": {
+                    "LastEntityFilterUsed": "All Entities"
+                },
+                "GraphicFilterSettings": {
+                    "Enabled": false
+                },
+                "IBExpansions": {
+                    "InfoBrowserWidget": [
+                        "Jovial References",
+                        "Python References",
+                        "C++ Globals Used",
+                        "C++ File Global Functions",
+                        "C++ File Local Macros",
+                        "WEB References",
+                        "C++ File Local Variables",
+                        "WEB Possible References",
+                        "C++ File Local Types",
+                        "Asm References",
+                        "C++ File Local Function-Static Variables",
+                        "Ada References",
+                        "Ftn References",
+                        "C++ File Local Functions",
+                        "C++ Calls",
+                        "C++ Local",
+                        "VHDL References",
+                        "c# References",
+                        "C++ File Local Constants",
+                        "Architectures",
+                        "C++ Called By",
+                        "C++ References",
+                        "Java References",
+                        "basic References",
+                        "Pascal References",
+                        "C++ File Global"
+                    ]
+                },
+                "IBOptions": {
+                },
+                "InfoBrowserWindowManager": {
+                    "InfoBrowserFileSyncInst": -1,
+                    "InfoBrowserSyncInst": [
+                        "0"
+                    ]
+                },
+                "LastAccessedPid": "60848",
+                "LastDisplayGroup": "2_1920x1080_1600x1000",
+                "MaintainEditorHistory": {
+                    "FileRanges": {
+                        "0": {
+                            "ColumnBegin": 24,
+                            "ColumnEnd": 24,
+                            "FilePath": "./22_AHT21_Simulate_IIC/Drivers/CMSIS/Include/core_cm4.h",
+                            "LineBegin": 1676,
+                            "LineEnd": 1676
+                        },
+                        "1": {
+                            "ColumnBegin": 0,
+                            "ColumnEnd": 0,
+                            "FilePath": "./22_AHT21_Simulate_IIC/Drivers/CMSIS/Include/core_cm4.h",
+                            "LineBegin": 1681,
+                            "LineEnd": 1681
+                        },
+                        "2": {
+                            "ColumnBegin": 35,
+                            "ColumnEnd": 36,
+                            "FilePath": "./22_AHT21_Simulate_IIC/Bsp/AHT21B/Driver/Bsp_AHT21B_Driver.c",
+                            "LineBegin": 93,
+                            "LineEnd": 93
+                        },
+                        "3": {
+                            "ColumnBegin": 25,
+                            "ColumnEnd": 39,
+                            "FilePath": "./22_AHT21_Simulate_IIC/Bsp/AHT21B/Driver/Bsp_AHT21B_Driver.c",
+                            "LineBegin": 124,
+                            "LineEnd": 124
+                        },
+                        "size": 4
+                    },
+                    "index": 3
+                },
+                "MiscSaveStates": {
+                    "entitySelected": "@l__FILE__@kc5__FILE__@f./22_AHT21_Simulate_IIC/Test/Test_Aht21b_Driver.c",
+                    "ib": "entity:||:@l__ReadAht21bID@p@l./22_AHT21_Simulate_IIC/Bsp/AHT21B/Driver/Bsp_AHT21B_Driver.c",
+                    "projectOverviewCharts": "true",
+                    "projectOverviewChartsPosition": 1,
+                    "projectOverviewChartsSelected": "false",
+                    "projectOverviewChartsWorkspace": 0,
+                    "selection": "Bsp_AHT21B_Driver.c"
+                },
+                "ProjectUI": {
+                    "projectviewcuritem": "Bsp"
+                },
+                "SplitWorkspace1SelectedTab": "./22_AHT21_Simulate_IIC/Bsp/AHT21B/Driver/Bsp_AHT21B_Driver.c",
+                "SplitWorkspace1Tabs": [
+                    "./22_AHT21_Simulate_IIC/Drivers/CMSIS/Include/core_cm4.h",
+                    "./22_AHT21_Simulate_IIC/Bsp/AHT21B/Driver/Bsp_AHT21B_Driver.c"
+                ],
+                "SplittableWorkspace": {
+                    "active workspace": 0,
+                    "primary ws size": 1331,
+                    "split orientation": -1
+                },
+                "analysis": {
+                    "background": {
+                        "started": true
+                    }
+                },
+                "projectconfigure": {
+                    "last config panel": "Portability"
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,128 @@
+<html>
+<body>
+<pre>
+<h1>µVision Build Log</h1>
+<h2>Tool Versions:</h2>
+IDE-Version: ¦ÌVision V5.38.0.0
+Copyright (C) 2022 ARM Ltd and ARM Germany GmbH. All rights reserved.
+License Information: 123 2396977243@qq.com, 123, LIC=21E4T-R0K26-SBAEJ-U762E-1MV35-4D9TB
+ 
+Tool Versions:
+Toolchain:       MDK-ARM Plus  Version: 5.38.0.0
+Toolchain Path:  E:\MDK\Core\ARM\ARMCC\Bin
+C Compiler:      Armcc.exe V5.06 update 7 (build 960)
+Assembler:       Armasm.exe V5.06 update 7 (build 960)
+Linker/Locator:  ArmLink.exe V5.06 update 7 (build 960)
+Library Manager: ArmAr.exe V5.06 update 7 (build 960)
+Hex Converter:   FromElf.exe V5.06 update 7 (build 960)
+CPU DLL:         SARMCM3.DLL V5.38.0.0
+Dialog DLL:      DCM.DLL V1.17.5.0
+Target DLL:      Segger\JL2CM3.dll V2.99.42.0
+Dialog DLL:      TCM.DLL V1.56.4.0
+ 
+<h2>Project:</h2>
+F:\EmbeddedProjects\CUBEMXProjects\LiXin-MCU-RTOS\Projects\MCU_RTOS_Learn\08_Homework\22_AHT21_Driver_Base_Data_Manual\22_AHT21_Simulate_IIC\MDK-ARM\22_AHT21_Simulate_IIC.uvprojx
+Project File Date:  10/18/2026
+
+<h2>Output:</h2>
+*** Using Compiler 'V5.06 update 7 (build 960)', folder: 'E:\MDK\Core\ARM\ARMCC\Bin'
+Rebuild target '22_AHT21_Simulate_IIC'
+assembling startup_stm32f411xe.s...
+compiling stm32f4xx_it.c...
+compiling gpio.c...
+compiling stm32f4xx_hal_tim.c...
+compiling stm32f4xx_hal_dma_ex.c...
+compiling stm32f4xx_hal_tim_ex.c...
+compiling stm32f4xx_hal_flash_ex.c...
+compiling stm32f4xx_hal_dma.c...
+compiling stm32f4xx_hal_msp.c...
+compiling stm32f4xx_hal_gpio.c...
+compiling main.c...
+../Core/Src/main.c(172): warning:  #550-D: variable "test_retval"  was set but never used
+      int test_retval = 0;
+../Core/Src/main.c: 1 warning, 0 errors
+compiling stm32f4xx_hal_rcc.c...
+compiling Bsp_AHT21B_Driver.c...
+..\Bsp\AHT21B\Driver\Bsp_AHT21B_Driver.c(223): warning:  #68-D: integer conversion resulted in a change of sign
+          return -1;
+..\Bsp\AHT21B\Driver\Bsp_AHT21B_Driver.c(817): warning:  #513-D: a value of type "BspAht21bStatus_t (*)(Bsp_Aht21b_Driver_t *const)" cannot be assigned to an entity of type "BspAht21bStatus_t (*)(void *const)"
+      pAht21bInstance->pfAht21b_Init         = BspAht21bDriver_Init ; /* TODO: */
+..\Bsp\AHT21B\Driver\Bsp_AHT21B_Driver.c(818): warning:  #513-D: a value of type "BspAht21bStatus_t (*)(Bsp_Aht21b_Driver_t *const)" cannot be assigned to an entity of type "BspAht21bStatus_t (*)(void *const)"
+      pAht21bInstance->pfAht21b_DeInit       = BspAht21bDriver_DeInit ; /* TODO: */
+..\Bsp\AHT21B\Driver\Bsp_AHT21B_Driver.c(819): warning:  #513-D: a value of type "uint8_t (*)(Bsp_Aht21b_Driver_t *const)" cannot be assigned to an entity of type "uint8_t (*)(void *const)"
+      pAht21bInstance->pfAht21b_ReadID       = BspAht21bDriver_GetAht21bID ; /* TODO: */
+..\Bsp\AHT21B\Driver\Bsp_AHT21B_Driver.c(820): warning:  #513-D: a value of type "BspAht21bStatus_t (*)(Bsp_Aht21b_Driver_t *const, float *const, float *const)" cannot be assigned to an entity of type "BspAht21bStatus_t (*)(void *const, float *const, float *const)"
+      pAht21bInstance->pfAht21b_ReadTempHumi = BspAht21bDriver_ReadTemperaHumi ; /* TODO: */
+..\Bsp\AHT21B\Driver\Bsp_AHT21B_Driver.c(821): warning:  #513-D: a value of type "BspAht21bStatus_t (*)(Bsp_Aht21b_Driver_t *const, float *const)" cannot be assigned to an entity of type "BspAht21bStatus_t (*)(void *const, float *const)"
+      pAht21bInstance->pfAht21b_ReadHumi     = BspAht21bDriver_ReadHumidity ; /* TODO: */
+..\Bsp\AHT21B\Driver\Bsp_AHT21B_Driver.c(822): warning:  #513-D: a value of type "BspAht21bStatus_t (*)(Bsp_Aht21b_Driver_t *const)" cannot be assigned to an entity of type "BspAht21bStatus_t (*)(void *const)"
+      pAht21bInstance->pfAht21b_Sleep        = BspAht21bDriver_Sleep ; /* TODO: */
+..\Bsp\AHT21B\Driver\Bsp_AHT21B_Driver.c(823): warning:  #513-D: a value of type "BspAht21bStatus_t (*)(Bsp_Aht21b_Driver_t *const)" cannot be assigned to an entity of type "BspAht21bStatus_t (*)(void *const)"
+      pAht21bInstance->pfAht21b_WakeUp       = BspAht21bDriver_WakeUp ; /* TODO: */
+..\Bsp\AHT21B\Driver\Bsp_AHT21B_Driver.c(84): warning:  #177-D: function "BspAht21bDriver_CheckCRC8"  was declared but never referenced
+  static uint8_t BspAht21bDriver_CheckCRC8(const uint8_t *p_data, const uint8_t length)
+..\Bsp\AHT21B\Driver\Bsp_AHT21B_Driver.c: 9 warnings, 0 errors
+compiling stm32f4xx_hal_flash_ramfunc.c...
+compiling Bsp_Tempura_Humidity_XXX_Handler.c...
+..\Bsp\AHT21B\Handler\Bsp_Tempura_Humidity_XXX_Handler.c(511): warning:  #177-D: variable "temperature"  was declared but never referenced
+      float temperature;
+..\Bsp\AHT21B\Handler\Bsp_Tempura_Humidity_XXX_Handler.c(512): warning:  #177-D: variable "humidity"  was declared but never referenced
+      float humidity;
+..\Bsp\AHT21B\Handler\Bsp_Tempura_Humidity_XXX_Handler.c(168): warning:  #177-D: function "TempHumiHandler_SendTempHumiEvent"  was declared but never referenced
+  static TempHumiHandlerStatus_t TempHumiHandler_SendTempHumiEvent(
+..\Bsp\AHT21B\Handler\Bsp_Tempura_Humidity_XXX_Handler.c: 3 warnings, 0 errors
+compiling stm32f4xx_hal_rcc_ex.c...
+compiling stm32f4xx_hal_uart.c...
+compiling usart.c...
+compiling stm32f4xx_hal_flash.c...
+compiling stm32f4xx_hal_pwr.c...
+compiling iic_hal.c...
+compiling stm32f4xx_hal.c...
+compiling system_stm32f4xx.c...
+compiling stm32f4xx_hal_pwr_ex.c...
+compiling stm32f4xx_hal_exti.c...
+compiling stm32f4xx_hal_cortex.c...
+compiling Test_Aht21b_Driver.c...
+..\MiddleWares\Unity\unity_config.h(32): warning:  #1-D: last line of file ends without a newline
+  #endif //__UNITY_CONFIG_H__
+..\Test\Test_Aht21b_Driver.c(174): warning:  #188-D: enumerated type mixed with another type
+      BspAht21bStatus_t result = g_fake_driver.pfAht21b_ReadID(&g_fake_driver);
+..\Test\Test_Aht21b_Driver.c(43): warning:  #177-D: variable "g_fake_yield_2"  was declared but never referenced
+  static BspAht21b_RTOS_YieldInterface_t  g_fake_yield_2;
+..\Test\Test_Aht21b_Driver.c(47): warning:  #550-D: variable "g_fake_yield_time"  was set but never used
+  static uint32_t g_fake_yield_time;
+..\Test\Test_Aht21b_Driver.c: 4 warnings, 0 errors
+compiling unity.c...
+..\MiddleWares\Unity\unity_config.h(32): warning:  #1-D: last line of file ends without a newline
+  #endif //__UNITY_CONFIG_H__
+..\MiddleWares\Unity\unity.c: 1 warning, 0 errors
+linking...
+Program Size: Code=11386 RO-data=1086 RW-data=68 ZI-data=1380  
+FromELF: creating hex file...
+"22_AHT21_Simulate_IIC\22_AHT21_Simulate_IIC.axf" - 0 Error(s), 18 Warning(s).
+
+<h2>Software Packages used:</h2>
+
+Package Vendor: ARM
+                http://www.keil.com/pack/ARM.CMSIS.5.9.0.pack
+                ARM.CMSIS.5.9.0
+                CMSIS (Common Microcontroller Software Interface Standard)
+   * Component: CORE Version: 5.6.0
+
+Package Vendor: Keil
+                https://www.keil.com/pack/Keil.STM32F4xx_DFP.2.17.1.pack
+                Keil.STM32F4xx_DFP.2.17.1
+                STMicroelectronics STM32F4 Series Device Support, Drivers and Examples
+
+<h2>Collection of Component include folders:</h2>
+  ./RTE/_22_AHT21_Simulate_IIC
+  E:/MDK/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include
+  E:/MDK/Packs/Keil/STM32F4xx_DFP/2.17.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include
+
+<h2>Collection of Component Files used:</h2>
+
+   * Component: ARM::CMSIS:CORE:5.6.0
+Build Time Elapsed:  00:00:04
+</pre>
+</body>
+</html>

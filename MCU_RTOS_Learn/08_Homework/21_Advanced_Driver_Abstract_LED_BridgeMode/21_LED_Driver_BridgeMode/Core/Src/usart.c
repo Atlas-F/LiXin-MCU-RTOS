@@ -123,7 +123,7 @@ void HAL_UART_MspDeInit(UART_HandleTypeDef* uartHandle)
 #endif
 
 /**
-* @brief  
+* @brief    Retargets the C library printf function to the USART
 * @details
 * @note
 * @warning

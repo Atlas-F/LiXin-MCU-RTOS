@@ -1,0 +1,513 @@
+<html><head><title>stm32f4xx_hal_cortex.c</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="sourcestyles.css" />
+</head><body link="blue" vlink="blue">
+<h3>File: F:\EmbeddedProjects\CUBEMXProjects\LiXin-MCU-RTOS\Projects\MCU_RTOS_Learn\08_Homework\22_AHT21_Driver_Base_Data_Manual\22_AHT21_Simulate_IIC\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_cortex.c</h3>
+<SCRIPT>
+defaultStatus = "File: F:\\EmbeddedProjects\\CUBEMXProjects\\LiXin-MCU-RTOS\\Projects\\MCU_RTOS_Learn\\08_Homework\\22_AHT21_Driver_Base_Data_Manual\\22_AHT21_Simulate_IIC\\Drivers\\STM32F4xx_HAL_Driver\\Src\\stm32f4xx_hal_cortex.c";
+top.document.title  = "stm32f4xx_hal_cortex.c";
+</SCRIPT>
+<pre><span class="default"></span><a name="1"><font size=-1>1     </font></a><span class="default"></span><span class="comment">/**</span>
+<a name="2"><font size=-1>2     </font></a><span class="comment">  ******************************************************************************</span>
+<a name="3"><font size=-1>3     </font></a><span class="comment">  * @file    stm32f4xx_hal_cortex.c</span>
+<a name="4"><font size=-1>4     </font></a><span class="comment">  * @author  MCD Application Team</span>
+<a name="5"><font size=-1>5     </font></a><span class="comment">  * @brief   CORTEX HAL module driver.</span>
+<a name="6"><font size=-1>6     </font></a><span class="comment">  *          This file provides firmware functions to manage the following </span>
+<a name="7"><font size=-1>7     </font></a><span class="comment">  *          functionalities of the CORTEX:</span>
+<a name="8"><font size=-1>8     </font></a><span class="comment">  *           + Initialization and de-initialization functions</span>
+<a name="9"><font size=-1>9     </font></a><span class="comment">  *           + Peripheral Control functions </span>
+<a name="10"><font size=-1>10     </font></a><span class="comment">  *</span>
+<a name="11"><font size=-1>11     </font></a><span class="comment">  @verbatim  </span>
+<a name="12"><font size=-1>12     </font></a><span class="comment">  ==============================================================================</span>
+<a name="13"><font size=-1>13     </font></a><span class="comment">                        ##### How to use this driver #####</span>
+<a name="14"><font size=-1>14     </font></a><span class="comment">  ==============================================================================</span>
+<a name="15"><font size=-1>15     </font></a><span class="comment"></span>
+<a name="16"><font size=-1>16     </font></a><span class="comment">    [..]  </span>
+<a name="17"><font size=-1>17     </font></a><span class="comment">    *** How to configure Interrupts using CORTEX HAL driver ***</span>
+<a name="18"><font size=-1>18     </font></a><span class="comment">    ===========================================================</span>
+<a name="19"><font size=-1>19     </font></a><span class="comment">    [..]     </span>
+<a name="20"><font size=-1>20     </font></a><span class="comment">    This section provides functions allowing to configure the NVIC interrupts (IRQ).</span>
+<a name="21"><font size=-1>21     </font></a><span class="comment">    The Cortex-M4 exceptions are managed by CMSIS functions.</span>
+<a name="22"><font size=-1>22     </font></a><span class="comment">   </span>
+<a name="23"><font size=-1>23     </font></a><span class="comment">    (#) Configure the NVIC Priority Grouping using HAL_NVIC_SetPriorityGrouping()</span>
+<a name="24"><font size=-1>24     </font></a><span class="comment">        function according to the following table.</span>
+<a name="25"><font size=-1>25     </font></a><span class="comment">    (#) Configure the priority of the selected IRQ Channels using HAL_NVIC_SetPriority(). </span>
+<a name="26"><font size=-1>26     </font></a><span class="comment">    (#) Enable the selected IRQ Channels using HAL_NVIC_EnableIRQ().</span>
+<a name="27"><font size=-1>27     </font></a><span class="comment">    (#) please refer to programming manual for details in how to configure priority. </span>
+<a name="28"><font size=-1>28     </font></a><span class="comment">      </span>
+<a name="29"><font size=-1>29     </font></a><span class="comment">     -@- When the NVIC_PRIORITYGROUP_0 is selected, IRQ preemption is no more possible. </span>
+<a name="30"><font size=-1>30     </font></a><span class="comment">         The pending IRQ priority will be managed only by the sub priority.</span>
+<a name="31"><font size=-1>31     </font></a><span class="comment">   </span>
+<a name="32"><font size=-1>32     </font></a><span class="comment">     -@- IRQ priority order (sorted by highest to lowest priority):</span>
+<a name="33"><font size=-1>33     </font></a><span class="comment">        (+@) Lowest preemption priority</span>
+<a name="34"><font size=-1>34     </font></a><span class="comment">        (+@) Lowest sub priority</span>
+<a name="35"><font size=-1>35     </font></a><span class="comment">        (+@) Lowest hardware priority (IRQ number)</span>
+<a name="36"><font size=-1>36     </font></a><span class="comment"> </span>
+<a name="37"><font size=-1>37     </font></a><span class="comment">    [..]  </span>
+<a name="38"><font size=-1>38     </font></a><span class="comment">    *** How to configure Systick using CORTEX HAL driver ***</span>
+<a name="39"><font size=-1>39     </font></a><span class="comment">    ========================================================</span>
+<a name="40"><font size=-1>40     </font></a><span class="comment">    [..]</span>
+<a name="41"><font size=-1>41     </font></a><span class="comment">    Setup SysTick Timer for time base.</span>
+<a name="42"><font size=-1>42     </font></a><span class="comment">           </span>
+<a name="43"><font size=-1>43     </font></a><span class="comment">   (+) The HAL_SYSTICK_Config() function calls the SysTick_Config() function which</span>
+<a name="44"><font size=-1>44     </font></a><span class="comment">       is a CMSIS function that:</span>
+<a name="45"><font size=-1>45     </font></a><span class="comment">        (++) Configures the SysTick Reload register with value passed as function parameter.</span>
+<a name="46"><font size=-1>46     </font></a><span class="comment">        (++) Configures the SysTick IRQ priority to the lowest value 0x0F.</span>
+<a name="47"><font size=-1>47     </font></a><span class="comment">        (++) Resets the SysTick Counter register.</span>
+<a name="48"><font size=-1>48     </font></a><span class="comment">        (++) Configures the SysTick Counter clock source to be Core Clock Source (HCLK).</span>
+<a name="49"><font size=-1>49     </font></a><span class="comment">        (++) Enables the SysTick Interrupt.</span>
+<a name="50"><font size=-1>50     </font></a><span class="comment">        (++) Starts the SysTick Counter.</span>
+<a name="51"><font size=-1>51     </font></a><span class="comment">    </span>
+<a name="52"><font size=-1>52     </font></a><span class="comment">   (+) You can change the SysTick Clock source to be HCLK_Div8 by calling the macro</span>
+<a name="53"><font size=-1>53     </font></a><span class="comment">       __HAL_CORTEX_SYSTICKCLK_CONFIG(SYSTICK_CLKSOURCE_HCLK_DIV8) just after the</span>
+<a name="54"><font size=-1>54     </font></a><span class="comment">       HAL_SYSTICK_Config() function call. The __HAL_CORTEX_SYSTICKCLK_CONFIG() macro is defined</span>
+<a name="55"><font size=-1>55     </font></a><span class="comment">       inside the stm32f4xx_hal_cortex.h file.</span>
+<a name="56"><font size=-1>56     </font></a><span class="comment"></span>
+<a name="57"><font size=-1>57     </font></a><span class="comment">   (+) You can change the SysTick IRQ priority by calling the</span>
+<a name="58"><font size=-1>58     </font></a><span class="comment">       HAL_NVIC_SetPriority(SysTick_IRQn,...) function just after the HAL_SYSTICK_Config() function </span>
+<a name="59"><font size=-1>59     </font></a><span class="comment">       call. The HAL_NVIC_SetPriority() call the NVIC_SetPriority() function which is a CMSIS function.</span>
+<a name="60"><font size=-1>60     </font></a><span class="comment"></span>
+<a name="61"><font size=-1>61     </font></a><span class="comment">   (+) To adjust the SysTick time base, use the following formula:</span>
+<a name="62"><font size=-1>62     </font></a><span class="comment">                            </span>
+<a name="63"><font size=-1>63     </font></a><span class="comment">       Reload Value = SysTick Counter Clock (Hz) x  Desired Time base (s)</span>
+<a name="64"><font size=-1>64     </font></a><span class="comment">       (++) Reload Value is the parameter to be passed for HAL_SYSTICK_Config() function</span>
+<a name="65"><font size=-1>65     </font></a><span class="comment">       (++) Reload Value should not exceed 0xFFFFFF</span>
+<a name="66"><font size=-1>66     </font></a><span class="comment">   </span>
+<a name="67"><font size=-1>67     </font></a><span class="comment">  @endverbatim</span>
+<a name="68"><font size=-1>68     </font></a><span class="comment">  ******************************************************************************</span>
+<a name="69"><font size=-1>69     </font></a><span class="comment">  * @attention</span>
+<a name="70"><font size=-1>70     </font></a><span class="comment">  *</span>
+<a name="71"><font size=-1>71     </font></a><span class="comment">  * Copyright (c) 2017 STMicroelectronics.</span>
+<a name="72"><font size=-1>72     </font></a><span class="comment">  * All rights reserved.</span>
+<a name="73"><font size=-1>73     </font></a><span class="comment">  *</span>
+<a name="74"><font size=-1>74     </font></a><span class="comment">  * This software is licensed under terms that can be found in the LICENSE file in</span>
+<a name="75"><font size=-1>75     </font></a><span class="comment">  * the root directory of this software component.</span>
+<a name="76"><font size=-1>76     </font></a><span class="comment">  * If no LICENSE file comes with this software, it is provided AS-IS.</span>
+<a name="77"><font size=-1>77     </font></a><span class="comment">  ******************************************************************************</span>
+<a name="78"><font size=-1>78     </font></a><span class="comment">  */</span>
+<a name="79"><font size=-1>79     </font></a><span class="comment"></span>
+<a name="80"><font size=-1>80     </font></a><span class="comment">/* Includes ------------------------------------------------------------------*/</span>
+<a name="81"><font size=-1>81     </font></a><span class="comment"></span><span class="preproc">#include </span><span class="string">&quot;stm32f4xx_hal.h&quot;</span>
+<a name="82"><font size=-1>82     </font></a><span class="string"></span>
+<a name="83"><font size=-1>83     </font></a><span class="string"></span><span class="comment">/** @addtogroup STM32F4xx_HAL_Driver</span>
+<a name="84"><font size=-1>84     </font></a><span class="comment">  * @{</span>
+<a name="85"><font size=-1>85     </font></a><span class="comment">  */</span>
+<a name="86"><font size=-1>86     </font></a><span class="comment"></span>
+<a name="87"><font size=-1>87     </font></a><span class="comment">/** @defgroup CORTEX CORTEX</span>
+<a name="88"><font size=-1>88     </font></a><span class="comment">  * @brief CORTEX HAL module driver</span>
+<a name="89"><font size=-1>89     </font></a><span class="comment">  * @{</span>
+<a name="90"><font size=-1>90     </font></a><span class="comment">  */</span>
+<a name="91"><font size=-1>91     </font></a><span class="comment"></span>
+<a name="92"><font size=-1>92     </font></a><span class="comment"></span><span class="preproc">#ifdef <a href="dictionary_H.html#504">HAL_CORTEX_MODULE_ENABLED</a></span>
+<a name="93"><font size=-1>93     </font></a><span class="preproc"></span>
+<a name="94"><font size=-1>94     </font></a><span class="preproc"></span><span class="comment">/* Private types -------------------------------------------------------------*/</span>
+<a name="95"><font size=-1>95     </font></a><span class="comment">/* Private variables ---------------------------------------------------------*/</span>
+<a name="96"><font size=-1>96     </font></a><span class="comment">/* Private constants ---------------------------------------------------------*/</span>
+<a name="97"><font size=-1>97     </font></a><span class="comment">/* Private macros ------------------------------------------------------------*/</span>
+<a name="98"><font size=-1>98     </font></a><span class="comment">/* Private functions ---------------------------------------------------------*/</span>
+<a name="99"><font size=-1>99     </font></a><span class="comment">/* Exported functions --------------------------------------------------------*/</span>
+<a name="100"><font size=-1>100     </font></a><span class="comment"></span>
+<a name="101"><font size=-1>101     </font></a><span class="comment">/** @defgroup CORTEX_Exported_Functions CORTEX Exported Functions</span>
+<a name="102"><font size=-1>102     </font></a><span class="comment">  * @{</span>
+<a name="103"><font size=-1>103     </font></a><span class="comment">  */</span>
+<a name="104"><font size=-1>104     </font></a><span class="comment"></span>
+<a name="105"><font size=-1>105     </font></a><span class="comment"></span>
+<a name="106"><font size=-1>106     </font></a><span class="comment">/** @defgroup CORTEX_Exported_Functions_Group1 Initialization and de-initialization functions</span>
+<a name="107"><font size=-1>107     </font></a><span class="comment"> *  @brief    Initialization and Configuration functions </span>
+<a name="108"><font size=-1>108     </font></a><span class="comment"> *</span>
+<a name="109"><font size=-1>109     </font></a><span class="comment">@verbatim    </span>
+<a name="110"><font size=-1>110     </font></a><span class="comment">  ==============================================================================</span>
+<a name="111"><font size=-1>111     </font></a><span class="comment">              ##### Initialization and de-initialization functions #####</span>
+<a name="112"><font size=-1>112     </font></a><span class="comment">  ==============================================================================</span>
+<a name="113"><font size=-1>113     </font></a><span class="comment">    [..]</span>
+<a name="114"><font size=-1>114     </font></a><span class="comment">      This section provides the CORTEX HAL driver functions allowing to configure Interrupts</span>
+<a name="115"><font size=-1>115     </font></a><span class="comment">      Systick functionalities </span>
+<a name="116"><font size=-1>116     </font></a><span class="comment"></span>
+<a name="117"><font size=-1>117     </font></a><span class="comment">@endverbatim</span>
+<a name="118"><font size=-1>118     </font></a><span class="comment">  * @{</span>
+<a name="119"><font size=-1>119     </font></a><span class="comment">  */</span>
+<a name="120"><font size=-1>120     </font></a><span class="comment"></span>
+<a name="121"><font size=-1>121     </font></a><span class="comment"></span>
+<a name="122"><font size=-1>122     </font></a><span class="comment">/**</span>
+<a name="123"><font size=-1>123     </font></a><span class="comment">  * @brief  Sets the priority grouping field (preemption priority and subpriority)</span>
+<a name="124"><font size=-1>124     </font></a><span class="comment">  *         using the required unlock sequence.</span>
+<a name="125"><font size=-1>125     </font></a><span class="comment">  * @param  PriorityGroup The priority grouping bits length. </span>
+<a name="126"><font size=-1>126     </font></a><span class="comment">  *         This parameter can be one of the following values:</span>
+<a name="127"><font size=-1>127     </font></a><span class="comment">  *         @arg NVIC_PRIORITYGROUP_0: 0 bits for preemption priority</span>
+<a name="128"><font size=-1>128     </font></a><span class="comment">  *                                    4 bits for subpriority</span>
+<a name="129"><font size=-1>129     </font></a><span class="comment">  *         @arg NVIC_PRIORITYGROUP_1: 1 bits for preemption priority</span>
+<a name="130"><font size=-1>130     </font></a><span class="comment">  *                                    3 bits for subpriority</span>
+<a name="131"><font size=-1>131     </font></a><span class="comment">  *         @arg NVIC_PRIORITYGROUP_2: 2 bits for preemption priority</span>
+<a name="132"><font size=-1>132     </font></a><span class="comment">  *                                    2 bits for subpriority</span>
+<a name="133"><font size=-1>133     </font></a><span class="comment">  *         @arg NVIC_PRIORITYGROUP_3: 3 bits for preemption priority</span>
+<a name="134"><font size=-1>134     </font></a><span class="comment">  *                                    1 bits for subpriority</span>
+<a name="135"><font size=-1>135     </font></a><span class="comment">  *         @arg NVIC_PRIORITYGROUP_4: 4 bits for preemption priority</span>
+<a name="136"><font size=-1>136     </font></a><span class="comment">  *                                    0 bits for subpriority</span>
+<a name="137"><font size=-1>137     </font></a><span class="comment">  * @note   When the NVIC_PriorityGroup_0 is selected, IRQ preemption is no more possible. </span>
+<a name="138"><font size=-1>138     </font></a><span class="comment">  *         The pending IRQ priority will be managed only by the subpriority. </span>
+<a name="139"><font size=-1>139     </font></a><span class="comment">  * @retval None</span>
+<a name="140"><font size=-1>140     </font></a><span class="comment">  */</span>
+<a name="141"><font size=-1>141     </font></a><span class="comment"></span><span class="keyword">void <a href="dictionary_H.html#592">HAL_NVIC_SetPriorityGrouping</a></span><span class="default">(<a href="dictionary_U.html#223">uint32_t</a> <a href="dictionary_P.html#593">PriorityGroup</a>)</span>
+<a name="142"><font size=-1>142     </font></a><span class="default">{</span>
+<a name="143"><font size=-1>143     </font></a><span class="default">  </span><span class="comment">/* Check the parameters */</span>
+<a name="144"><font size=-1>144     </font></a><span class="comment">  <a href="dictionary_A.html#349">assert_param</a></span><span class="default">(IS_NVIC_PRIORITY_GROUP(<a href="dictionary_P.html#593">PriorityGroup</a>));</span>
+<a name="145"><font size=-1>145     </font></a><span class="default">  </span>
+<a name="146"><font size=-1>146     </font></a><span class="default">  </span><span class="comment">/* Set the PRIGROUP[10:8] bits according to the PriorityGroup parameter value */</span>
+<a name="147"><font size=-1>147     </font></a><span class="comment">  <a href="dictionary_N.html#536">NVIC_SetPriorityGrouping</a></span><span class="default">(<a href="dictionary_P.html#593">PriorityGroup</a>);</span>
+<a name="148"><font size=-1>148     </font></a><span class="default">}</span>
+<a name="149"><font size=-1>149     </font></a><span class="default"></span>
+<a name="150"><font size=-1>150     </font></a><span class="default"></span><span class="comment">/**</span>
+<a name="151"><font size=-1>151     </font></a><span class="comment">  * @brief  Sets the priority of an interrupt.</span>
+<a name="152"><font size=-1>152     </font></a><span class="comment">  * @param  IRQn External interrupt number.</span>
+<a name="153"><font size=-1>153     </font></a><span class="comment">  *         This parameter can be an enumerator of IRQn_Type enumeration</span>
+<a name="154"><font size=-1>154     </font></a><span class="comment">  *         (For the complete STM32 Devices IRQ Channels list, please refer to the appropriate CMSIS device file (stm32f4xxxx.h))</span>
+<a name="155"><font size=-1>155     </font></a><span class="comment">  * @param  PreemptPriority The preemption priority for the IRQn channel.</span>
+<a name="156"><font size=-1>156     </font></a><span class="comment">  *         This parameter can be a value between 0 and 15</span>
+<a name="157"><font size=-1>157     </font></a><span class="comment">  *         A lower priority value indicates a higher priority </span>
+<a name="158"><font size=-1>158     </font></a><span class="comment">  * @param  SubPriority the subpriority level for the IRQ channel.</span>
+<a name="159"><font size=-1>159     </font></a><span class="comment">  *         This parameter can be a value between 0 and 15</span>
+<a name="160"><font size=-1>160     </font></a><span class="comment">  *         A lower priority value indicates a higher priority.          </span>
+<a name="161"><font size=-1>161     </font></a><span class="comment">  * @retval None</span>
+<a name="162"><font size=-1>162     </font></a><span class="comment">  */</span>
+<a name="163"><font size=-1>163     </font></a><span class="comment"></span><span class="keyword">void <a href="dictionary_H.html#587">HAL_NVIC_SetPriority</a></span><span class="default">(<a href="dictionary_I.html#505">IRQn_Type</a> <a href="dictionary_I.html#588">IRQn</a>, <a href="dictionary_U.html#223">uint32_t</a> <a href="dictionary_P.html#589">PreemptPriority</a>, <a href="dictionary_U.html#223">uint32_t</a> <a href="dictionary_S.html#590">SubPriority</a>)</span>
+<a name="164"><font size=-1>164     </font></a><span class="default">{ </span>
+<a name="165"><font size=-1>165     </font></a><span class="default">  <a href="dictionary_U.html#223">uint32_t</a> <a href="dictionary_P.html#591">prioritygroup</a> = </span><span class="number">0x00U</span><span class="default">;</span>
+<a name="166"><font size=-1>166     </font></a><span class="default">  </span>
+<a name="167"><font size=-1>167     </font></a><span class="default">  </span><span class="comment">/* Check the parameters */</span>
+<a name="168"><font size=-1>168     </font></a><span class="comment">  <a href="dictionary_A.html#349">assert_param</a></span><span class="default">(IS_NVIC_SUB_PRIORITY(<a href="dictionary_S.html#590">SubPriority</a>));</span>
+<a name="169"><font size=-1>169     </font></a><span class="default">  <a href="dictionary_A.html#349">assert_param</a>(IS_NVIC_PREEMPTION_PRIORITY(<a href="dictionary_P.html#589">PreemptPriority</a>));</span>
+<a name="170"><font size=-1>170     </font></a><span class="default">  </span>
+<a name="171"><font size=-1>171     </font></a><span class="default">  <a href="dictionary_P.html#591">prioritygroup</a> = <a href="dictionary_N.html#533">NVIC_GetPriorityGrouping</a>();</span>
+<a name="172"><font size=-1>172     </font></a><span class="default">  </span>
+<a name="173"><font size=-1>173     </font></a><span class="default">  <a href="dictionary_N.html#535">NVIC_SetPriority</a>(<a href="dictionary_I.html#588">IRQn</a>, <a href="dictionary_N.html#601">NVIC_EncodePriority</a>(<a href="dictionary_P.html#591">prioritygroup</a>, <a href="dictionary_P.html#589">PreemptPriority</a>, <a href="dictionary_S.html#590">SubPriority</a>));</span>
+<a name="174"><font size=-1>174     </font></a><span class="default">}</span>
+<a name="175"><font size=-1>175     </font></a><span class="default"></span>
+<a name="176"><font size=-1>176     </font></a><span class="default"></span><span class="comment">/**</span>
+<a name="177"><font size=-1>177     </font></a><span class="comment">  * @brief  Enables a device specific interrupt in the NVIC interrupt controller.</span>
+<a name="178"><font size=-1>178     </font></a><span class="comment">  * @note   To configure interrupts priority correctly, the NVIC_PriorityGroupConfig()</span>
+<a name="179"><font size=-1>179     </font></a><span class="comment">  *         function should be called before. </span>
+<a name="180"><font size=-1>180     </font></a><span class="comment">  * @param  IRQn External interrupt number.</span>
+<a name="181"><font size=-1>181     </font></a><span class="comment">  *         This parameter can be an enumerator of IRQn_Type enumeration</span>
+<a name="182"><font size=-1>182     </font></a><span class="comment">  *         (For the complete STM32 Devices IRQ Channels list, please refer to the appropriate CMSIS device file (stm32f4xxxx.h))</span>
+<a name="183"><font size=-1>183     </font></a><span class="comment">  * @retval None</span>
+<a name="184"><font size=-1>184     </font></a><span class="comment">  */</span>
+<a name="185"><font size=-1>185     </font></a><span class="comment"></span><span class="keyword">void <a href="dictionary_H.html#573">HAL_NVIC_EnableIRQ</a></span><span class="default">(<a href="dictionary_I.html#505">IRQn_Type</a> <a href="dictionary_I.html#574">IRQn</a>)</span>
+<a name="186"><font size=-1>186     </font></a><span class="default">{</span>
+<a name="187"><font size=-1>187     </font></a><span class="default">  </span><span class="comment">/* Check the parameters */</span>
+<a name="188"><font size=-1>188     </font></a><span class="comment">  <a href="dictionary_A.html#349">assert_param</a></span><span class="default">(IS_NVIC_DEVICE_IRQ(<a href="dictionary_I.html#574">IRQn</a>));</span>
+<a name="189"><font size=-1>189     </font></a><span class="default">  </span>
+<a name="190"><font size=-1>190     </font></a><span class="default">  </span><span class="comment">/* Enable interrupt */</span>
+<a name="191"><font size=-1>191     </font></a><span class="comment">  <a href="dictionary_N.html#529">NVIC_EnableIRQ</a></span><span class="default">(<a href="dictionary_I.html#574">IRQn</a>);</span>
+<a name="192"><font size=-1>192     </font></a><span class="default">}</span>
+<a name="193"><font size=-1>193     </font></a><span class="default"></span>
+<a name="194"><font size=-1>194     </font></a><span class="default"></span><span class="comment">/**</span>
+<a name="195"><font size=-1>195     </font></a><span class="comment">  * @brief  Disables a device specific interrupt in the NVIC interrupt controller.</span>
+<a name="196"><font size=-1>196     </font></a><span class="comment">  * @param  IRQn External interrupt number.</span>
+<a name="197"><font size=-1>197     </font></a><span class="comment">  *         This parameter can be an enumerator of IRQn_Type enumeration</span>
+<a name="198"><font size=-1>198     </font></a><span class="comment">  *         (For the complete STM32 Devices IRQ Channels list, please refer to the appropriate CMSIS device file (stm32f4xxxx.h))</span>
+<a name="199"><font size=-1>199     </font></a><span class="comment">  * @retval None</span>
+<a name="200"><font size=-1>200     </font></a><span class="comment">  */</span>
+<a name="201"><font size=-1>201     </font></a><span class="comment"></span><span class="keyword">void <a href="dictionary_H.html#571">HAL_NVIC_DisableIRQ</a></span><span class="default">(<a href="dictionary_I.html#505">IRQn_Type</a> <a href="dictionary_I.html#572">IRQn</a>)</span>
+<a name="202"><font size=-1>202     </font></a><span class="default">{</span>
+<a name="203"><font size=-1>203     </font></a><span class="default">  </span><span class="comment">/* Check the parameters */</span>
+<a name="204"><font size=-1>204     </font></a><span class="comment">  <a href="dictionary_A.html#349">assert_param</a></span><span class="default">(IS_NVIC_DEVICE_IRQ(<a href="dictionary_I.html#572">IRQn</a>));</span>
+<a name="205"><font size=-1>205     </font></a><span class="default">  </span>
+<a name="206"><font size=-1>206     </font></a><span class="default">  </span><span class="comment">/* Disable interrupt */</span>
+<a name="207"><font size=-1>207     </font></a><span class="comment">  <a href="dictionary_N.html#528">NVIC_DisableIRQ</a></span><span class="default">(<a href="dictionary_I.html#572">IRQn</a>);</span>
+<a name="208"><font size=-1>208     </font></a><span class="default">}</span>
+<a name="209"><font size=-1>209     </font></a><span class="default"></span>
+<a name="210"><font size=-1>210     </font></a><span class="default"></span><span class="comment">/**</span>
+<a name="211"><font size=-1>211     </font></a><span class="comment">  * @brief  Initiates a system reset request to reset the MCU.</span>
+<a name="212"><font size=-1>212     </font></a><span class="comment">  * @retval None</span>
+<a name="213"><font size=-1>213     </font></a><span class="comment">  */</span>
+<a name="214"><font size=-1>214     </font></a><span class="comment"></span><span class="keyword">void <a href="dictionary_H.html#594">HAL_NVIC_SystemReset</a></span><span class="default">(</span><span class="keyword">void</span><span class="default">)</span>
+<a name="215"><font size=-1>215     </font></a><span class="default">{</span>
+<a name="216"><font size=-1>216     </font></a><span class="default">  </span><span class="comment">/* System Reset */</span>
+<a name="217"><font size=-1>217     </font></a><span class="comment">  <a href="dictionary_N.html#537">NVIC_SystemReset</a></span><span class="default">();</span>
+<a name="218"><font size=-1>218     </font></a><span class="default">}</span>
+<a name="219"><font size=-1>219     </font></a><span class="default"></span>
+<a name="220"><font size=-1>220     </font></a><span class="default"></span><span class="comment">/**</span>
+<a name="221"><font size=-1>221     </font></a><span class="comment">  * @brief  Initializes the System Timer and its interrupt, and starts the System Tick Timer.</span>
+<a name="222"><font size=-1>222     </font></a><span class="comment">  *         Counter is in free running mode to generate periodic interrupts.</span>
+<a name="223"><font size=-1>223     </font></a><span class="comment">  * @param  TicksNumb Specifies the ticks Number of ticks between two interrupts.</span>
+<a name="224"><font size=-1>224     </font></a><span class="comment">  * @retval status:  - 0  Function succeeded.</span>
+<a name="225"><font size=-1>225     </font></a><span class="comment">  *                  - 1  Function failed.</span>
+<a name="226"><font size=-1>226     </font></a><span class="comment">  */</span>
+<a name="227"><font size=-1>227     </font></a><span class="comment"><a href="dictionary_U.html#223">uint32_t</a> <a href="dictionary_H.html#597">HAL_SYSTICK_Config</a></span><span class="default">(<a href="dictionary_U.html#223">uint32_t</a> <a href="dictionary_T.html#598">TicksNumb</a>)</span>
+<a name="228"><font size=-1>228     </font></a><span class="default">{</span>
+<a name="229"><font size=-1>229     </font></a><span class="default">   </span><span class="keyword">return <a href="dictionary_S.html#602">SysTick_Config</a></span><span class="default">(<a href="dictionary_T.html#598">TicksNumb</a>);</span>
+<a name="230"><font size=-1>230     </font></a><span class="default">}</span>
+<a name="231"><font size=-1>231     </font></a><span class="default"></span><span class="comment">/**</span>
+<a name="232"><font size=-1>232     </font></a><span class="comment">  * @}</span>
+<a name="233"><font size=-1>233     </font></a><span class="comment">  */</span>
+<a name="234"><font size=-1>234     </font></a><span class="comment"></span>
+<a name="235"><font size=-1>235     </font></a><span class="comment">/** @defgroup CORTEX_Exported_Functions_Group2 Peripheral Control functions</span>
+<a name="236"><font size=-1>236     </font></a><span class="comment"> *  @brief   Cortex control functions </span>
+<a name="237"><font size=-1>237     </font></a><span class="comment"> *</span>
+<a name="238"><font size=-1>238     </font></a><span class="comment">@verbatim   </span>
+<a name="239"><font size=-1>239     </font></a><span class="comment">  ==============================================================================</span>
+<a name="240"><font size=-1>240     </font></a><span class="comment">                      ##### Peripheral Control functions #####</span>
+<a name="241"><font size=-1>241     </font></a><span class="comment">  ==============================================================================  </span>
+<a name="242"><font size=-1>242     </font></a><span class="comment">    [..]</span>
+<a name="243"><font size=-1>243     </font></a><span class="comment">      This subsection provides a set of functions allowing to control the CORTEX</span>
+<a name="244"><font size=-1>244     </font></a><span class="comment">      (NVIC, SYSTICK, MPU) functionalities. </span>
+<a name="245"><font size=-1>245     </font></a><span class="comment"> </span>
+<a name="246"><font size=-1>246     </font></a><span class="comment">      </span>
+<a name="247"><font size=-1>247     </font></a><span class="comment">@endverbatim</span>
+<a name="248"><font size=-1>248     </font></a><span class="comment">  * @{</span>
+<a name="249"><font size=-1>249     </font></a><span class="comment">  */</span>
+<a name="250"><font size=-1>250     </font></a><span class="comment"></span>
+<a name="251"><font size=-1>251     </font></a><span class="comment"></span><span class="preproc">#if </span><span class="default">(<a href="dictionary_&.html#506">__MPU_PRESENT</a> == </span><span class="number">1U</span><span class="default">)</span>
+<a name="252"><font size=-1>252     </font></a><span class="default"></span><span class="comment">/**</span>
+<a name="253"><font size=-1>253     </font></a><span class="comment">  * @brief  Disables the MPU</span>
+<a name="254"><font size=-1>254     </font></a><span class="comment">  * @retval None</span>
+<a name="255"><font size=-1>255     </font></a><span class="comment">  */</span>
+<a name="256"><font size=-1>256     </font></a><span class="comment"></span><span class="keyword">void <a href="dictionary_H.html#566">HAL_MPU_Disable</a></span><span class="default">(</span><span class="keyword">void</span><span class="default">)</span>
+<a name="257"><font size=-1>257     </font></a><span class="default">{</span>
+<a name="258"><font size=-1>258     </font></a><span class="default">  </span><span class="comment">/* Make sure outstanding transfers are done */</span>
+<a name="259"><font size=-1>259     </font></a><span class="comment">  <a href="dictionary_&.html#603">__DMB</a></span><span class="default">();</span>
+<a name="260"><font size=-1>260     </font></a><span class="default"></span>
+<a name="261"><font size=-1>261     </font></a><span class="default">  </span><span class="comment">/* Disable fault exceptions */</span>
+<a name="262"><font size=-1>262     </font></a><span class="comment">  <a href="dictionary_S.html#538">SCB</a></span><span class="default">-&gt;<a href="dictionary_S.html#542">SHCSR</a> &amp;= ~<a href="dictionary_S.html#540">SCB_SHCSR_MEMFAULTENA_Msk</a>;</span>
+<a name="263"><font size=-1>263     </font></a><span class="default">  </span>
+<a name="264"><font size=-1>264     </font></a><span class="default">  </span><span class="comment">/* Disable the MPU and clear the control register*/</span>
+<a name="265"><font size=-1>265     </font></a><span class="comment">  <a href="dictionary_M.html#510">MPU</a></span><span class="default">-&gt;<a href="dictionary_M.html#522">CTRL</a> = </span><span class="number">0U</span><span class="default">;</span>
+<a name="266"><font size=-1>266     </font></a><span class="default">}</span>
+<a name="267"><font size=-1>267     </font></a><span class="default"></span>
+<a name="268"><font size=-1>268     </font></a><span class="default"></span><span class="comment">/**</span>
+<a name="269"><font size=-1>269     </font></a><span class="comment">  * @brief  Enable the MPU.</span>
+<a name="270"><font size=-1>270     </font></a><span class="comment">  * @param  MPU_Control Specifies the control mode of the MPU during hard fault, </span>
+<a name="271"><font size=-1>271     </font></a><span class="comment">  *          NMI, FAULTMASK and privileged access to the default memory </span>
+<a name="272"><font size=-1>272     </font></a><span class="comment">  *          This parameter can be one of the following values:</span>
+<a name="273"><font size=-1>273     </font></a><span class="comment">  *            @arg MPU_HFNMI_PRIVDEF_NONE</span>
+<a name="274"><font size=-1>274     </font></a><span class="comment">  *            @arg MPU_HARDFAULT_NMI</span>
+<a name="275"><font size=-1>275     </font></a><span class="comment">  *            @arg MPU_PRIVILEGED_DEFAULT</span>
+<a name="276"><font size=-1>276     </font></a><span class="comment">  *            @arg MPU_HFNMI_PRIVDEF</span>
+<a name="277"><font size=-1>277     </font></a><span class="comment">  * @retval None</span>
+<a name="278"><font size=-1>278     </font></a><span class="comment">  */</span>
+<a name="279"><font size=-1>279     </font></a><span class="comment"></span><span class="keyword">void <a href="dictionary_H.html#567">HAL_MPU_Enable</a></span><span class="default">(<a href="dictionary_U.html#223">uint32_t</a> <a href="dictionary_M.html#568">MPU_Control</a>)</span>
+<a name="280"><font size=-1>280     </font></a><span class="default">{</span>
+<a name="281"><font size=-1>281     </font></a><span class="default">  </span><span class="comment">/* Enable the MPU */</span>
+<a name="282"><font size=-1>282     </font></a><span class="comment">  <a href="dictionary_M.html#510">MPU</a></span><span class="default">-&gt;<a href="dictionary_M.html#522">CTRL</a> = <a href="dictionary_M.html#568">MPU_Control</a> | <a href="dictionary_M.html#512">MPU_CTRL_ENABLE_Msk</a>;</span>
+<a name="283"><font size=-1>283     </font></a><span class="default">  </span>
+<a name="284"><font size=-1>284     </font></a><span class="default">  </span><span class="comment">/* Enable fault exceptions */</span>
+<a name="285"><font size=-1>285     </font></a><span class="comment">  <a href="dictionary_S.html#538">SCB</a></span><span class="default">-&gt;<a href="dictionary_S.html#542">SHCSR</a> |= <a href="dictionary_S.html#540">SCB_SHCSR_MEMFAULTENA_Msk</a>;</span>
+<a name="286"><font size=-1>286     </font></a><span class="default">  </span>
+<a name="287"><font size=-1>287     </font></a><span class="default">  </span><span class="comment">/* Ensure MPU setting take effects */</span>
+<a name="288"><font size=-1>288     </font></a><span class="comment">  <a href="dictionary_&.html#508">__DSB</a></span><span class="default">();</span>
+<a name="289"><font size=-1>289     </font></a><span class="default">  <a href="dictionary_&.html#509">__ISB</a>();</span>
+<a name="290"><font size=-1>290     </font></a><span class="default">}</span>
+<a name="291"><font size=-1>291     </font></a><span class="default"></span>
+<a name="292"><font size=-1>292     </font></a><span class="default"></span><span class="comment">/**</span>
+<a name="293"><font size=-1>293     </font></a><span class="comment">  * @brief  Initializes and configures the Region and the memory to be protected.</span>
+<a name="294"><font size=-1>294     </font></a><span class="comment">  * @param  MPU_Init Pointer to a MPU_Region_InitTypeDef structure that contains</span>
+<a name="295"><font size=-1>295     </font></a><span class="comment">  *                the initialization and configuration information.</span>
+<a name="296"><font size=-1>296     </font></a><span class="comment">  * @retval None</span>
+<a name="297"><font size=-1>297     </font></a><span class="comment">  */</span>
+<a name="298"><font size=-1>298     </font></a><span class="comment"></span><span class="keyword">void <a href="dictionary_H.html#564">HAL_MPU_ConfigRegion</a></span><span class="default">(<a href="dictionary_M.html#551">MPU_Region_InitTypeDef</a> *<a href="dictionary_M.html#565">MPU_Init</a>)</span>
+<a name="299"><font size=-1>299     </font></a><span class="default">{</span>
+<a name="300"><font size=-1>300     </font></a><span class="default">  </span><span class="comment">/* Check the parameters */</span>
+<a name="301"><font size=-1>301     </font></a><span class="comment">  <a href="dictionary_A.html#349">assert_param</a></span><span class="default">(IS_MPU_REGION_NUMBER(<a href="dictionary_M.html#565">MPU_Init</a>-&gt;Number));</span>
+<a name="302"><font size=-1>302     </font></a><span class="default">  <a href="dictionary_A.html#349">assert_param</a>(IS_MPU_REGION_ENABLE(<a href="dictionary_M.html#565">MPU_Init</a>-&gt;Enable));</span>
+<a name="303"><font size=-1>303     </font></a><span class="default"></span>
+<a name="304"><font size=-1>304     </font></a><span class="default">  </span><span class="comment">/* Set the Region number */</span>
+<a name="305"><font size=-1>305     </font></a><span class="comment">  <a href="dictionary_M.html#510">MPU</a></span><span class="default">-&gt;<a href="dictionary_M.html#525">RNR</a> = <a href="dictionary_M.html#565">MPU_Init</a>-&gt;<a href="dictionary_M.html#559">Number</a>;</span>
+<a name="306"><font size=-1>306     </font></a><span class="default"></span>
+<a name="307"><font size=-1>307     </font></a><span class="default">  </span><span class="keyword">if </span><span class="default">((<a href="dictionary_M.html#565">MPU_Init</a>-&gt;<a href="dictionary_M.html#555">Enable</a>) != RESET)</span>
+<a name="308"><font size=-1>308     </font></a><span class="default">  {</span>
+<a name="309"><font size=-1>309     </font></a><span class="default">    </span><span class="comment">/* Check the parameters */</span>
+<a name="310"><font size=-1>310     </font></a><span class="comment">    <a href="dictionary_A.html#349">assert_param</a></span><span class="default">(IS_MPU_INSTRUCTION_ACCESS(<a href="dictionary_M.html#565">MPU_Init</a>-&gt;DisableExec));</span>
+<a name="311"><font size=-1>311     </font></a><span class="default">    <a href="dictionary_A.html#349">assert_param</a>(IS_MPU_REGION_PERMISSION_ATTRIBUTE(<a href="dictionary_M.html#565">MPU_Init</a>-&gt;AccessPermission));</span>
+<a name="312"><font size=-1>312     </font></a><span class="default">    <a href="dictionary_A.html#349">assert_param</a>(IS_MPU_TEX_LEVEL(<a href="dictionary_M.html#565">MPU_Init</a>-&gt;TypeExtField));</span>
+<a name="313"><font size=-1>313     </font></a><span class="default">    <a href="dictionary_A.html#349">assert_param</a>(IS_MPU_ACCESS_SHAREABLE(<a href="dictionary_M.html#565">MPU_Init</a>-&gt;IsShareable));</span>
+<a name="314"><font size=-1>314     </font></a><span class="default">    <a href="dictionary_A.html#349">assert_param</a>(IS_MPU_ACCESS_CACHEABLE(<a href="dictionary_M.html#565">MPU_Init</a>-&gt;IsCacheable));</span>
+<a name="315"><font size=-1>315     </font></a><span class="default">    <a href="dictionary_A.html#349">assert_param</a>(IS_MPU_ACCESS_BUFFERABLE(<a href="dictionary_M.html#565">MPU_Init</a>-&gt;IsBufferable));</span>
+<a name="316"><font size=-1>316     </font></a><span class="default">    <a href="dictionary_A.html#349">assert_param</a>(IS_MPU_SUB_REGION_DISABLE(<a href="dictionary_M.html#565">MPU_Init</a>-&gt;SubRegionDisable));</span>
+<a name="317"><font size=-1>317     </font></a><span class="default">    <a href="dictionary_A.html#349">assert_param</a>(IS_MPU_REGION_SIZE(<a href="dictionary_M.html#565">MPU_Init</a>-&gt;Size));</span>
+<a name="318"><font size=-1>318     </font></a><span class="default">    </span>
+<a name="319"><font size=-1>319     </font></a><span class="default">    <a href="dictionary_M.html#510">MPU</a>-&gt;<a href="dictionary_M.html#524">RBAR</a> = <a href="dictionary_M.html#565">MPU_Init</a>-&gt;<a href="dictionary_M.html#553">BaseAddress</a>;</span>
+<a name="320"><font size=-1>320     </font></a><span class="default">    <a href="dictionary_M.html#510">MPU</a>-&gt;<a href="dictionary_M.html#523">RASR</a> = ((<a href="dictionary_U.html#223">uint32_t</a>)<a href="dictionary_M.html#565">MPU_Init</a>-&gt;<a href="dictionary_M.html#554">DisableExec</a>             &lt;&lt; <a href="dictionary_M.html#521">MPU_RASR_XN_Pos</a>)   |</span>
+<a name="321"><font size=-1>321     </font></a><span class="default">                ((<a href="dictionary_U.html#223">uint32_t</a>)<a href="dictionary_M.html#565">MPU_Init</a>-&gt;<a href="dictionary_M.html#552">AccessPermission</a>        &lt;&lt; <a href="dictionary_M.html#513">MPU_RASR_AP_Pos</a>)   |</span>
+<a name="322"><font size=-1>322     </font></a><span class="default">                ((<a href="dictionary_U.html#223">uint32_t</a>)<a href="dictionary_M.html#565">MPU_Init</a>-&gt;<a href="dictionary_M.html#562">TypeExtField</a>            &lt;&lt; <a href="dictionary_M.html#520">MPU_RASR_TEX_Pos</a>)  |</span>
+<a name="323"><font size=-1>323     </font></a><span class="default">                ((<a href="dictionary_U.html#223">uint32_t</a>)<a href="dictionary_M.html#565">MPU_Init</a>-&gt;<a href="dictionary_M.html#558">IsShareable</a>             &lt;&lt; <a href="dictionary_M.html#519">MPU_RASR_S_Pos</a>)    |</span>
+<a name="324"><font size=-1>324     </font></a><span class="default">                ((<a href="dictionary_U.html#223">uint32_t</a>)<a href="dictionary_M.html#565">MPU_Init</a>-&gt;<a href="dictionary_M.html#557">IsCacheable</a>             &lt;&lt; <a href="dictionary_M.html#515">MPU_RASR_C_Pos</a>)    |</span>
+<a name="325"><font size=-1>325     </font></a><span class="default">                ((<a href="dictionary_U.html#223">uint32_t</a>)<a href="dictionary_M.html#565">MPU_Init</a>-&gt;<a href="dictionary_M.html#556">IsBufferable</a>            &lt;&lt; <a href="dictionary_M.html#514">MPU_RASR_B_Pos</a>)    |</span>
+<a name="326"><font size=-1>326     </font></a><span class="default">                ((<a href="dictionary_U.html#223">uint32_t</a>)<a href="dictionary_M.html#565">MPU_Init</a>-&gt;<a href="dictionary_M.html#561">SubRegionDisable</a>        &lt;&lt; <a href="dictionary_M.html#518">MPU_RASR_SRD_Pos</a>)  |</span>
+<a name="327"><font size=-1>327     </font></a><span class="default">                ((<a href="dictionary_U.html#223">uint32_t</a>)<a href="dictionary_M.html#565">MPU_Init</a>-&gt;<a href="dictionary_M.html#560">Size</a>                    &lt;&lt; <a href="dictionary_M.html#517">MPU_RASR_SIZE_Pos</a>) |</span>
+<a name="328"><font size=-1>328     </font></a><span class="default">                ((<a href="dictionary_U.html#223">uint32_t</a>)<a href="dictionary_M.html#565">MPU_Init</a>-&gt;<a href="dictionary_M.html#555">Enable</a>                  &lt;&lt; <a href="dictionary_M.html#516">MPU_RASR_ENABLE_Pos</a>);</span>
+<a name="329"><font size=-1>329     </font></a><span class="default">  }</span>
+<a name="330"><font size=-1>330     </font></a><span class="default">  </span><span class="keyword">else</span>
+<a name="331"><font size=-1>331     </font></a><span class="keyword">  </span><span class="default">{</span>
+<a name="332"><font size=-1>332     </font></a><span class="default">    <a href="dictionary_M.html#510">MPU</a>-&gt;<a href="dictionary_M.html#524">RBAR</a> = </span><span class="number">0x00U</span><span class="default">;</span>
+<a name="333"><font size=-1>333     </font></a><span class="default">    <a href="dictionary_M.html#510">MPU</a>-&gt;<a href="dictionary_M.html#523">RASR</a> = </span><span class="number">0x00U</span><span class="default">;</span>
+<a name="334"><font size=-1>334     </font></a><span class="default">  }</span>
+<a name="335"><font size=-1>335     </font></a><span class="default">}</span>
+<a name="336"><font size=-1>336     </font></a><span class="default"></span><span class="preproc">#endif </span><span class="comment">/* __MPU_PRESENT */</span>
+<a name="337"><font size=-1>337     </font></a><span class="comment"></span>
+<a name="338"><font size=-1>338     </font></a><span class="comment">/**</span>
+<a name="339"><font size=-1>339     </font></a><span class="comment">  * @brief  Gets the priority grouping field from the NVIC Interrupt Controller.</span>
+<a name="340"><font size=-1>340     </font></a><span class="comment">  * @retval Priority grouping field (SCB-&gt;AIRCR [10:8] PRIGROUP field)</span>
+<a name="341"><font size=-1>341     </font></a><span class="comment">  */</span>
+<a name="342"><font size=-1>342     </font></a><span class="comment"><a href="dictionary_U.html#223">uint32_t</a> <a href="dictionary_H.html#584">HAL_NVIC_GetPriorityGrouping</a></span><span class="default">(</span><span class="keyword">void</span><span class="default">)</span>
+<a name="343"><font size=-1>343     </font></a><span class="default">{</span>
+<a name="344"><font size=-1>344     </font></a><span class="default">  </span><span class="comment">/* Get the PRIGROUP[10:8] field value */</span>
+<a name="345"><font size=-1>345     </font></a><span class="comment">  </span><span class="keyword">return <a href="dictionary_N.html#533">NVIC_GetPriorityGrouping</a></span><span class="default">();</span>
+<a name="346"><font size=-1>346     </font></a><span class="default">}</span>
+<a name="347"><font size=-1>347     </font></a><span class="default"></span>
+<a name="348"><font size=-1>348     </font></a><span class="default"></span><span class="comment">/**</span>
+<a name="349"><font size=-1>349     </font></a><span class="comment">  * @brief  Gets the priority of an interrupt.</span>
+<a name="350"><font size=-1>350     </font></a><span class="comment">  * @param  IRQn External interrupt number.</span>
+<a name="351"><font size=-1>351     </font></a><span class="comment">  *         This parameter can be an enumerator of IRQn_Type enumeration</span>
+<a name="352"><font size=-1>352     </font></a><span class="comment">  *         (For the complete STM32 Devices IRQ Channels list, please refer to the appropriate CMSIS device file (stm32f4xxxx.h))</span>
+<a name="353"><font size=-1>353     </font></a><span class="comment">  * @param   PriorityGroup the priority grouping bits length.</span>
+<a name="354"><font size=-1>354     </font></a><span class="comment">  *         This parameter can be one of the following values:</span>
+<a name="355"><font size=-1>355     </font></a><span class="comment">  *           @arg NVIC_PRIORITYGROUP_0: 0 bits for preemption priority</span>
+<a name="356"><font size=-1>356     </font></a><span class="comment">  *                                      4 bits for subpriority</span>
+<a name="357"><font size=-1>357     </font></a><span class="comment">  *           @arg NVIC_PRIORITYGROUP_1: 1 bits for preemption priority</span>
+<a name="358"><font size=-1>358     </font></a><span class="comment">  *                                      3 bits for subpriority</span>
+<a name="359"><font size=-1>359     </font></a><span class="comment">  *           @arg NVIC_PRIORITYGROUP_2: 2 bits for preemption priority</span>
+<a name="360"><font size=-1>360     </font></a><span class="comment">  *                                      2 bits for subpriority</span>
+<a name="361"><font size=-1>361     </font></a><span class="comment">  *           @arg NVIC_PRIORITYGROUP_3: 3 bits for preemption priority</span>
+<a name="362"><font size=-1>362     </font></a><span class="comment">  *                                      1 bits for subpriority</span>
+<a name="363"><font size=-1>363     </font></a><span class="comment">  *           @arg NVIC_PRIORITYGROUP_4: 4 bits for preemption priority</span>
+<a name="364"><font size=-1>364     </font></a><span class="comment">  *                                      0 bits for subpriority</span>
+<a name="365"><font size=-1>365     </font></a><span class="comment">  * @param  pPreemptPriority Pointer on the Preemptive priority value (starting from 0).</span>
+<a name="366"><font size=-1>366     </font></a><span class="comment">  * @param  pSubPriority Pointer on the Subpriority value (starting from 0).</span>
+<a name="367"><font size=-1>367     </font></a><span class="comment">  * @retval None</span>
+<a name="368"><font size=-1>368     </font></a><span class="comment">  */</span>
+<a name="369"><font size=-1>369     </font></a><span class="comment"></span><span class="keyword">void <a href="dictionary_H.html#579">HAL_NVIC_GetPriority</a></span><span class="default">(<a href="dictionary_I.html#505">IRQn_Type</a> <a href="dictionary_I.html#580">IRQn</a>, <a href="dictionary_U.html#223">uint32_t</a> <a href="dictionary_P.html#581">PriorityGroup</a>, <a href="dictionary_U.html#223">uint32_t</a> *<a href="dictionary_P.html#582">pPreemptPriority</a>, <a href="dictionary_U.html#223">uint32_t</a> *<a href="dictionary_P.html#583">pSubPriority</a>)</span>
+<a name="370"><font size=-1>370     </font></a><span class="default">{</span>
+<a name="371"><font size=-1>371     </font></a><span class="default">  </span><span class="comment">/* Check the parameters */</span>
+<a name="372"><font size=-1>372     </font></a><span class="comment">  <a href="dictionary_A.html#349">assert_param</a></span><span class="default">(IS_NVIC_PRIORITY_GROUP(<a href="dictionary_P.html#581">PriorityGroup</a>));</span>
+<a name="373"><font size=-1>373     </font></a><span class="default"> </span><span class="comment">/* Get priority for Cortex-M system or device specific interrupts */</span>
+<a name="374"><font size=-1>374     </font></a><span class="comment">  <a href="dictionary_N.html#600">NVIC_DecodePriority</a></span><span class="default">(<a href="dictionary_N.html#532">NVIC_GetPriority</a>(<a href="dictionary_I.html#580">IRQn</a>), <a href="dictionary_P.html#581">PriorityGroup</a>, <a href="dictionary_P.html#582">pPreemptPriority</a>, <a href="dictionary_P.html#583">pSubPriority</a>);</span>
+<a name="375"><font size=-1>375     </font></a><span class="default">}</span>
+<a name="376"><font size=-1>376     </font></a><span class="default"></span>
+<a name="377"><font size=-1>377     </font></a><span class="default"></span><span class="comment">/**</span>
+<a name="378"><font size=-1>378     </font></a><span class="comment">  * @brief  Sets Pending bit of an external interrupt.</span>
+<a name="379"><font size=-1>379     </font></a><span class="comment">  * @param  IRQn External interrupt number</span>
+<a name="380"><font size=-1>380     </font></a><span class="comment">  *         This parameter can be an enumerator of IRQn_Type enumeration</span>
+<a name="381"><font size=-1>381     </font></a><span class="comment">  *         (For the complete STM32 Devices IRQ Channels list, please refer to the appropriate CMSIS device file (stm32f4xxxx.h))</span>
+<a name="382"><font size=-1>382     </font></a><span class="comment">  * @retval None</span>
+<a name="383"><font size=-1>383     </font></a><span class="comment">  */</span>
+<a name="384"><font size=-1>384     </font></a><span class="comment"></span><span class="keyword">void <a href="dictionary_H.html#585">HAL_NVIC_SetPendingIRQ</a></span><span class="default">(<a href="dictionary_I.html#505">IRQn_Type</a> <a href="dictionary_I.html#586">IRQn</a>)</span>
+<a name="385"><font size=-1>385     </font></a><span class="default">{</span>
+<a name="386"><font size=-1>386     </font></a><span class="default">  </span><span class="comment">/* Check the parameters */</span>
+<a name="387"><font size=-1>387     </font></a><span class="comment">  <a href="dictionary_A.html#349">assert_param</a></span><span class="default">(IS_NVIC_DEVICE_IRQ(<a href="dictionary_I.html#586">IRQn</a>));</span>
+<a name="388"><font size=-1>388     </font></a><span class="default">  </span>
+<a name="389"><font size=-1>389     </font></a><span class="default">  </span><span class="comment">/* Set interrupt pending */</span>
+<a name="390"><font size=-1>390     </font></a><span class="comment">  <a href="dictionary_N.html#534">NVIC_SetPendingIRQ</a></span><span class="default">(<a href="dictionary_I.html#586">IRQn</a>);</span>
+<a name="391"><font size=-1>391     </font></a><span class="default">}</span>
+<a name="392"><font size=-1>392     </font></a><span class="default"></span>
+<a name="393"><font size=-1>393     </font></a><span class="default"></span><span class="comment">/**</span>
+<a name="394"><font size=-1>394     </font></a><span class="comment">  * @brief  Gets Pending Interrupt (reads the pending register in the NVIC </span>
+<a name="395"><font size=-1>395     </font></a><span class="comment">  *         and returns the pending bit for the specified interrupt).</span>
+<a name="396"><font size=-1>396     </font></a><span class="comment">  * @param  IRQn External interrupt number.</span>
+<a name="397"><font size=-1>397     </font></a><span class="comment">  *          This parameter can be an enumerator of IRQn_Type enumeration</span>
+<a name="398"><font size=-1>398     </font></a><span class="comment">  *         (For the complete STM32 Devices IRQ Channels list, please refer to the appropriate CMSIS device file (stm32f4xxxx.h))</span>
+<a name="399"><font size=-1>399     </font></a><span class="comment">  * @retval status: - 0  Interrupt status is not pending.</span>
+<a name="400"><font size=-1>400     </font></a><span class="comment">  *                 - 1  Interrupt status is pending.</span>
+<a name="401"><font size=-1>401     </font></a><span class="comment">  */</span>
+<a name="402"><font size=-1>402     </font></a><span class="comment"><a href="dictionary_U.html#223">uint32_t</a> <a href="dictionary_H.html#577">HAL_NVIC_GetPendingIRQ</a></span><span class="default">(<a href="dictionary_I.html#505">IRQn_Type</a> <a href="dictionary_I.html#578">IRQn</a>)</span>
+<a name="403"><font size=-1>403     </font></a><span class="default">{</span>
+<a name="404"><font size=-1>404     </font></a><span class="default">  </span><span class="comment">/* Check the parameters */</span>
+<a name="405"><font size=-1>405     </font></a><span class="comment">  <a href="dictionary_A.html#349">assert_param</a></span><span class="default">(IS_NVIC_DEVICE_IRQ(<a href="dictionary_I.html#578">IRQn</a>));</span>
+<a name="406"><font size=-1>406     </font></a><span class="default">  </span>
+<a name="407"><font size=-1>407     </font></a><span class="default">  </span><span class="comment">/* Return 1 if pending else 0 */</span>
+<a name="408"><font size=-1>408     </font></a><span class="comment">  </span><span class="keyword">return <a href="dictionary_N.html#531">NVIC_GetPendingIRQ</a></span><span class="default">(<a href="dictionary_I.html#578">IRQn</a>);</span>
+<a name="409"><font size=-1>409     </font></a><span class="default">}</span>
+<a name="410"><font size=-1>410     </font></a><span class="default"></span>
+<a name="411"><font size=-1>411     </font></a><span class="default"></span><span class="comment">/**</span>
+<a name="412"><font size=-1>412     </font></a><span class="comment">  * @brief  Clears the pending bit of an external interrupt.</span>
+<a name="413"><font size=-1>413     </font></a><span class="comment">  * @param  IRQn External interrupt number.</span>
+<a name="414"><font size=-1>414     </font></a><span class="comment">  *         This parameter can be an enumerator of IRQn_Type enumeration</span>
+<a name="415"><font size=-1>415     </font></a><span class="comment">  *         (For the complete STM32 Devices IRQ Channels list, please refer to the appropriate CMSIS device file (stm32f4xxxx.h))</span>
+<a name="416"><font size=-1>416     </font></a><span class="comment">  * @retval None</span>
+<a name="417"><font size=-1>417     </font></a><span class="comment">  */</span>
+<a name="418"><font size=-1>418     </font></a><span class="comment"></span><span class="keyword">void <a href="dictionary_H.html#569">HAL_NVIC_ClearPendingIRQ</a></span><span class="default">(<a href="dictionary_I.html#505">IRQn_Type</a> <a href="dictionary_I.html#570">IRQn</a>)</span>
+<a name="419"><font size=-1>419     </font></a><span class="default">{</span>
+<a name="420"><font size=-1>420     </font></a><span class="default">  </span><span class="comment">/* Check the parameters */</span>
+<a name="421"><font size=-1>421     </font></a><span class="comment">  <a href="dictionary_A.html#349">assert_param</a></span><span class="default">(IS_NVIC_DEVICE_IRQ(<a href="dictionary_I.html#570">IRQn</a>));</span>
+<a name="422"><font size=-1>422     </font></a><span class="default">  </span>
+<a name="423"><font size=-1>423     </font></a><span class="default">  </span><span class="comment">/* Clear pending interrupt */</span>
+<a name="424"><font size=-1>424     </font></a><span class="comment">  <a href="dictionary_N.html#527">NVIC_ClearPendingIRQ</a></span><span class="default">(<a href="dictionary_I.html#570">IRQn</a>);</span>
+<a name="425"><font size=-1>425     </font></a><span class="default">}</span>
+<a name="426"><font size=-1>426     </font></a><span class="default"></span>
+<a name="427"><font size=-1>427     </font></a><span class="default"></span><span class="comment">/**</span>
+<a name="428"><font size=-1>428     </font></a><span class="comment">  * @brief Gets active interrupt ( reads the active register in NVIC and returns the active bit).</span>
+<a name="429"><font size=-1>429     </font></a><span class="comment">  * @param IRQn External interrupt number</span>
+<a name="430"><font size=-1>430     </font></a><span class="comment">  *         This parameter can be an enumerator of IRQn_Type enumeration</span>
+<a name="431"><font size=-1>431     </font></a><span class="comment">  *         (For the complete STM32 Devices IRQ Channels list, please refer to the appropriate CMSIS device file (stm32f4xxxx.h))</span>
+<a name="432"><font size=-1>432     </font></a><span class="comment">  * @retval status: - 0  Interrupt status is not pending.</span>
+<a name="433"><font size=-1>433     </font></a><span class="comment">  *                 - 1  Interrupt status is pending.</span>
+<a name="434"><font size=-1>434     </font></a><span class="comment">  */</span>
+<a name="435"><font size=-1>435     </font></a><span class="comment"><a href="dictionary_U.html#223">uint32_t</a> <a href="dictionary_H.html#575">HAL_NVIC_GetActive</a></span><span class="default">(<a href="dictionary_I.html#505">IRQn_Type</a> <a href="dictionary_I.html#576">IRQn</a>)</span>
+<a name="436"><font size=-1>436     </font></a><span class="default">{</span>
+<a name="437"><font size=-1>437     </font></a><span class="default">  </span><span class="comment">/* Check the parameters */</span>
+<a name="438"><font size=-1>438     </font></a><span class="comment">  <a href="dictionary_A.html#349">assert_param</a></span><span class="default">(IS_NVIC_DEVICE_IRQ(<a href="dictionary_I.html#576">IRQn</a>));</span>
+<a name="439"><font size=-1>439     </font></a><span class="default">  </span>
+<a name="440"><font size=-1>440     </font></a><span class="default">  </span><span class="comment">/* Return 1 if active else 0 */</span>
+<a name="441"><font size=-1>441     </font></a><span class="comment">  </span><span class="keyword">return <a href="dictionary_N.html#530">NVIC_GetActive</a></span><span class="default">(<a href="dictionary_I.html#576">IRQn</a>);</span>
+<a name="442"><font size=-1>442     </font></a><span class="default">}</span>
+<a name="443"><font size=-1>443     </font></a><span class="default"></span>
+<a name="444"><font size=-1>444     </font></a><span class="default"></span><span class="comment">/**</span>
+<a name="445"><font size=-1>445     </font></a><span class="comment">  * @brief  Configures the SysTick clock source.</span>
+<a name="446"><font size=-1>446     </font></a><span class="comment">  * @param  CLKSource specifies the SysTick clock source.</span>
+<a name="447"><font size=-1>447     </font></a><span class="comment">  *          This parameter can be one of the following values:</span>
+<a name="448"><font size=-1>448     </font></a><span class="comment">  *             @arg SYSTICK_CLKSOURCE_HCLK_DIV8: AHB clock divided by 8 selected as SysTick clock source.</span>
+<a name="449"><font size=-1>449     </font></a><span class="comment">  *             @arg SYSTICK_CLKSOURCE_HCLK: AHB clock selected as SysTick clock source.</span>
+<a name="450"><font size=-1>450     </font></a><span class="comment">  * @retval None</span>
+<a name="451"><font size=-1>451     </font></a><span class="comment">  */</span>
+<a name="452"><font size=-1>452     </font></a><span class="comment"></span><span class="keyword">void <a href="dictionary_H.html#595">HAL_SYSTICK_CLKSourceConfig</a></span><span class="default">(<a href="dictionary_U.html#223">uint32_t</a> <a href="dictionary_C.html#596">CLKSource</a>)</span>
+<a name="453"><font size=-1>453     </font></a><span class="default">{</span>
+<a name="454"><font size=-1>454     </font></a><span class="default">  </span><span class="comment">/* Check the parameters */</span>
+<a name="455"><font size=-1>455     </font></a><span class="comment">  <a href="dictionary_A.html#349">assert_param</a></span><span class="default">(IS_SYSTICK_CLK_SOURCE(<a href="dictionary_C.html#596">CLKSource</a>));</span>
+<a name="456"><font size=-1>456     </font></a><span class="default">  </span><span class="keyword">if </span><span class="default">(<a href="dictionary_C.html#596">CLKSource</a> == <a href="dictionary_S.html#563">SYSTICK_CLKSOURCE_HCLK</a>)</span>
+<a name="457"><font size=-1>457     </font></a><span class="default">  {</span>
+<a name="458"><font size=-1>458     </font></a><span class="default">    <a href="dictionary_S.html#545">SysTick</a>-&gt;<a href="dictionary_S.html#547">CTRL</a> |= <a href="dictionary_S.html#563">SYSTICK_CLKSOURCE_HCLK</a>;</span>
+<a name="459"><font size=-1>459     </font></a><span class="default">  }</span>
+<a name="460"><font size=-1>460     </font></a><span class="default">  </span><span class="keyword">else</span>
+<a name="461"><font size=-1>461     </font></a><span class="keyword">  </span><span class="default">{</span>
+<a name="462"><font size=-1>462     </font></a><span class="default">    <a href="dictionary_S.html#545">SysTick</a>-&gt;<a href="dictionary_S.html#547">CTRL</a> &amp;= ~<a href="dictionary_S.html#563">SYSTICK_CLKSOURCE_HCLK</a>;</span>
+<a name="463"><font size=-1>463     </font></a><span class="default">  }</span>
+<a name="464"><font size=-1>464     </font></a><span class="default">}</span>
+<a name="465"><font size=-1>465     </font></a><span class="default"></span>
+<a name="466"><font size=-1>466     </font></a><span class="default"></span><span class="comment">/**</span>
+<a name="467"><font size=-1>467     </font></a><span class="comment">  * @brief  This function handles SYSTICK interrupt request.</span>
+<a name="468"><font size=-1>468     </font></a><span class="comment">  * @retval None</span>
+<a name="469"><font size=-1>469     </font></a><span class="comment">  */</span>
+<a name="470"><font size=-1>470     </font></a><span class="comment"></span><span class="keyword">void <a href="dictionary_H.html#599">HAL_SYSTICK_IRQHandler</a></span><span class="default">(</span><span class="keyword">void</span><span class="default">)</span>
+<a name="471"><font size=-1>471     </font></a><span class="default">{</span>
+<a name="472"><font size=-1>472     </font></a><span class="default">  <a href="dictionary_H.html#550">HAL_SYSTICK_Callback</a>();</span>
+<a name="473"><font size=-1>473     </font></a><span class="default">}</span>
+<a name="474"><font size=-1>474     </font></a><span class="default"></span>
+<a name="475"><font size=-1>475     </font></a><span class="default"></span><span class="comment">/**</span>
+<a name="476"><font size=-1>476     </font></a><span class="comment">  * @brief  SYSTICK callback.</span>
+<a name="477"><font size=-1>477     </font></a><span class="comment">  * @retval None</span>
+<a name="478"><font size=-1>478     </font></a><span class="comment">  */</span>
+<a name="479"><font size=-1>479     </font></a><span class="comment"></span><span class="default">__weak </span><span class="keyword">void <a href="dictionary_H.html#550">HAL_SYSTICK_Callback</a></span><span class="default">(</span><span class="keyword">void</span><span class="default">)</span>
+<a name="480"><font size=-1>480     </font></a><span class="default">{</span>
+<a name="481"><font size=-1>481     </font></a><span class="default">  </span><span class="comment">/* NOTE : This function Should not be modified, when the callback is needed,</span>
+<a name="482"><font size=-1>482     </font></a><span class="comment">            the HAL_SYSTICK_Callback could be implemented in the user file</span>
+<a name="483"><font size=-1>483     </font></a><span class="comment">   */</span>
+<a name="484"><font size=-1>484     </font></a><span class="comment"></span><span class="default">}</span>
+<a name="485"><font size=-1>485     </font></a><span class="default"></span>
+<a name="486"><font size=-1>486     </font></a><span class="default"></span><span class="comment">/**</span>
+<a name="487"><font size=-1>487     </font></a><span class="comment">  * @}</span>
+<a name="488"><font size=-1>488     </font></a><span class="comment">  */</span>
+<a name="489"><font size=-1>489     </font></a><span class="comment"></span>
+<a name="490"><font size=-1>490     </font></a><span class="comment">/**</span>
+<a name="491"><font size=-1>491     </font></a><span class="comment">  * @}</span>
+<a name="492"><font size=-1>492     </font></a><span class="comment">  */</span>
+<a name="493"><font size=-1>493     </font></a><span class="comment"></span>
+<a name="494"><font size=-1>494     </font></a><span class="comment"></span><span class="preproc">#endif </span><span class="comment">/* HAL_CORTEX_MODULE_ENABLED */</span>
+<a name="495"><font size=-1>495     </font></a><span class="comment">/**</span>
+<a name="496"><font size=-1>496     </font></a><span class="comment">  * @}</span>
+<a name="497"><font size=-1>497     </font></a><span class="comment">  */</span>
+<a name="498"><font size=-1>498     </font></a><span class="comment"></span>
+<a name="499"><font size=-1>499     </font></a><span class="comment">/**</span>
+<a name="500"><font size=-1>500     </font></a><span class="comment">  * @}</span>
+<a name="501"><font size=-1>501     </font></a><span class="comment">  */</span>
+<a name="502"><font size=-1>502     </font></a><span class="comment"></span>
+<a name="503"><font size=-1>503     </font></a><span class="comment"></span>
+</pre></body></html>

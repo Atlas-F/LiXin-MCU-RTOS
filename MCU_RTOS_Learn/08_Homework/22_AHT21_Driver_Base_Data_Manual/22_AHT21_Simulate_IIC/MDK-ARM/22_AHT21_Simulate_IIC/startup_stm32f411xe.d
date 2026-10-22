@@ -1,0 +1,1 @@
+22_aht21_simulate_iic\startup_stm32f411xe.o: startup_stm32f411xe.s
