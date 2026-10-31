@@ -60,12 +60,10 @@
 
 #endif /* DIFFERENT_TYPE_TEMP_HUMI_SENSOR_SUPPORT */
 
-// #if SENSOR_SUPPORT_AHT21B == DIFFERENT_TYPE_TEMP_HUMI_SENSOR_SUPPORT
 
 
 /* Private variables -------------------------------------------------------*/
 
-// extern void * g_temp_humi_handler_event_queue ;
 
 
 /* Private typedef ---------------------------------------------------------*/
@@ -122,12 +120,6 @@ typedef struct
 
 }TempHumiHandler_IICInterface_t;
 
-
-// typedef struct 
-// {
-
-
-// }TempHumiHandler_CriticalInterface_t;
 
 
 
@@ -268,11 +260,6 @@ typedef struct
     bool               temp_humi_data_valid;
 
     TempHumiHandler_Event_t * TempHumi_event;  /* 事件通知需要考虑到并发和竞态 */
-#ifdef SENSOR_SUPPORT_AHT21B
-    // static BspAht21b_TimeBaseInterface_t g_aht21b_time_base;
-    // static BspAht21b_RTOS_YieldInterface_t g_aht21b_yield;
-
-#endif /* SENSOR_SUPPORT_AHT21B */
 
 
     /* operate */
@@ -283,8 +270,7 @@ typedef struct
     TempHumiHandlerInitedFlag_t            * is_inited_flag;
 
     TempHumiHandlerSensorType_t            * sensor_device;
-    /* 维护一个事件通信的队列句柄 */
-    // void * event_queue_handle;
+
 
 #ifdef OS_SUPPORTING
     TempHumiHandler_OsQueue_t  * os_queue;
@@ -347,38 +333,9 @@ TempHumiHandlerStatus_t TempHumiHandler_Inst(
 #endif /* OS_SUPPORTING */
 
 
-// /**
-//  * @brief  温湿度处理 Handler 的事件发送函数
-//  * 
-//  * @param [in]  temp_humi_handler 
-//  * @param [in]  temp_humi_event 
-//  * @return      
-//  * 
-//  * @details
-//  * @note
-//  *      实际上由于发送事件由外部执行，所以该函数其实也没用了，由于操作系统一版不会换，所以上层直接使用
-//  *          FreeRTOS 进行操作也无所谓了
-//  * @warning
-//  */
-// static TempHumiHandlerStatus_t TempHumiHandler_SendTempHumiEvent(
-//                                     TempHumi_Handler_t * temp_humi_handler,
-//                                     TempHumiHandler_Event_t* temp_humi_event);
 
 
-/**
- * @brief  温湿度处理 Handler 的事件接收函数
- * 
- * @param [in]  temp_humi_handler 
- * @param [in]  temp_humi_event 
- * @return      
- * 
- * @details
- * @note
- * @warning
- */
-// TempHumiHandlerStatus_t TempHumiHandler_ReceiveTempHumiEvent(
-//                                     TempHumi_Handler_t * temp_humi_handler,
-//                                     TempHumiHandler_Event_t* temp_humi_event);
+
 
 
 /**
@@ -393,30 +350,6 @@ void TempHumiHandler_RunnableThread(void * argument);
 
 
 
-// /**
-//  * @brief  
-//  * 
-//  * @param [in]  temp_humi_handler 
-//  * 
-//  * @param [out]  temp 
-//  * @param [out]  humi 
-//  * @return      
-//  * 
-//  * @details
-//  * @note
-//  * @warning
-//  */
-// TempHumiHandlerStatus_t TempHumiHandler_UpdateTempHumiData(
-//                                     TempHumi_Handler_t * temp_humi_handler,
-//                                     float * temp,
-//                                     float * humi );
-
-
-// TempHumiHandlerStatus_t TempHumiHandler_GetTempHumiData(
-//                                     TempHumi_Handler_t * temp_humi_handler,
-//                                     TempHumiHandler_Event_t * event,
-//                                     float * temp,
-//                                     float * humi );
 
 
 

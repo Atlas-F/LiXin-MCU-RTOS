@@ -87,7 +87,7 @@ typedef struct TempHumiHandlerSensorType
 }TempHumiHandlerSensorType_t;
 
 
-// typedef IIC_DriverInterface_t TempHumiHandler_ReplaceIICInterface;
+
 
 
 
@@ -100,6 +100,17 @@ void *TempHumiHandler_GetEventQueueHandle(void)
 }
 
 
+/**
+ * @brief  温湿度 Handler 在获取新的温湿度数据后，发布数据维护的数据快照
+ * 
+ * @param [in]  temperature 
+ * @param [in]  humidity 
+ * @param [in]  timestamp 
+ * 
+ * @details
+ * @note
+ * @warning
+ */
 static void TempHumiHandler_PublishData(
     float temperature,
     float humidity,
@@ -122,7 +133,17 @@ static void TempHumiHandler_PublishData(
 
 
 
-
+/**
+ * @brief  
+ * 
+ * @param [in]  event 
+ * @return      
+ * 
+ * @details
+ * @note
+ *      当前方案是无论收到什么事件类型都执行同一个回调函数，所以只执行一次回调函数
+ * @warning
+ */
 static TempHumiHandlerStatus_t TempHumiHandler_DispatchEvent(TempHumiHandler_Event_t *event)
 {
     if (event == NULL)
@@ -397,91 +418,6 @@ TempHumiHandlerStatus_t TempHumiHandler_GetLatestData(
     return HANDLER_OK;
 }
 
-/**
- * @brief  获取温湿度数据函数
- * 
- * @param [in]  temp_humi_handler 
- * @param [in]  temp 
- * @param [in]  humi 
- * @return      
- * 
- * @details     直接从handler 返回数据
- * @note
- * @warning
- */
-// TempHumiHandlerStatus_t TempHumiHandler_GetTempHumiData(
-//                                     TempHumi_Handler_t * temp_humi_handler,
-//                                     TempHumiHandler_Event_t * event,
-//                                     float * temp,
-//                                     float * humi )
-// {
-//     /* 1 check the input parameters and resources-------------------------- */
-//     if( (NULL == temp_humi_handler) ||
-//         (NULL == temp) ||
-//         (NULL == humi) ||
-//         (NULL == event) ) 
-//     {
-// #ifdef HANDLER_DEBUG
-//         printf(" TempHumiHandler_GetTempHumiData ERROR resources \r\n");
-// #endif /* HANDLER_DEBUG */
-//         return  HANDLER_ERROR_RESOURCE;
-//     }
-
-//     /* 检查是否初始化 */
-//     if( false == temp_humi_handler->is_inited_flag->temp_humi_handler_inited_flag)
-//     {
-// #ifdef HANDLER_DEBUG
-//         printf(" temp_humi_handler is NOT inited \r\n");
-// #endif /* HANDLER_DEBUG */
-//         return  HANDLER_ERROR_RESOURCE;
-//     }
-
-//     if( false == temp_humi_handler->temp_humi_data_valid )
-//     {
-// #ifdef HANDLER_DEBUG
-//         printf(" temp_humi_data is Invalid ! \r\n");
-// #endif /* HANDLER_DEBUG */
-//         return  HANDLER_ERROR_RESOURCE;
-//     }
-
-//     /* 2 return the tempurature and humiditity data -------------------------- */
-
-//     // *temp = temp_humi_handler->tempurature;
-//     // *humi = temp_humi_handler->humiditity;
-
-//     switch (event->TempHumi_event_type)
-//     {
-//         case TempHumi_EVENT_Temp:
-
-//             break;
-
-//         case TempHumi_EVENT_Humi:
-//                 event->pf_EventCallBack(temp_humi_sensor);
-//             break;
-
-//         case TempHumi_EVENT_1:
-//                 event->pf_EventCallBack(temp_humi_sensor);
-//             break;
-
-//         case TempHumi_EVENT_2:
-//                 event->pf_EventCallBack(temp_humi_sensor);
-//             break;
-
-//         case TempHumi_EVENT_3:
-//                 event->pf_EventCallBack(temp_humi_sensor);
-//             break;
-
-//         case TempHumi_EVENT_4:
-//                 event->pf_EventCallBack(temp_humi_sensor);
-//             break;
-        
-//         default:
-//             break;
-//     }
-
-//     return HANDLER_OK ;
-
-// }
 
 
 
@@ -512,24 +448,7 @@ static TempHumiHandlerStatus_t TempHumiHandler_UpdateTempHumiData(
     float humidity;
 
     /* 1 check the input parameters and resources-------------------------- */
-//     if( (NULL == temp_humi_handler) ||
-//         (NULL == temp) ||
-//         (NULL == humi)  )
-//     {
-// #ifdef HANDLER_DEBUG
-//         printf(" TempHumiHandler_GetTempHumiData ERROR resources \r\n");
-// #endif /* HANDLER_DEBUG */
-//         return  HANDLER_ERROR_RESOURCE;
-//     }
 
-//     /* 检查是否初始化 */
-//     if( false == temp_humi_handler->is_inited_flag->temp_humi_handler_inited_flag)
-//     {
-// #ifdef HANDLER_DEBUG
-//         printf(" temp_humi_handler is NOT inited \r\n");
-// #endif /* HANDLER_DEBUG */
-//         return  HANDLER_ERROR_RESOURCE;
-//     }
 
 
     /* 2  Update last data tick -------------------------- */
@@ -547,11 +466,8 @@ static TempHumiHandlerStatus_t TempHumiHandler_UpdateTempHumiData(
         {
             return HANDLER_ERROR;
         }
-        // temp_humi_handler->tempurature = *temp;
-        // temp_humi_handler->humiditity = *humi;
-        /* 原本的设计会将数据进行一次多余的无效复制 */
 
-        // temp_humi_handler->tempurature = 
+
         temp_humi_handler->last_temp_tick = tim;
 
         /* @note 这里是判断操作费时间，还是赋值操作费时间？ 如果赋值操作更加费时间，那么用判断来取消赋值是有收益的 */
@@ -669,15 +585,6 @@ void TempHumiHandler_RunnableThread(void * argument)
 {
 
     /* 1 Create the resources will used -------------------- */
-    // Bsp_Aht21b_Driver_t * temp_humi_aht21b;
-//     void * temp_humi_sensor;
-//     /* @note 这里应该可以使用条件选择分支进行设备选择 */
-// #ifdef SENSOR_SUPPORT_AHT21B
-//     // Bsp_Aht21b_Driver_t * temp_humi_aht21b = (Bsp_Aht21b_Driver_t *)temp_humi_sensor;
-//     /* 这两个表达式哪个是正确的？转换后进行赋值，变量的类型会永久变化吗？ */
-//     temp_humi_sensor = (Bsp_Aht21b_Driver_t *)temp_humi_sensor;
-
-// #endif /* SENSOR_SUPPORT_AHT21B */
 
     if( NULL == argument )
     {
@@ -753,46 +660,6 @@ void TempHumiHandler_RunnableThread(void * argument)
         }
 
         /* @note 这里的事件逻辑，应该根据具体的业务逻辑进行还是直接设计为返回特定数据？ */
-        /* @note 四个分支绑定的是同一个回调啊，分支个dan啊，人傻了 */
-        /* @note 这里的分支执行接收的回调函数 */
-        // switch (temp_humi_event->TempHumi_event_type)
-        // {
-        //     case TempHumi_EVENT_Temp:
-        //             temp_humi_event->pf_EventCallBack(temp_humi_event->temp_humi_sensor);
-        //         break;
-
-        //     case TempHumi_EVENT_Humi:
-        //             temp_humi_event->pf_EventCallBack(temp_humi_event->temp_humi_sensor);
-        //         break;
-
-        //     case TempHumi_EVENT_1:
-        //             temp_humi_event->pf_EventCallBack(temp_humi_event->temp_humi_sensor);
-        //         break;
-
-        //     case TempHumi_EVENT_2:
-        //             temp_humi_event->pf_EventCallBack(temp_humi_event->temp_humi_sensor);
-        //         break;
-
-        //     case TempHumi_EVENT_3:
-        //             temp_humi_event->pf_EventCallBack(temp_humi_event->temp_humi_sensor);
-        //         break;
-
-        //     case TempHumi_EVENT_4:
-        //             temp_humi_event->pf_EventCallBack(temp_humi_event->temp_humi_sensor);
-        //         break;
-            
-        //     default:
-        //         break;
-        // }
-
-
-        /* 更新数据 */
-        // if ((temp_humi_event != NULL) &&
-        //     (temp_humi_event->pf_EventCallBack != NULL))
-        // {
-        //     // temp_humi_event->pf_EventCallBack(temp_humi_event->temp_humi_sensor);
-
-        // }
         TempHumiHandler_UpdateTempHumiData(&temp_humi_handler_instance,
                                     &temp_humi_handler_instance.tempurature,
                                     &temp_humi_handler_instance.humiditity  );
